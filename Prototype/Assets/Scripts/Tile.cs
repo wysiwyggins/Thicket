@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    public string tileName = "unamed";
+    public GameObject tileTexture = null;
     public bool isWater = false;
     public bool isDark = false;
     public bool isSolid = false;

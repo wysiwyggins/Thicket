@@ -5,6 +5,7 @@ using UnityEngine;
 public class Piece : MonoBehaviour
 {
     public string pieceName = "unnamed";
+    public GameObject pieceTexture = null;
     public int x = 0;
     public int y = 0;
     public int z = 0;
