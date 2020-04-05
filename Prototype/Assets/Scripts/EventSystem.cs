@@ -25,6 +25,8 @@ public class EventSystem : MonoBehaviour
 
         if CurrentState == GameState.PlayerTurn {
 
+            //if no pieces have isPlayer switch CurrentState to GameOver
+
             //for pieces that have isPlayer set to true: highlight tiles (that aren't obstacles) 1 hex adjacent to the piece
             //if the player clicks on one, move() the player character to that hex
             //when done, switch CurrentState to AITurn
@@ -36,5 +38,9 @@ public class EventSystem : MonoBehaviour
             // if no prey or scent of prey is in range: if a prey piece is on any tile on the board that is not isDark, move towards it
             // when done, switch CurrentState to PlayerTurn
         }
-    }
+
+        if CurrentState == GameState.GameOver {
+            // play the sad song
+            // set state to attract
+        }
 }
