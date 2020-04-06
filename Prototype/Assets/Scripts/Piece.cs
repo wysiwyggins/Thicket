@@ -12,7 +12,7 @@ public class Piece : MonoBehaviour
     public int strength = 0;
     public int speed = 1;
     public bool isPlayer = false;
-    public GameObject prey;
+    public GameObject prey; //what the piece is seeking
 
 
     // Start is called before the first frame update
