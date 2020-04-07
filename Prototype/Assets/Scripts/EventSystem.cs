@@ -53,6 +53,11 @@ public class EventSystem : MonoBehaviour
                 // play the sad song
                 // set state to attract
                 break;
+
+            default:
+                Debug.LogError("Invalid Gamestate");
+                debugStateText = "Gamestate: ERROR";
+                break;
         }
     }
 }

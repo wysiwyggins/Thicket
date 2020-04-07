@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{B1235EE4-71EE-C815-28F8-C3378E5ADB84}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/EventSystem.cs">
     <Files>
-      <File FileName="Assets/Scripts/EventSystem.cs" Line="23" Column="31" />
+      <File FileName="Assets/Scripts/EventSystem.cs" Line="40" Column="59" />
       <File FileName="Assets/Scripts/Move.cs" />
       <File FileName="Assets/Scripts/Piece.cs" />
       <File FileName="Assets/Scripts/Tile.cs" />
@@ -12,6 +12,7 @@
           <Node name="Prototype" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
+                <Node name="HexMap Scripts" expanded="True" />
                 <Node name="EventSystem.cs" selected="True" />
               </Node>
             </Node>
