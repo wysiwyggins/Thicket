@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{B1235EE4-71EE-C815-28F8-C3378E5ADB84}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/EventSystem.cs">
     <Files>
-      <File FileName="Assets/Scripts/EventSystem.cs" Line="44" Column="36" />
+      <File FileName="Assets/Scripts/EventSystem.cs" Line="23" Column="31" />
       <File FileName="Assets/Scripts/Move.cs" />
       <File FileName="Assets/Scripts/Piece.cs" />
       <File FileName="Assets/Scripts/Tile.cs" />
@@ -22,7 +22,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="0cfcb111-bb6c-4b09-8c6d-ce91d2bf9f45" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="d0e887d3-12e6-47e4-a5a1-3d12e0250f65" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
