@@ -5,9 +5,7 @@ using UnityEngine;
 public class Piece : MonoBehaviour
 {
     public string pieceName = "unnamed";
-    public int x = 0;
-    public int y = 0;
-    public int z = 0;
+    public Vector3 location;
     public int strength = 0;
     public int speed = 1;
     public bool isPlayer = false;

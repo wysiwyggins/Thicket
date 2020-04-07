@@ -168,6 +168,8 @@ MonoBehaviour:
   CurrentState: 0
   players: 1
   debugStateText: 
+  grid: {fileID: 1873478564}
+  pieces: []
 --- !u!1 &483713348
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,7 +326,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2997,9 +2999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pieceName: Deer
-  x: 0
-  y: 0
-  z: 0
+  location: {x: 0, y: 0, z: 0}
   strength: 0
   speed: 1
   isPlayer: 0

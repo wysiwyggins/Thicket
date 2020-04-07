@@ -11,6 +11,8 @@ public class EventSystem : MonoBehaviour
     public GameState CurrentState;
     public int players = 1;
     public string debugStateText;
+    public Grid grid;
+    public GameObject[] pieces;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +40,14 @@ public class EventSystem : MonoBehaviour
                 //1 hex adjacent to the piece
                 //if the player clicks on one, move() the player character to that hex
                 //when done, switch CurrentState to AITurn
+
+                //found this for getting mouse hex, not using it yet
+                Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector3Int coordinate = grid.WorldToCell(mouseWorldPos);
+                Debug.Log(coordinate);
+                
+
+
                 break;
 
             case GameState.AITurn:
