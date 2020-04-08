@@ -12,15 +12,39 @@ public class Move : Command
     // if the mover moves onto aother piece of a lower strength, that piece is destroyed
     // any piece in water has a strength of zero
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
+    private Vector2 velocity;
+    private Vector3 direction;
+    private bool hasMoved;
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (velocity.x == 0)
+        {
+            hasMoved = false;
+        } else if(velocity.x !0 && !hasMoved)
+        {
+            hasMoved = true;
+            MoveByDirection();
+        }
+    }
+
+    private void MoveByDirection()
+    {
+        if (velocity.x < 0) //Move Left
+        {
+            if (velocity.y > 0) //Move upper Left
+            {
+                direction = new Vector3(-0.5f, 0.5f);
+            }
+            else if(velocity.y < 0)
+            {
+                dire3ction = new Vector3(-0.5f, -0.5f);
+            } else
+            {
+                //not done here- this was movement for keypresses so this might all be unusable
+            }
+        }
     }
 }
