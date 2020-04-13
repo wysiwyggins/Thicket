@@ -13,38 +13,28 @@ public class Move : Command
     // any piece in water has a strength of zero
 
 
-    private Vector2 velocity;
-    private Vector3 direction;
-    private bool hasMoved;
+    private float velocity = 4;
+    private Vector3 targetPosition;
+    private bool isMoving = false;
 
     // Update is called once per frame
     void Update()
     {
-        if (velocity.x == 0)
-        {
-            hasMoved = false;
-        } else if(velocity.x !0 && !hasMoved)
-        {
-            hasMoved = true;
-            MoveByDirection();
-        }
+       
     }
 
-    private void MoveByDirection()
+    void SetTargetPosition()
     {
-        if (velocity.x < 0) //Move Left
-        {
-            if (velocity.y > 0) //Move upper Left
-            {
-                direction = new Vector3(-0.5f, 0.5f);
-            }
-            else if(velocity.y < 0)
-            {
-                dire3ction = new Vector3(-0.5f, -0.5f);
-            } else
-            {
-                //not done here- this was movement for keypresses so this might all be unusable
-            }
-        }
+        
+    }
+
+    void PlayerMove()
+    {
+
+    }
+
+    void AIMove()
+    {
+
     }
 }
