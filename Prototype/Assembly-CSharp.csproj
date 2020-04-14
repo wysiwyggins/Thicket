@@ -57,18 +57,19 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Command.cs" />
      <Compile Include="Assets\Scripts\EventSystem.cs" />
-     <Compile Include="Assets\Scripts\HexMap Scripts\HexCalculator.cs" />
-     <Compile Include="Assets\Scripts\HexMap Scripts\HexContainer.cs" />
-     <Compile Include="Assets\Scripts\HexMap Scripts\HexCoordinates.cs" />
-     <Compile Include="Assets\Scripts\HexMap Scripts\HexGrid.cs" />
-     <Compile Include="Assets\Scripts\HexMap Scripts\HexGridEditor.cs" />
-     <Compile Include="Assets\Scripts\HexMap Scripts\HexPathFinder.cs" />
-     <Compile Include="Assets\Scripts\HexMap Scripts\HexScale.cs" />
-     <Compile Include="Assets\Scripts\HexMap Scripts\HexUtility.cs" />
-     <Compile Include="Assets\Scripts\HexMap Scripts\PriorityQueue\PriorityQueue.cs" />
      <Compile Include="Assets\Scripts\Move.cs" />
      <Compile Include="Assets\Scripts\Piece.cs" />
      <Compile Include="Assets\Scripts\Tile.cs" />
+     <Compile Include="Assets\Scripts\examples\AStar.cs" />
+     <Compile Include="Assets\Scripts\examples\HexMap Scripts\HexCalculator.cs" />
+     <Compile Include="Assets\Scripts\examples\HexMap Scripts\HexContainer.cs" />
+     <Compile Include="Assets\Scripts\examples\HexMap Scripts\HexCoordinates.cs" />
+     <Compile Include="Assets\Scripts\examples\HexMap Scripts\HexGrid.cs" />
+     <Compile Include="Assets\Scripts\examples\HexMap Scripts\HexGridEditor.cs" />
+     <Compile Include="Assets\Scripts\examples\HexMap Scripts\HexPathFinder.cs" />
+     <Compile Include="Assets\Scripts\examples\HexMap Scripts\HexScale.cs" />
+     <Compile Include="Assets\Scripts\examples\HexMap Scripts\HexUtility.cs" />
+     <Compile Include="Assets\Scripts\examples\HexMap Scripts\PriorityQueue\PriorityQueue.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/wwiggins/Documents/Development/Thicket/Prototype/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

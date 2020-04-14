@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Move : Command
 {
@@ -17,24 +18,53 @@ public class Move : Command
     private Vector3 targetPosition;
     private bool isMoving = false;
 
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
 
-    void SetTargetPosition()
+    void Start()
     {
         
     }
 
-    void PlayerMove()
+    // Update is called once per frame
+    void Update()
+    {
+
+       
+        if (Input.GetMouseButtonDown(0))
+        {
+            //get a hex cell from a mouse click
+            Tilemap tilemap = GetComponent<Tilemap>();
+            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3Int coordinate = tilemap.WorldToCell(mouseWorldPos);
+            // if (CurrentState == GameState.PlayerTurn)
+            //  PlayerMove(coordinate)
+
+        }
+
+    }
+
+    
+
+    void SetTargetPosition()
     {
 
     }
 
-    void AIMove()
-    {
 
+    void PlayerMove(Vector3Int coordinate)
+    {
+        // get the player object
+        // get the target hex cell
+        // get the world position center of the target hex cell "coordinate"
+        // transform.position = tilemap.GetCellCenterWorld(coordinate);
+
+
+    }
+
+    void AIMove(Vector3Int coordinate)
+    {
+        //get the ai object
+        // get the target hex cell
+        // get the world position center of the target hex cell "coordinate"
+        // transform.position = tilemap.GetCellCenterWorld(coordinate);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Piece : MonoBehaviour
 {
@@ -11,13 +12,14 @@ public class Piece : MonoBehaviour
     public bool isPlayer = false;
     public GameObject sprite;
     public GameObject prey; //what the piece is seeking
-    public Transform goalHex;
-
+    public Transform movePoint;
 
     // Start is called before the first frame update
     void Start()
     {
-        goalHex.parent = null;
+        GridLayout gridLayout = transform.parent.GetComponentInParent<GridLayout>();
+        Vector3Int cellPosition = gridLayout.WorldToCell(transform.position);
+        transform.position = gridLayout.CellToWorld(cellPosition);
     }
 
     // Update is called once per frame
