@@ -8,6 +8,7 @@ public enum GameState { Attract, PlayerTurn, AITurn, GameOver };
 
 public class GameController : MonoBehaviour
 {
+    public static GameController instance;
 
     public int players = 1;
     public Grid grid;
@@ -18,7 +19,9 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         CurrentState = GameState.Attract;
+        
     }
 
     // Update is called once per frame
