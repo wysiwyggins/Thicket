@@ -35,8 +35,13 @@ public class Move : Command
             Tilemap tilemap = GetComponent<Tilemap>();
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int coordinate = tilemap.WorldToCell(mouseWorldPos);
-            // if (CurrentState == GameState.PlayerTurn)
-            //  PlayerMove(coordinate)
+            Debug.Log(coordinate);
+            if (GameController.CurrentState == GameState.PlayerTurn)
+            {
+                //  PlayerMove(coordinate)
+
+            }
+
 
         }
 
