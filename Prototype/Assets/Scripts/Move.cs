@@ -17,11 +17,12 @@ public class Move : Command
     private float velocity = 4;
     private Vector3 targetPosition;
     private bool isMoving = false;
+    GameObject player;
 
 
     void Start()
     {
-        
+        player = GameObject.FindWithTag("player");
     }
 
     // Update is called once per frame
@@ -38,6 +39,8 @@ public class Move : Command
             Debug.Log(coordinate);
             if (GameController.CurrentState == GameState.PlayerTurn)
             {
+                
+                player.transform.position = tilemap.GetCellCenterWorld(coordinate);
                 //  PlayerMove(coordinate)
 
             }

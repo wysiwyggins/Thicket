@@ -130,7 +130,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 354764680}
-  - component: {fileID: 354764681}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -153,21 +152,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &354764681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 354764679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 339085ae788af4a9dbe5e1eaffb961d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  players: 1
-  grid: {fileID: 1873478564}
-  pieces: []
 --- !u!1 &483713348
 GameObject:
   m_ObjectHideFlags: 0
@@ -4788,6 +4772,53 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1914452897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1914452899}
+  - component: {fileID: 1914452898}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1914452898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914452897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad26d0228a4545109bd9d62196034a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  players: 1
+  grid: {fileID: 1873478564}
+  pieces: []
+  debugStateText: {fileID: 930026268}
+--- !u!4 &1914452899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914452897}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.26197094, y: -0.28257406, z: -19.625242}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2105152760
 GameObject:
   m_ObjectHideFlags: 0
@@ -4802,7 +4833,7 @@ GameObject:
   - component: {fileID: 2105152763}
   m_Layer: 0
   m_Name: deer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
