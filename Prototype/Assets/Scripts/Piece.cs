@@ -44,17 +44,18 @@ public class Piece : MonoBehaviour
             }
         }
     }
-
+    
 
     public void MoveTo(Vector3Int targetCell)
     {
-        transform.position = grid.GetCellCenterWorld(targetCell);
+
         // List<Vector3Int> CellPath = AStarPathFunction(targetCell);
 
         // List<Vector3> WorldCoords = CellToWorld(CellPath);
 
         // start a coroutine which animates the object along a path
         // StartCoroutine(FollowPath(aPath));
+        transform.position = grid.GetCellCenterWorld(targetCell);
     }
 
 
