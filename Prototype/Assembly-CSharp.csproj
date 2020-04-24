@@ -64,8 +64,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\MapTile.cs" />
     <Compile Include="Assets\Scripts\Piece.cs" />
-    <Compile Include="Assets\Scripts\Tile.cs" />
     <Compile Include="Assets\Scripts\examples\HexMap Scripts\HexCalculator.cs" />
     <Compile Include="Assets\Scripts\examples\HexMap Scripts\HexContainer.cs" />
     <Compile Include="Assets\Scripts\examples\HexMap Scripts\HexCoordinates.cs" />
@@ -78,6 +78,13 @@
     <Compile Include="Assets\Scripts\examples\unity-tilemap-astar-master\Assets\Scripts\AStarGrid.cs" />
     <Compile Include="Assets\Scripts\examples\unity-tilemap-astar-master\Assets\Scripts\AStarPathfinding.cs" />
     <Compile Include="Assets\Scripts\examples\unity-tilemap-astar-master\Assets\Scripts\Node.cs" />
+    <Compile Include="Assets\SimpleTilePathfinding\Demo\Ant.cs" />
+    <Compile Include="Assets\SimpleTilePathfinding\Demo\Mouse.cs" />
+    <Compile Include="Assets\SimpleTilePathfinding\Demo\Peter.cs" />
+    <Compile Include="Assets\SimpleTilePathfinding\Script\AStarSearch.cs" />
+    <Compile Include="Assets\SimpleTilePathfinding\Script\NavNode.cs" />
+    <Compile Include="Assets\SimpleTilePathfinding\Script\Path.cs" />
+    <Compile Include="Assets\SimpleTilePathfinding\Script\SimplePathFinding2D.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>/Users/wileywiggins/Development/Thicket/Prototype/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
