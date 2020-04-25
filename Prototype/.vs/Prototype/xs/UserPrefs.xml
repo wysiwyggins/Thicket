@@ -1,11 +1,12 @@
 ﻿<Properties StartupConfiguration="{B1235EE4-71EE-C815-28F8-C3378E5ADB84}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Piece.cs">
     <Files>
-      <File FileName="Assets/Scripts/Piece.cs" Line="58" Column="14" />
+      <File FileName="Assets/Scripts/Piece.cs" Line="83" Column="57" />
       <File FileName="Assets/Scripts/GameController.cs" />
-      <File FileName="Assets/Scripts/examples/unity-tilemap-astar-master/README.md" />
-      <File FileName="Assets/Scripts/examples/unity-tilemap-astar-master/Assets/Scripts/AStarGrid.cs" />
-      <File FileName="Assets/Scripts/Cursor.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Cursor.cs" />
+      <File FileName="Assets/SimpleTilePathfinding/Demo/Ant.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimpleTilePathfinding/Demo/Mouse.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimpleTilePathfinding/Demo/Peter.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,14 +14,11 @@
           <Node name="Prototype" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="examples" expanded="True">
-                  <Node name="unity-tilemap-astar-master" expanded="True">
-                    <Node name="Assets" expanded="True">
-                      <Node name="Scripts" expanded="True" />
-                    </Node>
-                  </Node>
-                </Node>
                 <Node name="Piece.cs" selected="True" />
+              </Node>
+              <Node name="SimpleTilePathfinding" expanded="True">
+                <Node name="Demo" expanded="True" />
+                <Node name="Script" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -30,7 +28,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="5e3961ab-008f-4385-8dde-f6ffcdcc6dee" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="9e6d3057-faa8-431f-8e50-182dc00381f4" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

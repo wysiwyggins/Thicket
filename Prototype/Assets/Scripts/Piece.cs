@@ -23,7 +23,7 @@ public class Piece : MonoBehaviour
     private SimplePF2D.Path path;
     private Vector3 nextPoint;
     private Rigidbody2D rb;
-    private float speed = 0.5f;
+    private float speed = 5.0f;
     private bool isStationary = true;
     
 
@@ -58,25 +58,31 @@ public class Piece : MonoBehaviour
                 Debug.Log("piece position: " + cellPosition);
                 Debug.Log("destination: " + coordinate);
                 path.CreatePath(position, mouseWorldPos);
-                MoveTo(coordinate);
 
+            }
+            if (path.IsGenerated())
+            {
+               //List<Vector3Int> CellPath = path.GetPathPointList(); //how do we use "pathpoints" from the API?
+
+               //List<Vector3> WorldCoords = grid.CellToWorld(CellPath); //how do I convert a list of vec3ints to a list of vec3's? this isn't doing it.
+
+               // start a coroutine which animates the object along a path
+               //StartCoroutine(FollowPath(WorldCoords));
             }
         }
             
     }
     
 
-    public void MoveTo(Vector3Int targetCell)
+    public IEnumerator FollowPath(List<Vector3> WorldCoords)
     {
-
-        // List<Vector3Int> CellPath = AStarPathFunction(targetCell);
-
-        // List<Vector3> WorldCoords = CellToWorld(CellPath);
-
-        // start a coroutine which animates the object along a path
-        // StartCoroutine(FollowPath(aPath));
-        transform.position = grid.GetCellCenterWorld(targetCell);
+        //for Coordinate in WorldCoords {
+        //  transform.position = Coordinate
+        //  wait a sec }
+        Debug.Log("pie");
+        yield return new WaitForSeconds(2);
     }
 
 
 }
+
