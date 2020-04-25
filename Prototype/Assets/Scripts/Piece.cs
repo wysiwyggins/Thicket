@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class Piece : MonoBehaviour
 {
+    //piece attributes
     public delegate void PieceAction();
     public static event PieceAction OnCompleteMove;
     Vector3Int cellPosition;
@@ -13,40 +14,55 @@ public class Piece : MonoBehaviour
     public int range = 1; //this is the move range
     public bool isPlayer = true;
     public GameObject prey; //what the piece is seeking
-    Grid grid;
 
+    //the world
+    Grid grid;
+    public Tilemap navmap;
+
+    //pathing
     private SimplePF2D.Path path;
+    private Vector3 nextPoint;
+    private Rigidbody2D rb;
+    private float speed = 0.5f;
+    private bool isStationary = true;
     
 
     // Start is called before the first frame update
     void Start()
     {
         grid = GameController.instance.grid;
-
+        rb = GetComponent<Rigidbody2D>();
         SimplePathFinding2D pf = GameObject.Find("Grid").GetComponent<SimplePathFinding2D>();
         path = new SimplePF2D.Path(pf);
+        nextPoint = Vector3.zero;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (GameController.CurrentState == GameState.PlayerTurn && isPlayer == true)
         {
-            //get a hex cell from a mouse click
             Vector3 position = transform.position;
             Vector3Int cellPosition = grid.WorldToCell(transform.position);
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int coordinate = grid.WorldToCell(mouseWorldPos);
-            Debug.Log("piece position: " + cellPosition);
-            Debug.Log("destination: " +coordinate);
-            if (GameController.CurrentState == GameState.PlayerTurn && isPlayer == true)
+            mouseWorldPos.z = 0.0f;
+
+
+            
+            
+            
+            if (Input.GetMouseButtonDown(0))
             {
 
+                Vector3Int coordinate = grid.WorldToCell(mouseWorldPos); //get a hex cell coordinate from a mouse click
+                Debug.Log("piece position: " + cellPosition);
+                Debug.Log("destination: " + coordinate);
                 path.CreatePath(position, mouseWorldPos);
-                //MoveTo(coordinate);
+                MoveTo(coordinate);
 
             }
         }
+            
     }
     
 
