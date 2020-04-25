@@ -7,24 +7,24 @@ public class Piece : MonoBehaviour
 {
     public delegate void PieceAction();
     public static event PieceAction OnCompleteMove;
-
+    Vector3Int cellPosition;
     public string pieceName = "unnamed"; //this gets overridden with the name of the piece
-    public Vector3Int cellPosition;  //grid position
     public int strength = 0; // can take pieces with strength under this number
     public int range = 1; //this is the move range
     public bool isPlayer = true;
-    public GameObject sprite;
     public GameObject prey; //what the piece is seeking
     Grid grid;
+
+    private SimplePF2D.Path path;
     
 
     // Start is called before the first frame update
     void Start()
     {
         grid = GameController.instance.grid;
-        // snap all pieces to their grid
-        Vector3Int cellPosition = grid.WorldToCell(transform.position);
-        transform.position = grid.CellToWorld(cellPosition);
+
+        SimplePathFinding2D pf = GameObject.Find("Grid").GetComponent<SimplePathFinding2D>();
+        path = new SimplePF2D.Path(pf);
     }
 
     // Update is called once per frame
@@ -33,14 +33,18 @@ public class Piece : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             //get a hex cell from a mouse click
+            Vector3 position = transform.position;
+            Vector3Int cellPosition = grid.WorldToCell(transform.position);
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int coordinate = grid.WorldToCell(mouseWorldPos);
-            Debug.Log(coordinate);
+            Debug.Log("piece position: " + cellPosition);
+            Debug.Log("destination: " +coordinate);
             if (GameController.CurrentState == GameState.PlayerTurn && isPlayer == true)
             {
-                MoveTo(coordinate);
-                
-             
+
+                path.CreatePath(position, mouseWorldPos);
+                //MoveTo(coordinate);
+
             }
         }
     }
