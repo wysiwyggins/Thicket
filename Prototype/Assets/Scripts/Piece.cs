@@ -6,9 +6,10 @@ using UnityEngine.Tilemaps;
 public class Piece : MonoBehaviour
 {
     //piece attributes
-    public delegate void PieceAction();
+    public delegate void PieceAction(); 
     public static event PieceAction OnCompleteMove;
     Vector3Int cellPosition;
+    public Vector3Int[] cellPositions;
     public string pieceName = "unnamed"; //this gets overridden with the name of the piece
     public int strength = 0; // can take pieces with strength under this number
     public int range = 1; //this is the move range
@@ -21,10 +22,10 @@ public class Piece : MonoBehaviour
 
     //pathing
     private SimplePF2D.Path path;
-    private Vector3 nextPoint;
     private Rigidbody2D rb;
-    private float speed = 5.0f;
+    private float moveSpeed = 10.0f;
     private bool isStationary = true;
+    Coroutine MoveIE;
     
 
     // Start is called before the first frame update
@@ -34,7 +35,6 @@ public class Piece : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         SimplePathFinding2D pf = GameObject.Find("Grid").GetComponent<SimplePathFinding2D>();
         path = new SimplePF2D.Path(pf);
-        nextPoint = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -62,27 +62,34 @@ public class Piece : MonoBehaviour
             }
             if (path.IsGenerated())
             {
-               //List<Vector3Int> CellPath = path.GetPathPointList(); //how do we use "pathpoints" from the API?
-
-               //List<Vector3> WorldCoords = grid.CellToWorld(CellPath); //how do I convert a list of vec3ints to a list of vec3's? this isn't doing it.
-
-               // start a coroutine which animates the object along a path
-               //StartCoroutine(FollowPath(WorldCoords));
+                
+                StartCoroutine(followPath());
+                isStationary = false;
             }
         }
             
     }
-    
 
-    public IEnumerator FollowPath(List<Vector3> WorldCoords)
+    IEnumerator followPath()
     {
-        //for Coordinate in WorldCoords {
-        //  transform.position = Coordinate
-        //  wait a sec }
-        Debug.Log("pie");
-        yield return new WaitForSeconds(2);
+        List<Vector3Int> cellPositions = path.GetPathPointList();
+        for (int i = 0; i < cellPositions.Count; i++)
+        {
+            MoveIE = StartCoroutine(Moving(i));
+            yield return MoveIE;
+        }
     }
 
+    IEnumerator Moving(int currentPosition)
+    {
+        
+        while (rb.transform.position != path.GetPathPointWorld(currentPosition))
+        {
+            rb.transform.position = Vector3.MoveTowards(rb.transform.position, path.GetPathPointWorld(currentPosition), moveSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+    }
 
 }
 
