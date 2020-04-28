@@ -10,7 +10,7 @@ public class Piece : MonoBehaviour
     public static event PieceAction OnCompleteMove;
     Vector3Int cellPosition;
     public Vector3Int[] cellPositions;
-    public string pieceName = "unnamed"; //this gets overridden with the name of the piece
+    public string pieceName = "unnamed"; 
     public int strength = 0; // can take pieces with strength under this number
     public int range = 1; //this is the move range
     public bool isPlayer = true;
@@ -23,8 +23,8 @@ public class Piece : MonoBehaviour
     //pathing
     private SimplePF2D.Path path;
     private Rigidbody2D rb;
-    private float moveSpeed = 10.0f;
-    private bool isStationary = true;
+    private float moveSpeed = 2; //speed for Moving()
+    private bool isStationary = true; //not using this yet
     Coroutine MoveIE;
     
 
@@ -40,10 +40,10 @@ public class Piece : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameController.CurrentState == GameState.PlayerTurn && isPlayer == true)
+        if (GameController.CurrentState == GameState.PlayerTurn && isPlayer == true) //it's the players turn, and im the player
         {
             Vector3 position = transform.position;
-            Vector3Int cellPosition = grid.WorldToCell(transform.position);
+            //Vector3Int cellPosition = grid.WorldToCell(transform.position);
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorldPos.z = 0.0f;
 
@@ -51,16 +51,16 @@ public class Piece : MonoBehaviour
             
             
             
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0)) //click the mouse
             {
 
                 Vector3Int coordinate = grid.WorldToCell(mouseWorldPos); //get a hex cell coordinate from a mouse click
-                Debug.Log("piece position: " + cellPosition);
+                //Debug.Log("piece position: " + cellPosition);
                 Debug.Log("destination: " + coordinate);
-                path.CreatePath(position, mouseWorldPos);
+                path.CreatePath(position, mouseWorldPos); // generate a path
 
             }
-            if (path.IsGenerated())
+            if (path.IsGenerated()) //once there's a path
             {
                 
                 StartCoroutine(followPath());
@@ -72,22 +72,26 @@ public class Piece : MonoBehaviour
 
     IEnumerator followPath()
     {
-        List<Vector3Int> cellPositions = path.GetPathPointList();
-        for (int i = 0; i < cellPositions.Count; i++)
+        List<Vector3Int> cellPositions = path.GetPathPointList(); // a list of grid positions in the path
+        for (int i = 0; i < cellPositions.Count; i++) //Loop through them (lists have a "count", not a "length")
         {
             MoveIE = StartCoroutine(Moving(i));
             yield return MoveIE;
+            
         }
     }
 
-    IEnumerator Moving(int currentPosition)
+    IEnumerator Moving(int positionNumber)
     {
-        
-        while (rb.transform.position != path.GetPathPointWorld(currentPosition))
+
+        while (transform.position != path.GetPathPointWorld(positionNumber)) //as  long as you're not at the destination (world point converted from grid point)
         {
-            rb.transform.position = Vector3.MoveTowards(rb.transform.position, path.GetPathPointWorld(currentPosition), moveSpeed * Time.deltaTime);
+            Debug.Log("Moving to: " + path.GetPathPointWorld(positionNumber));
+            transform.position = Vector3.MoveTowards(transform.position, path.GetPathPointWorld(positionNumber), moveSpeed * Time.deltaTime); //this is not happy
+            //transform.position = path.GetPathPointWorld(currentPosition);
             yield return null;
         }
+        isStationary = true;
 
     }
 
