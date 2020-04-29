@@ -21,15 +21,35 @@ public class GameController : MonoBehaviour
     {
         instance = this;
         CurrentState = GameState.Attract;
-        
+
     }
+
+    private void OnEnable()
+    {
+        //subscribe to the piece.oncompletemove event
+        Piece.OnCompleteMove += Piece_OnCompleteMove;
+    }
+
+    private void Piece_OnCompleteMove()
+    {
+        //this is called when the piece completes a move.
+        if (CurrentState == GameState.PlayerTurn)
+            CurrentState = GameState.AITurn;
+    }
+
+    private void OnDisable()
+    {
+        //unsubscribe
+        Piece.OnCompleteMove -= Piece_OnCompleteMove;
+    }
+
 
     // Update is called once per frame
     void Update()
     {
 
         switch (CurrentState)
-        { 
+        {
 
             case GameState.Attract:
                 debugStateText.text = "Gamestate: Attract";
@@ -39,8 +59,8 @@ public class GameController : MonoBehaviour
                 {
                     CurrentState = GameState.PlayerTurn;
                 }
-                    break;
-                
+                break;
+
 
             case GameState.PlayerTurn:
                 debugStateText.text = "Gamestate: PlayerTurn";
