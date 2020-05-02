@@ -1,8 +1,10 @@
 ﻿<Properties StartupConfiguration="{B1235EE4-71EE-C815-28F8-C3378E5ADB84}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Cursor.cs">
     <Files>
-      <File FileName="Assets/Scripts/Piece.cs" Line="14" Column="15" />
-      <File FileName="Assets/Scripts/GameController.cs" Line="95" Column="2" />
+      <File FileName="Assets/Scripts/Piece.cs" Line="102" Column="36" />
+      <File FileName="Assets/Scripts/GameController.cs" />
+      <File FileName="Assets/Scripts/PieceManager.cs" Line="15" Column="25" />
+      <File FileName="Assets/Scripts/Cursor.cs" Line="24" Column="32" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -10,7 +12,7 @@
           <Node name="Prototype" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="GameController.cs" selected="True" />
+                <Node name="Cursor.cs" selected="True" />
               </Node>
               <Node name="SimpleTilePathfinding" expanded="True">
                 <Node name="Demo" expanded="True" />
@@ -24,7 +26,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="0ed823ec-d964-4e40-9bb1-9c6e3e768c7f" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="9f939b19-17af-4487-a5ac-27d7778414cf" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

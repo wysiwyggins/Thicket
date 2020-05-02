@@ -4,14 +4,19 @@ using UnityEngine;
 
 public static class PieceManager
 {
+    
     public static List<Piece> AllPieces = new List<Piece>();
 
-    public static Piece GetPieceAtPos(Vector3 aPos)
+    public static Piece GetPieceAtPos(Vector3Int aCoord)
     {
+        Grid grid = GameController.instance.grid;
         foreach (Piece aPiece in AllPieces)
         {
-            //if the piece is at aPos, return that piece
-            //      return aPiece;
+            Vector3Int coordinate = grid.WorldToCell(aPiece.transform.position);
+            if (aCoord == coordinate)
+            {
+                return aPiece;
+            }
         }
         return null;
     }

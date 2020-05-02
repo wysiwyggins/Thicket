@@ -75,7 +75,7 @@ public class GameController : MonoBehaviour
             case GameState.AITurn:
                 debugStateText.text = "Gamestate: AITurn";
                 // for pieces that have isPlayer set to false:
-                // speed of the piece is its range- if the pieces prey or the scent of the pray is inside the range, move to it
+                // if the pieces prey or the scent of the pray is inside the range, move to it
                 // if no prey or scent of prey is in range: if a prey piece is on any tile on the board that is not isDark, move towards it
                 // when done, switch CurrentState to PlayerTurn
                 break;

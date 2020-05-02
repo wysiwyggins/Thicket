@@ -24,7 +24,7 @@ public class Piece : MonoBehaviour
     //pathing
     private SimplePF2D.Path path;
     private Rigidbody2D rb;
-    private float moveSpeed = 6f; //speed for Moving()
+    private float moveSpeed = 4f; //speed for Moving()
     private bool isStationary = true; //not using this yet
     Coroutine MoveIE;
     SimplePathFinding2D pf;
@@ -88,7 +88,7 @@ public class Piece : MonoBehaviour
             Vector3 vel = Vector3.zero;
             while (Vector3.Distance(transform.position, targetPos) > 0.01f)
             {
-                transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref vel, 0.5f, moveSpeed);
+                transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref vel, 0.2f, moveSpeed);
 
                 //  transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * moveSpeed);
                 yield return new WaitForEndOfFrame();
