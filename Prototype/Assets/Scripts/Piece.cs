@@ -49,16 +49,21 @@ public class Piece : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (Piece aPiece in PieceManager.AllPieces)
-        {
-            if (GameController.CurrentState == GameState.PlayerTurn && isPlayer == true) //it's the players turn, and im the player
+        
+            
+            if (GameController.CurrentState == GameState.PlayerTurn && isPlayer == true) //it's the players turn, and i'm the player
             {
                 Vector3 position = transform.position;
-                //Vector3Int cellPosition = grid.WorldToCell(transform.position);
                 Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mouseWorldPos.z = 0.0f;
+                Vector3Int pieceStartPosition = grid.WorldToCell(transform.position);
+                Debug.Log("Piece: " + pieceName + ", Location: " + pieceStartPosition);
 
-                if (Input.GetMouseButtonDown(0) && path.IsGenerated() == false) //click the mouse
+
+            //how do we highlight the traversable cells within the range of the piece?
+
+
+            if (Input.GetMouseButtonDown(0) && path.IsGenerated() == false) //click the mouse
                 {
 
                     Vector3Int coordinate = grid.WorldToCell(mouseWorldPos); //get a hex cell coordinate from a mouse click
@@ -73,8 +78,6 @@ public class Piece : MonoBehaviour
                     isStationary = false;
                 }
             }
-
-        }
 
     }
 
