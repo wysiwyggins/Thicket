@@ -49,27 +49,31 @@ public class Piece : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameController.CurrentState == GameState.PlayerTurn && isPlayer == true) //it's the players turn, and im the player
+        foreach (Piece aPiece in PieceManager.AllPieces)
         {
-            Vector3 position = transform.position;
-            //Vector3Int cellPosition = grid.WorldToCell(transform.position);
-            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouseWorldPos.z = 0.0f;
-
-            if (Input.GetMouseButtonDown(0) && path.IsGenerated() == false) //click the mouse
+            if (GameController.CurrentState == GameState.PlayerTurn && isPlayer == true) //it's the players turn, and im the player
             {
+                Vector3 position = transform.position;
+                //Vector3Int cellPosition = grid.WorldToCell(transform.position);
+                Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mouseWorldPos.z = 0.0f;
 
-                Vector3Int coordinate = grid.WorldToCell(mouseWorldPos); //get a hex cell coordinate from a mouse click
-                //Debug.Log("piece position: " + cellPosition);
-                Debug.Log("destination: " + coordinate);
-                path.CreatePath(position, mouseWorldPos); // generate a path
+                if (Input.GetMouseButtonDown(0) && path.IsGenerated() == false) //click the mouse
+                {
 
+                    Vector3Int coordinate = grid.WorldToCell(mouseWorldPos); //get a hex cell coordinate from a mouse click
+                                                                             //Debug.Log("piece position: " + cellPosition);
+                    Debug.Log("destination: " + coordinate);
+                    path.CreatePath(position, mouseWorldPos); // generate a path
+
+                }
+                if (path.IsGenerated() && !following) //once there's a path
+                {
+                    StartCoroutine(followPath());
+                    isStationary = false;
+                }
             }
-            if (path.IsGenerated() && !following) //once there's a path
-            {
-                StartCoroutine(followPath());
-                isStationary = false;
-            }
+
         }
 
     }
