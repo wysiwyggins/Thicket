@@ -95,11 +95,22 @@ public class Piece : MonoBehaviour
 
         if (GameController.CurrentState == GameState.AITurn && isPlayer == false) //we need to change this to a list of all the ai pieces moving one at a time
         {
-            Vector3 position = transform.position;
-            Vector3Int preyCoord = grid.WorldToCell(prey.transform.position); // we'll need to change this to deal with multiple prey one day (or maybe prey + any weaker animal?)
-            Debug.Log("destination: " + preyCoord);
-            path.CreatePath(position, prey.transform.position); // generate a path
-            StartCoroutine(followPath());
+            if (prey)
+            {
+                Vector3 preyLocation = prey.transform.position;
+                Debug.Log("Piece: " + pieceName + " is hunting: " + prey.name);
+
+                Debug.Log("move is " + cellPositions.Count + " positions away.");
+                Vector3 position = transform.position;
+                Vector3Int preyCoord = grid.WorldToCell(preyLocation); 
+                Debug.Log("destination: " + preyCoord);
+                path.CreatePath(position, prey.transform.position); // generate a path
+                StartCoroutine(followPath());
+            } else
+            {
+                Debug.Log("Piece: " + pieceName + " doesn't seem to be hunting anything.");
+            }
+            
 
         }
 
