@@ -16,6 +16,11 @@ public class GameController : MonoBehaviour
     public static GameState CurrentState { get; set; }
     public Text debugStateText;
 
+    public AudioSource audioSource;
+    public AudioClip invalidSound;
+    public float volume = 0.5f;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +33,7 @@ public class GameController : MonoBehaviour
     {
         //subscribe to the piece.oncompletemove event
         Piece.OnCompleteMove += Piece_OnCompleteMove;
+        Piece.InvalidInput += InvalidInput;
     }
 
     private void Piece_OnCompleteMove()
@@ -41,6 +47,12 @@ public class GameController : MonoBehaviour
     {
         //unsubscribe
         Piece.OnCompleteMove -= Piece_OnCompleteMove;
+    }
+
+    private void InvalidInput()
+    {
+        audioSource.PlayOneShot(invalidSound, volume);
+        Debug.Log("Invalid Move");
     }
 
 

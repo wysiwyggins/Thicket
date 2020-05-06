@@ -28,8 +28,8 @@ public class Cursor : MonoBehaviour
 
             transform.position = grid.CellToWorld(coordinate);
 
-            Debug.Log("cursor location: " + coordinate);
-            Debug.Log(cursorTilemap.GetSprite(coordinate));
+            //Debug.Log("cursor location: " + coordinate);
+            //Debug.Log(cursorTilemap.GetSprite(coordinate));
 
 
             if (Input.GetMouseButtonDown(0))

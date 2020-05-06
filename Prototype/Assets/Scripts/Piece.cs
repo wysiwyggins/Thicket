@@ -8,25 +8,29 @@ public class Piece : MonoBehaviour
     //piece attributes
     public delegate void PieceAction();
     public static event PieceAction OnCompleteMove;
+    public static event PieceAction InvalidInput;
+
+    //the world
+    Grid grid;
+    public Tilemap navmap;
 
     Vector3Int cellPosition;
-    public Vector3Int[] cellPositions;
+    List<Vector3Int> cellPositions;
     public string pieceName = "unnamed";
     public int strength = 0; // can take pieces with strength under this number
     public int range = 1; //this is the move range
     public bool isPlayer = true;
     public GameObject prey; //what the piece is seeking
-
-    //the world
-    Grid grid;
-    public Tilemap navmap;
+    Vector3Int pieceCoords;
+    bool validatingMove;
+   
 
     //pathing
     private SimplePF2D.Path path;
     private Rigidbody2D rb;
     private float moveSpeed = 4f; //speed for Moving()
     private bool isStationary = true; //not using this yet
-    Coroutine MoveIE;
+    //Coroutine MoveIE;
     SimplePathFinding2D pf;
 
     // Start is called before the first frame update
@@ -37,6 +41,10 @@ public class Piece : MonoBehaviour
         pf = GameObject.Find("Grid").GetComponent<SimplePathFinding2D>();
         path = new SimplePF2D.Path(pf);
         PieceManager.AllPieces.Add(this);
+        pieceCoords = grid.WorldToCell(transform.position);
+        validatingMove = false;
+        Debug.Log("Piece: " + pieceName + ", Location: " + pieceCoords);
+
     }
 
 
@@ -52,12 +60,10 @@ public class Piece : MonoBehaviour
         
             
             if (GameController.CurrentState == GameState.PlayerTurn && isPlayer == true) //it's the players turn, and i'm the player
-            {
+            {   
                 Vector3 position = transform.position;
                 Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mouseWorldPos.z = 0.0f;
-                Vector3Int pieceStartPosition = grid.WorldToCell(transform.position);
-                Debug.Log("Piece: " + pieceName + ", Location: " + pieceStartPosition);
 
 
             //how do we highlight the traversable cells within the range of the piece?
@@ -70,15 +76,39 @@ public class Piece : MonoBehaviour
                                                                              //Debug.Log("piece position: " + cellPosition);
                     Debug.Log("destination: " + coordinate);
                     path.CreatePath(position, mouseWorldPos); // generate a path
+                    
 
                 }
-                if (path.IsGenerated() && !following) //once there's a path
+            if (path.IsGenerated() && !following) //once there's a path
+            {
+                //for now lets just limit following a path to only following clicks within piece range
+                cellPositions = path.GetPathPointList();
+                
+                if (validatingMove == false)
                 {
-                    StartCoroutine(followPath());
-                    isStationary = false;
-                }
+                    Debug.Log("move is " + cellPositions.Count + " positions away.");
+                    validateMove();
+                }            
             }
+        }
 
+    }
+
+
+    void validateMove()
+    {
+
+        validatingMove = true;
+        if (cellPositions.Count <= range)
+        {
+            StartCoroutine(followPath());
+            isStationary = false;
+        }
+        else if (InvalidInput != null)
+        {
+            InvalidInput();
+            pf.DebugClearPathMarker();
+        }
     }
 
     bool following = false;
@@ -102,6 +132,8 @@ public class Piece : MonoBehaviour
             }
 
             Debug.Log("Reached path point");
+            pieceCoords = grid.WorldToCell(transform.position);
+            Debug.Log("Piece: " + pieceName + ", Location: " + pieceCoords);
             yield return new WaitForSeconds(0.05f);
 
         }
@@ -112,4 +144,7 @@ public class Piece : MonoBehaviour
         following = false;
     }
 
+ 
+
 }
+
