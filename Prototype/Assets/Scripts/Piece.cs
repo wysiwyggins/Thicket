@@ -66,10 +66,10 @@ public class Piece : MonoBehaviour
                 mouseWorldPos.z = 0.0f;
 
 
-            //how do we highlight the traversable cells within the range of the piece?
+                //how do we highlight the traversable cells within the range of the piece?
 
 
-            if (Input.GetMouseButtonDown(0) && path.IsGenerated() == false) //click the mouse
+                if (Input.GetMouseButtonDown(0) && path.IsGenerated() == false) //click the mouse
                 {
 
                     Vector3Int coordinate = grid.WorldToCell(mouseWorldPos); //get a hex cell coordinate from a mouse click
@@ -79,10 +79,10 @@ public class Piece : MonoBehaviour
                     
 
                 }
-            if (path.IsGenerated() && !following) //once there's a path
-            {
+                if (path.IsGenerated() && !following) //once there's a path
+                {
                 //for now lets just limit following a path to only following clicks within piece range
-                cellPositions = path.GetPathPointList();
+                    cellPositions = path.GetPathPointList();
                 
                 if (validatingMove == false)
                 {
@@ -90,6 +90,17 @@ public class Piece : MonoBehaviour
                     validateMove();
                 }            
             }
+        }
+
+
+        if (GameController.CurrentState == GameState.AITurn && isPlayer == false) //we need to change this to a list of all the ai pieces moving one at a time
+        {
+            Vector3 position = transform.position;
+            Vector3Int preyCoord = grid.WorldToCell(prey.transform.position); // we'll need to change this to deal with multiple prey one day (or maybe prey + any weaker animal?)
+            Debug.Log("destination: " + preyCoord);
+            path.CreatePath(position, prey.transform.position); // generate a path
+            StartCoroutine(followPath());
+
         }
 
     }
@@ -117,6 +128,10 @@ public class Piece : MonoBehaviour
     {
         following = true;
         List<Vector3Int> cellPositions = path.GetPathPointList(); // a list of grid positions in the path
+        if (cellPositions.Count > range)
+        {
+            cellPositions.RemoveRange(range + 1, cellPositions.Count);
+        }
         for (int i = 0; i < cellPositions.Count; i++) //Loop through them (lists have a "count", not a "length")
         {
             Debug.Log("Get path point");

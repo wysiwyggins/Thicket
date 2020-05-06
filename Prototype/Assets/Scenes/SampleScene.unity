@@ -448,10 +448,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navmap: {fileID: 1037905417}
   pieceName: Wolf
-  strength: 0
+  strength: 8
   range: 4
   isPlayer: 0
-  prey: {fileID: 0}
+  prey: {fileID: 2105152760}
 --- !u!1 &921145084
 GameObject:
   m_ObjectHideFlags: 0
