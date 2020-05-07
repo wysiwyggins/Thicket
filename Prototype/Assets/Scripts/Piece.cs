@@ -32,11 +32,12 @@ public class Piece : MonoBehaviour
     private bool isStationary = true; //not using this yet
     //Coroutine MoveIE;
     SimplePathFinding2D pf;
+    bool following = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        grid = GameController.instance.grid; //why does any second piece added say this reference isn't set to an instance of an object?
+        grid = GameObject.Find("Grid").GetComponent<Grid>(); //why does any second piece added say this reference isn't set to an instance of an object?
         rb = GetComponent<Rigidbody2D>();
         pf = GameObject.Find("Grid").GetComponent<SimplePathFinding2D>();
         path = new SimplePF2D.Path(pf);
@@ -81,7 +82,7 @@ public class Piece : MonoBehaviour
                 }
                 if (path.IsGenerated() && !following) //once there's a path
                 {
-                //for now lets just limit following a path to only following clicks within piece range
+                
                     cellPositions = path.GetPathPointList();
                 
                 if (validatingMove == false)
@@ -99,13 +100,18 @@ public class Piece : MonoBehaviour
             {
                 Vector3 preyLocation = prey.transform.position;
                 Debug.Log("Piece: " + pieceName + " is hunting: " + prey.name);
-
-                Debug.Log("move is " + cellPositions.Count + " positions away.");
-                Vector3 position = transform.position;
+                
                 Vector3Int preyCoord = grid.WorldToCell(preyLocation); 
                 Debug.Log("destination: " + preyCoord);
-                path.CreatePath(position, prey.transform.position); // generate a path
-                StartCoroutine(followPath());
+                path.CreatePath(transform.position, prey.transform.position); // generate a path
+                cellPositions = path.GetPathPointList();
+                Debug.Log("move is " + cellPositions.Count + " positions away.");
+
+                if (path.IsGenerated() && !following) //once there's a path
+                {
+                    
+                    StartCoroutine(followPath());
+                }
             } else
             {
                 Debug.Log("Piece: " + pieceName + " doesn't seem to be hunting anything.");
@@ -133,7 +139,7 @@ public class Piece : MonoBehaviour
         }
     }
 
-    bool following = false;
+    
 
     IEnumerator followPath()
     {
