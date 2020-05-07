@@ -36,7 +36,7 @@ public class Piece : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        grid = GameController.instance.grid;
+        grid = GameController.instance.grid; //why does any second piece added say this reference isn't set to an instance of an object?
         rb = GetComponent<Rigidbody2D>();
         pf = GameObject.Find("Grid").GetComponent<SimplePathFinding2D>();
         path = new SimplePF2D.Path(pf);
