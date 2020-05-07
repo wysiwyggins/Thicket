@@ -53,6 +53,7 @@ public class GameController : MonoBehaviour
     {
         audioSource.PlayOneShot(invalidSound, volume);
         Debug.Log("Invalid Move");
+        // bug, player currently can't move after a move is invalid
     }
 
 

@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class Piece : MonoBehaviour
 {
-    //piece attributes
+    
     public delegate void PieceAction();
     public static event PieceAction OnCompleteMove;
     public static event PieceAction InvalidInput;
@@ -14,6 +14,7 @@ public class Piece : MonoBehaviour
     Grid grid;
     public Tilemap navmap;
 
+    //piece attributes
     Vector3Int cellPosition;
     List<Vector3Int> cellPositions;
     public string pieceName = "unnamed";
@@ -29,7 +30,6 @@ public class Piece : MonoBehaviour
     private SimplePF2D.Path path;
     private Rigidbody2D rb;
     private float moveSpeed = 4f; //speed for Moving()
-    private bool isStationary = true; //not using this yet
     //Coroutine MoveIE;
     SimplePathFinding2D pf;
     bool following = false;
@@ -62,7 +62,7 @@ public class Piece : MonoBehaviour
             
             if (GameController.CurrentState == GameState.PlayerTurn && isPlayer == true) //it's the players turn, and i'm the player
             {   
-                Vector3 position = transform.position;
+                Vector3 location = transform.position;
                 Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mouseWorldPos.z = 0.0f;
 
@@ -76,7 +76,7 @@ public class Piece : MonoBehaviour
                     Vector3Int coordinate = grid.WorldToCell(mouseWorldPos); //get a hex cell coordinate from a mouse click
                                                                              //Debug.Log("piece position: " + cellPosition);
                     Debug.Log("destination: " + coordinate);
-                    path.CreatePath(position, mouseWorldPos); // generate a path
+                    path.CreatePath(location, mouseWorldPos); // generate a path
                     
 
                 }
@@ -98,19 +98,22 @@ public class Piece : MonoBehaviour
         {
             if (prey)
             {
+                Vector3 location = transform.position;
                 Vector3 preyLocation = prey.transform.position;
                 Debug.Log("Piece: " + pieceName + " is hunting: " + prey.name);
-                
-                Vector3Int preyCoord = grid.WorldToCell(preyLocation); 
+                Vector3Int selfCoord = grid.WorldToCell(location);
+                Vector3Int preyCoord = grid.WorldToCell(preyLocation);
+                Debug.Log("origin: " + selfCoord);
                 Debug.Log("destination: " + preyCoord);
-                path.CreatePath(transform.position, prey.transform.position); // generate a path
-                cellPositions = path.GetPathPointList();
-                Debug.Log("move is " + cellPositions.Count + " positions away.");
+                path.CreatePath(location, preyLocation); // generate a path
+                cellPositions = path.GetPathPointList(); 
+                Debug.Log("goal is " + cellPositions.Count + " positions away."); // why is this saying it's 0 positions away?
 
                 if (path.IsGenerated() && !following) //once there's a path
                 {
-                    
-                    StartCoroutine(followPath());
+                    Debug.Log("There's a path!");
+
+                   validateMove();
                 }
             } else
             {
@@ -130,7 +133,6 @@ public class Piece : MonoBehaviour
         if (cellPositions.Count <= range)
         {
             StartCoroutine(followPath());
-            isStationary = false;
         }
         else if (InvalidInput != null)
         {
@@ -147,7 +149,7 @@ public class Piece : MonoBehaviour
         List<Vector3Int> cellPositions = path.GetPathPointList(); // a list of grid positions in the path
         if (cellPositions.Count > range)
         {
-            cellPositions.RemoveRange(range + 1, cellPositions.Count);
+            cellPositions.RemoveRange(range + 1, cellPositions.Count); //shave off the moves past piece.range for ai pieces
         }
         for (int i = 0; i < cellPositions.Count; i++) //Loop through them (lists have a "count", not a "length")
         {

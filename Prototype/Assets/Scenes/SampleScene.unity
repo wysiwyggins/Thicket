@@ -1691,7 +1691,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1873478565}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &1657520244
 TilemapRenderer:
@@ -3433,8 +3433,8 @@ Transform:
   - {fileID: 1909279596}
   - {fileID: 1316928418}
   - {fileID: 2105152762}
-  - {fileID: 1657520243}
   - {fileID: 7726104075500453227}
+  - {fileID: 1657520243}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5520,7 +5520,7 @@ PrefabInstance:
     - target: {fileID: 2766530337173088462, guid: 13d6334a218364a9f9a97c36718b4aae,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2766530337173088462, guid: 13d6334a218364a9f9a97c36718b4aae,
         type: 3}
