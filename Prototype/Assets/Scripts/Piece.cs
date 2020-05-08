@@ -60,38 +60,40 @@ public class Piece : MonoBehaviour
     {
         
             
-            if (GameController.CurrentState == GameState.PlayerTurn && isPlayer == true) //it's the players turn, and i'm the player
-            {   
-                Vector3 location = transform.position;
-                Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                mouseWorldPos.z = 0.0f;
+        if (GameController.CurrentState == GameState.PlayerTurn && isPlayer == true) //it's the players turn, and i'm the player
+        {   
+            Vector3 location = transform.position;
+            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouseWorldPos.z = 0.0f;
+			
+            //how do we highlight the traversable cells within the range of the piece?
 
 
-                //how do we highlight the traversable cells within the range of the piece?
+            if (Input.GetMouseButtonDown(0) && validPath() == false) //click the mouse
+            {
 
+                Vector3Int coordinate = grid.WorldToCell(mouseWorldPos); //get a hex cell coordinate from a mouse click
+                                                                            //Debug.Log("piece position: " + cellPosition);
+                Debug.Log("destination: " + coordinate);
+                path.CreatePath(location, mouseWorldPos); // generate a path
 
-                if (Input.GetMouseButtonDown(0) && path.IsGenerated() == false) //click the mouse
-                {
+				Debug.Log("path length " + path.GetPathPointList().Count + "/" + range);
+				if (path.GetPathPointList().Count > range)
+				{
+					path.Reset();
+					Debug.Log("resetting path!");
+				}
 
-                    Vector3Int coordinate = grid.WorldToCell(mouseWorldPos); //get a hex cell coordinate from a mouse click
-                                                                             //Debug.Log("piece position: " + cellPosition);
-                    Debug.Log("destination: " + coordinate);
-                    path.CreatePath(location, mouseWorldPos); // generate a path
-                    
+				
 
-                }
-                if (path.IsGenerated() && !following) //once there's a path
-                {
-                
-                    cellPositions = path.GetPathPointList();
-                
-                if (validatingMove == false)
-                {
-                    Debug.Log("move is " + cellPositions.Count + " positions away.");
-                    validateMove();
-                }            
-            }
-        }
+			}
+			Debug.Log("path length " + path.GetPathPointList().Count);
+            if (validPath() && !following) //once there's a path
+            {
+                cellPositions = path.GetPathPointList();
+				validateMove();
+			}
+		}
 
 
         if (GameController.CurrentState == GameState.AITurn && isPlayer == false) //we need to change this to a list of all the ai pieces moving one at a time
@@ -106,9 +108,10 @@ public class Piece : MonoBehaviour
                 Debug.Log("origin: " + selfCoord);
                 Debug.Log("destination: " + preyCoord);
                 path.CreatePath(location, preyLocation); // generate a path
+				Debug.Log(path.GetPathPointList().Count);
                 cellPositions = path.GetPathPointList(); 
                 Debug.Log("goal is " + cellPositions.Count + " positions away."); // why is this saying it's 0 positions away?
-
+				Debug.Log("following? " + following);
                 if (path.IsGenerated() && !following) //once there's a path
                 {
                     Debug.Log("There's a path!");
@@ -125,6 +128,10 @@ public class Piece : MonoBehaviour
 
     }
 
+	bool validPath()
+	{
+		return path.IsGenerated() && path.GetPathPointList().Count < range;
+	}
 
     void validateMove()
     {
@@ -136,6 +143,7 @@ public class Piece : MonoBehaviour
         }
         else if (InvalidInput != null)
         {
+			Debug.Log("This shouldn't happen!");
             InvalidInput();
             pf.DebugClearPathMarker();
         }
