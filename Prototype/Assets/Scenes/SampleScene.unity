@@ -121,6 +121,26 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &441103132 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2766530337173088460, guid: 13d6334a218364a9f9a97c36718b4aae,
+    type: 3}
+  m_PrefabInstance: {fileID: 5574350332033357221}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &441103136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441103132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 048163c3a474da74ab1374494b602c1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navmap: {fileID: 1037905417}
+  range: 3
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -5423,16 +5443,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1914452897}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ad26d0228a4545109bd9d62196034a3, type: 3}
+  m_Script: {fileID: 11500000, guid: da1c19801a6f24371b373aa9f73eb758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  players: 1
   grid: {fileID: 1873478564}
-  pieces: []
-  debugStateText: {fileID: 930026268}
-  audioSource: {fileID: 921145085}
-  invalidSound: {fileID: 8300000, guid: 3d94d80d7502941c083f8948b72c3075, type: 3}
-  volume: 0.5
 --- !u!4 &1914452899
 Transform:
   m_ObjectHideFlags: 0
@@ -5454,12 +5468,38 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7726104075357617389}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2105152761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105152760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f08a4bdc5c5a034db75196b2d2d6299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navmap: {fileID: 1037905417}
+  range: 4
 --- !u!4 &2105152762 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7726104074866223127, guid: 541d05a6bd816438b92bc2f952e6d04c,
     type: 3}
   m_PrefabInstance: {fileID: 7726104075357617389}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2105152765 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7726104074866223124, guid: 541d05a6bd816438b92bc2f952e6d04c,
+    type: 3}
+  m_PrefabInstance: {fileID: 7726104075357617389}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105152760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c28c8437a17149c4af6a53daf8f12e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5574350332033357221
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5474,6 +5514,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2766530337173088461, guid: 13d6334a218364a9f9a97c36718b4aae,
         type: 3}
+      propertyPath: pieceBehaviors.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2766530337173088461, guid: 13d6334a218364a9f9a97c36718b4aae,
+        type: 3}
       propertyPath: navmap
       value: 
       objectReference: {fileID: 1037905417}
@@ -5481,7 +5526,17 @@ PrefabInstance:
         type: 3}
       propertyPath: prey
       value: 
-      objectReference: {fileID: 2105152760}
+      objectReference: {fileID: 2105152765}
+    - target: {fileID: 2766530337173088461, guid: 13d6334a218364a9f9a97c36718b4aae,
+        type: 3}
+      propertyPath: pieceBehaviors.Array.data[0]
+      value: 
+      objectReference: {fileID: 441103136}
+    - target: {fileID: 2766530337173088461, guid: 13d6334a218364a9f9a97c36718b4aae,
+        type: 3}
+      propertyPath: pieceBehaviors.Array.data[1]
+      value: 
+      objectReference: {fileID: 441103136}
     - target: {fileID: 2766530337173088462, guid: 13d6334a218364a9f9a97c36718b4aae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5548,9 +5603,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7726104074866223124, guid: 541d05a6bd816438b92bc2f952e6d04c,
         type: 3}
+      propertyPath: pieceBehaviors.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7726104074866223124, guid: 541d05a6bd816438b92bc2f952e6d04c,
+        type: 3}
       propertyPath: navmap
       value: 
       objectReference: {fileID: 1037905417}
+    - target: {fileID: 7726104074866223124, guid: 541d05a6bd816438b92bc2f952e6d04c,
+        type: 3}
+      propertyPath: pieceBehaviors.Array.data[0]
+      value: 
+      objectReference: {fileID: 2105152761}
     - target: {fileID: 7726104074866223125, guid: 541d05a6bd816438b92bc2f952e6d04c,
         type: 3}
       propertyPath: m_Name

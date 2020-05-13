@@ -18,24 +18,19 @@ public class Cursor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameController.CurrentState == GameState.PlayerTurn == true)
+        Vector3 position = transform.position;
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPos.z = 0.0f;
+        Vector3Int coordinate = grid.WorldToCell(mouseWorldPos); //get a hex cell coordinate from a mouse click
+
+        transform.position = grid.CellToWorld(coordinate);
+
+        //Debug.Log("cursor location: " + coordinate);
+        //Debug.Log(cursorTilemap.GetSprite(coordinate));
+			
+        if (Input.GetMouseButtonDown(0))
         {
-            
-            Vector3 position = transform.position;
-            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouseWorldPos.z = 0.0f;
-            Vector3Int coordinate = grid.WorldToCell(mouseWorldPos); //get a hex cell coordinate from a mouse click
 
-            transform.position = grid.CellToWorld(coordinate);
-
-            //Debug.Log("cursor location: " + coordinate);
-            //Debug.Log(cursorTilemap.GetSprite(coordinate));
-
-
-            if (Input.GetMouseButtonDown(0))
-            {
-
-            }
         }
     }
 }

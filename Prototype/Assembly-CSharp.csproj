@@ -62,10 +62,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\MoveTowardsTarget.cs" />
+    <Compile Include="Assets\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Cursor.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\MapTile.cs" />
     <Compile Include="Assets\Scripts\Piece.cs" />
+    <Compile Include="Assets\Scripts\PieceBehaviour.cs" />
     <Compile Include="Assets\Scripts\PieceManager.cs" />
     <Compile Include="Assets\SimpleTilePathfinding\Demo\Ant.cs" />
     <Compile Include="Assets\SimpleTilePathfinding\Demo\Mouse.cs" />

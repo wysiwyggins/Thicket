@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public enum GameState { Attract, PlayerTurn, AITurn, GameOver };
+public enum GameState { Attract, Playing, GameOver };
 
 
 public class GameController : MonoBehaviour
@@ -32,21 +32,21 @@ public class GameController : MonoBehaviour
     private void OnEnable()
     {
         //subscribe to the piece.oncompletemove event
-        Piece.OnCompleteMove += Piece_OnCompleteMove;
-        Piece.InvalidInput += InvalidInput;
+     //   Piece.OnCompleteMove += Piece_OnCompleteMove;
+    //    Piece.InvalidInput += InvalidInput;
     }
 
     private void Piece_OnCompleteMove()
     {
         //this is called when the piece completes a move.
-        if (CurrentState == GameState.PlayerTurn)
-            CurrentState = GameState.AITurn;
+     //   if (CurrentState == GameState.PlayerTurn)
+      //      CurrentState = GameState.AITurn;
     }
 
     private void OnDisable()
     {
         //unsubscribe
-        Piece.OnCompleteMove -= Piece_OnCompleteMove;
+     //   Piece.OnCompleteMove -= Piece_OnCompleteMove;
     }
 
     private void InvalidInput()
@@ -70,28 +70,28 @@ public class GameController : MonoBehaviour
                 // for now we'll just click to start
                 if (Input.GetMouseButtonDown(0))
                 {
-                    CurrentState = GameState.PlayerTurn;
+             //       CurrentState = GameState.PlayerTurn;
                 }
                 break;
 
 
-            case GameState.PlayerTurn:
-                debugStateText.text = "Gamestate: PlayerTurn";
+     //       case GameState.PlayerTurn:
+      //          debugStateText.text = "Gamestate: PlayerTurn";
                 //if no pieces have isPlayer switch CurrentState to GameOver
                 //for pieces that have isPlayer set to true: highlight tiles (that aren't obstacles)
                 //1 hex adjacent to the piece
                 //if the player clicks on one, move() the player character to that hex
                 //when done, switch CurrentState to AITurn
 
-                break;
+       //         break;
 
-            case GameState.AITurn:
-                debugStateText.text = "Gamestate: AITurn";
+      //      case GameState.AITurn:
+       //         debugStateText.text = "Gamestate: AITurn";
                 // for pieces that have isPlayer set to false:
                 // if the pieces prey or the scent of the pray is inside the range, move to it
                 // if no prey or scent of prey is in range: if a prey piece is on any tile on the board that is not isDark, move towards it
                 // when done, switch CurrentState to PlayerTurn
-                break;
+        //        break;
 
             case GameState.GameOver:
                 debugStateText.text = "Gamestate: Gameover";
