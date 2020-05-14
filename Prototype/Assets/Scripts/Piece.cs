@@ -12,9 +12,6 @@ public class Piece : MonoBehaviour
 	public event PieceAction OnCompleteMove;
 
 
-    public static event PieceAction InvalidInput;
-
-    //the world
    
     public string pieceName = "unnamed";
     public int strength = 0; // can take pieces with strength under this number
@@ -85,36 +82,5 @@ public class Piece : MonoBehaviour
     {
         
   
-/*
-      //  if (GameController.CurrentState == GameState.AITurn && isPlayer == false) //we need to change this to a list of all the ai pieces moving one at a time
-        {
-            if (prey)
-            {
-                Vector3 location = transform.position;
-                Vector3 preyLocation = prey.transform.position;
-                Debug.Log("Piece: " + pieceName + " is hunting: " + prey.name);
-                Vector3Int selfCoord = grid.WorldToCell(location);
-                Vector3Int preyCoord = grid.WorldToCell(preyLocation);
-                Debug.Log("origin: " + selfCoord);
-                Debug.Log("destination: " + preyCoord);
-                path.CreatePath(location, preyLocation); // generate a path
-				Debug.Log(path.GetPathPointList().Count);
-                cellPositions = path.GetPathPointList(); 
-                Debug.Log("goal is " + cellPositions.Count + " positions away."); // why is this saying it's 0 positions away?
-				Debug.Log("following? " + following);
-                if (path.IsGenerated() && !following) //once there's a path
-                {
-                    Debug.Log("There's a path!");
-
-                   validateMove();
-                }
-            } else
-            {
-                Debug.Log("Piece: " + pieceName + " doesn't seem to be hunting anything.");
-            }
-            
-
-        }
-		*/
     }
 }
