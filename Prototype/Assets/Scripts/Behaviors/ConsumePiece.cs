@@ -13,19 +13,24 @@ public class ConsumePiece : PieceBehaviour
 	Vector3Int pieceCoords
 	{ get { return grid.WorldToCell(transform.position); } }
 
-	public int strength;
-
-	enum State
-	{
-		Fasting,
-		Consuming,
-	}
-	State state;
-
 	public override void Begin()
 	{
-		state = State.Fasting;
+		Debug.Log("ConsumePiece Began, " + piece.PieceName + " strength: " + piece.Strength);
+		Piece[] neighbors = PieceManager.GetPiecesAtPos(pieceCoords);
+
+		for (int i = 0; i < neighbors.Length; i++)
+		{
+			if (neighbors[i].Strength < piece.Strength)
+			{
+				Debug.Log("hunting " + neighbors[i].PieceName);
+				Consume(neighbors[i]);
+			}
+
+		}
+
+		SendCompleteMessage();
 	}
+
 
 	void Start()
 	{
@@ -36,25 +41,15 @@ public class ConsumePiece : PieceBehaviour
 
 	private void Update()
 	{
-		Piece[] neighbors = PieceManager.GetPiecesAtPos(pieceCoords);
-
-		for (int i = 0; i < neighbors.Length; i++)
-        {
-            if (neighbors[i].strength < strength) {
-				if (state == State.Consuming)
-					Consume(neighbors[i]);
-			}
-
-		}
+		
 
 			
 	}
 
 	void Consume(Piece prey)
     {
-		Debug.Log("CHOMP");
-		Destroy(prey, 5);
-		SendCompleteMessage();
+		Debug.Log("CHOMP: " + prey.PieceName);
+		Destroy(prey, 2);
 	}
 
 }

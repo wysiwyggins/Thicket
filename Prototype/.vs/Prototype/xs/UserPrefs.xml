@@ -1,12 +1,13 @@
 ﻿<Properties StartupConfiguration="{B1235EE4-71EE-C815-28F8-C3378E5ADB84}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Behaviors/PlayerMovement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PieceBehaviour.cs">
     <Files>
-      <File FileName="Assets/Scripts/Piece.cs" Line="84" Column="3" />
-      <File FileName="Assets/Scripts/PieceManager.cs" Line="5" Column="26" />
+      <File FileName="Assets/Scripts/Piece.cs" Line="19" Column="1" />
+      <File FileName="Assets/Scripts/PieceManager.cs" Line="55" Column="20" />
       <File FileName="Assets/Scripts/Cursor.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Behaviors/ConsumePiece.cs" Line="28" Column="3" />
-      <File FileName="Assets/Scripts/Behaviors/MoveTowardsTarget.cs" Line="14" Column="2" />
+      <File FileName="Assets/Scripts/Behaviors/ConsumePiece.cs" Line="55" Column="18" />
+      <File FileName="Assets/Scripts/Behaviors/MoveTowardsTarget.cs" Line="26" Column="11" />
       <File FileName="Assets/Scripts/Behaviors/PlayerMovement.cs" Line="45" Column="73" />
+      <File FileName="Assets/Scripts/PieceBehaviour.cs" Line="29" Column="18" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,9 +15,8 @@
           <Node name="Prototype" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Behaviors" expanded="True">
-                  <Node name="PlayerMovement.cs" selected="True" />
-                </Node>
+                <Node name="Behaviors" expanded="True" />
+                <Node name="PieceBehaviour.cs" selected="True" />
               </Node>
             </Node>
           </Node>

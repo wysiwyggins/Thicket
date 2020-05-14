@@ -121,30 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &441103133 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4219304734354112181, guid: 13d6334a218364a9f9a97c36718b4aae,
-    type: 3}
-  m_PrefabInstance: {fileID: 1373137602178887750}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c26d7b8dfd0c345be9212196221189ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &441103135 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1995694362969332112, guid: 13d6334a218364a9f9a97c36718b4aae,
-    type: 3}
-  m_PrefabInstance: {fileID: 1373137602178887750}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a6d11110bf5e445b95482458f4a4932, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -5509,31 +5485,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: wolf
       objectReference: {fileID: 0}
-    - target: {fileID: 1995694362969332112, guid: 13d6334a218364a9f9a97c36718b4aae,
-        type: 3}
-      propertyPath: range
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3391377592416467778, guid: 13d6334a218364a9f9a97c36718b4aae,
-        type: 3}
-      propertyPath: pieceBehaviors.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3391377592416467778, guid: 13d6334a218364a9f9a97c36718b4aae,
-        type: 3}
-      propertyPath: pieceBehaviors.Array.data[0]
-      value: 
-      objectReference: {fileID: 441103135}
-    - target: {fileID: 3391377592416467778, guid: 13d6334a218364a9f9a97c36718b4aae,
-        type: 3}
-      propertyPath: pieceBehaviors.Array.data[1]
-      value: 
-      objectReference: {fileID: 441103133}
     - target: {fileID: 3391377592416467778, guid: 13d6334a218364a9f9a97c36718b4aae,
         type: 3}
       propertyPath: prey
       value: 
       objectReference: {fileID: 2105152763}
+    - target: {fileID: 3391377592416467778, guid: 13d6334a218364a9f9a97c36718b4aae,
+        type: 3}
+      propertyPath: Strength
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8662392302649232685, guid: 13d6334a218364a9f9a97c36718b4aae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5612,6 +5573,11 @@ PrefabInstance:
         type: 3}
       propertyPath: prey
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1673489313515321916, guid: 541d05a6bd816438b92bc2f952e6d04c,
+        type: 3}
+      propertyPath: PieceName
+      value: Deer
       objectReference: {fileID: 0}
     - target: {fileID: 4550875875820027828, guid: 541d05a6bd816438b92bc2f952e6d04c,
         type: 3}

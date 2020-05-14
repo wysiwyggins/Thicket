@@ -116,7 +116,7 @@ public class PlayerMovement : PieceBehaviour
 			}
 
 			Debug.Log("Reached path point");
-			Debug.Log("Piece: " + piece.pieceName + ", Location: " + pieceCoords);
+			Debug.Log("Piece: " + piece.PieceName + ", Location: " + pieceCoords);
 			yield return new WaitForSeconds(0.05f);
 
 		}

@@ -46,10 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c28c8437a17149c4af6a53daf8f12e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pieceName: Wolf
-  strength: 0
+  PieceName: Wolf
   prey: {fileID: 0}
-  pieceBehaviors: []
+  pieceBehaviors:
+  - {fileID: 1995694362969332112}
+  - {fileID: 4219304734354112181}
 --- !u!114 &1995694362969332112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6d11110bf5e445b95482458f4a4932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 4
+  range: 10
 --- !u!114 &4219304734354112181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,7 +76,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c26d7b8dfd0c345be9212196221189ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 8
 --- !u!212 &1373137601813283672
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -41,7 +41,7 @@ public class MoveTowardsTarget : PieceBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		grid = GameObject.Find("Grid").GetComponent<Grid>(); //why does any second piece added say this reference isn't set to an instance of an object?
+		grid = GameObject.Find("Grid").GetComponent<Grid>();
 		pf = GameObject.Find("Grid").GetComponent<SimplePathFinding2D>();
 		path = new SimplePF2D.Path(pf);
 		navmap = GameObject.Find("NavigationTilemap").GetComponent<Tilemap>();
@@ -117,7 +117,7 @@ public class MoveTowardsTarget : PieceBehaviour
 			}
 
 			Debug.Log("Reached path point");
-			Debug.Log("Piece: " + piece.pieceName + ", Location: " + pieceCoords);
+			Debug.Log("Piece: " + piece.PieceName + ", Location: " + pieceCoords);
 			yield return new WaitForSeconds(0.05f);
 
 		}

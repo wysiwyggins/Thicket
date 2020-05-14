@@ -11,12 +11,17 @@ public class Piece : MonoBehaviour
 	public event PieceAction OnBeginMove;
 	public event PieceAction OnCompleteMove;
 
-
+	
    
-    public string pieceName = "unnamed";
-    public int strength = 0; // can take pieces with strength under this number
+    public string PieceName = "unnamed";
+
+
+	public int Strength;
+    
+
     public bool isPlayer {get { return GetComponent<PlayerMovement>() != null; }}
 
+	public Piece Mate;
 	public Piece prey;
    
 	public List<PieceBehaviour> pieceBehaviors = new List<PieceBehaviour>();
