@@ -20,6 +20,7 @@ public class ConsumePiece : PieceBehaviour
 
 		for (int i = 0; i < neighbors.Length; i++)
 		{
+
 			if (neighbors[i].Strength < piece.Strength)
 			{
 				Debug.Log("hunting " + neighbors[i].PieceName);
@@ -49,7 +50,7 @@ public class ConsumePiece : PieceBehaviour
 	void Consume(Piece prey)
     {
 		Debug.Log("CHOMP: " + prey.PieceName);
-		Destroy(prey, 2);
+		Destroy(prey.gameObject, 1);
 	}
 
 }
