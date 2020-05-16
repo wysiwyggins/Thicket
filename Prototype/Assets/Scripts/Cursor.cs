@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 
 public class Cursor : MonoBehaviour
@@ -8,11 +9,14 @@ public class Cursor : MonoBehaviour
 
     Grid grid;
     public Tilemap cursorTilemap;
+    private Text TextOutput;
+
 
     // Start is called before the first frame update
     void Start()
     {
         grid = GameObject.Find("Grid").GetComponent<Grid>();
+        TextOutput = GameObject.Find("Text").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -25,11 +29,23 @@ public class Cursor : MonoBehaviour
 
         transform.position = grid.CellToWorld(coordinate);
 
-        //Debug.Log("cursor location: " + coordinate);
-        //Debug.Log(cursorTilemap.GetSprite(coordinate));
+        
 			
         if (Input.GetMouseButtonDown(0))
         {
+            
+            Piece piece = PieceManager.GetPieceAtPos(coordinate);
+            Debug.Log("cursor location: " + coordinate);
+
+            TextOutput.text = "I am the very model of a modern major general!";
+
+            TextOutput.text = "cursor location: " + coordinate;
+            if(piece != null)
+            {
+
+                TextOutput.text = piece.PieceName;
+            }
+         
 
         }
     }
