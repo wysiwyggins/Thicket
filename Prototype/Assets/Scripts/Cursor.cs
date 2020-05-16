@@ -37,13 +37,12 @@ public class Cursor : MonoBehaviour
             Piece piece = PieceManager.GetPieceAtPos(coordinate);
             Debug.Log("cursor location: " + coordinate);
 
-            TextOutput.text = "I am the very model of a modern major general!";
 
-            TextOutput.text = "cursor location: " + coordinate;
+            TextOutput.text += "cursor location: " + coordinate + "\n";
             if(piece != null)
             {
 
-                TextOutput.text = piece.PieceName;
+                TextOutput.text += piece.PieceName + "\n";
             }
          
 

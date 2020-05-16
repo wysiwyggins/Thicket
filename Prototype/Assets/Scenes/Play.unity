@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Inertia: 1
   m_DecelerationRate: 0.135
   m_ScrollSensitivity: 1
-  m_Viewport: {fileID: 0}
+  m_Viewport: {fileID: 885585475}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1204816574}
   m_HorizontalScrollbarVisibility: 0
@@ -4579,8 +4579,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 860561281}
   m_HandleRect: {fileID: 860561280}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.9298
+  m_Value: -0.0000018958871
+  m_Size: 0.20915061
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4713,8 +4713,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.2443, y: -5.6118126}
-  m_SizeDelta: {x: 372.97522, y: 58.923172}
+  m_AnchoredPosition: {x: -4.2443, y: 143.89528}
+  m_SizeDelta: {x: 372.97522, y: 376.5453}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1489890464
 MonoBehaviour:
@@ -4739,18 +4739,19 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 92ce50917b59f459e8b6b3f7c5d88c8b, type: 3}
     m_FontSize: 12
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 0
+    m_BestFit: 1
+    m_MinSize: 8
+    m_MaxSize: 12
+    m_Alignment: 6
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Congue eu consequat ac felis
-    donec et odio pellentesque.
+  m_Text: 'The air around you sings to life. The red sun wakes over the land.
+
+
+'
 --- !u!222 &1489890465
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4883,7 +4884,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorTilemap: {fileID: 152103619}
-  TextOutput: {fileID: 1489890464}
 --- !u!1 &1969299496
 GameObject:
   m_ObjectHideFlags: 0
