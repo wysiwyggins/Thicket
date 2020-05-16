@@ -1,13 +1,14 @@
 ﻿<Properties StartupConfiguration="{B1235EE4-71EE-C815-28F8-C3378E5ADB84}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Cursor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Shaders/Blur.shader">
     <Files>
       <File FileName="Assets/Scripts/Piece.cs" Line="19" Column="22" />
       <File FileName="Assets/Scripts/PieceManager.cs" />
       <File FileName="Assets/Scripts/Cursor.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Behaviors/ConsumePiece.cs" />
-      <File FileName="Assets/Scripts/Behaviors/MoveTowardsTarget.cs" Line="119" Column="36" />
+      <File FileName="Assets/Scripts/Behaviors/MoveTowardsTarget.cs" />
       <File FileName="Assets/Scripts/Behaviors/PlayerMovement.cs" />
       <File FileName="Assets/Scripts/PieceBehaviour.cs" />
+      <File FileName="Assets/Shaders/Blur.shader" Line="198" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,7 +17,9 @@
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
                 <Node name="Behaviors" expanded="True" />
-                <Node name="Cursor.cs" selected="True" />
+              </Node>
+              <Node name="Shaders" expanded="True">
+                <Node name="Blur.shader" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -26,7 +29,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="8fc6f3e5-4d2d-4b69-b466-33d3a93bc7f0" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="5170686d-e099-46ea-9b46-526f88bcb06c" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

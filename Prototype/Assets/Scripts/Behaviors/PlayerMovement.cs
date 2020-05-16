@@ -8,7 +8,11 @@ public class PlayerMovement : PieceBehaviour
 	//pathing
 	private SimplePF2D.Path path;
 	private float moveSpeed = 4f; //speed for Moving()
-								  //Coroutine MoveIE;
+
+    //fog
+    //private Tilemap fogTilemap = GameObject.Find("Fog").GetComponent<Tilemap>();
+    public Tilemap fogTilemap;
+
 	SimplePathFinding2D pf;
 
 	Grid grid;
@@ -34,6 +38,7 @@ public class PlayerMovement : PieceBehaviour
 	{
 		path.Reset();
 		state = State.WaitForInput;
+		UpdateFog();
 	}
 
 	// Start is called before the first frame update
@@ -43,7 +48,7 @@ public class PlayerMovement : PieceBehaviour
 		pf = GameObject.Find("Grid").GetComponent<SimplePathFinding2D>();
 		path = new SimplePF2D.Path(pf);
 		navmap = GameObject.Find("NavigationTilemap").GetComponent<Tilemap>();
-
+		UpdateFog();
 	}
 
 	
@@ -110,9 +115,10 @@ public class PlayerMovement : PieceBehaviour
 			while (Vector3.Distance(transform.position, targetPos) > 0.01f)
 			{
 				transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref vel, 0.2f, moveSpeed);
-
+				UpdateFog();
 				//  transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * moveSpeed);
 				yield return new WaitForEndOfFrame();
+				
 			}
 
 			Debug.Log("Reached path point");
@@ -125,4 +131,17 @@ public class PlayerMovement : PieceBehaviour
 
 		path = new SimplePF2D.Path(pf);
 	}
+
+    void UpdateFog()
+    {
+        //ultimately it'd be cool to animate the blur shader size attribute and material color of the fog tiles before removing them for a visual effect
+		Vector3Int PiecePosition = fogTilemap.WorldToCell(transform.position);
+        for(int i = -3; i <= 3; i++)
+        {
+            for(int j = -3; j <= 3; j++)
+            {
+				fogTilemap.SetTile(PiecePosition + new Vector3Int(i, j, 0), null);
+            }
+        }
+    }
 }

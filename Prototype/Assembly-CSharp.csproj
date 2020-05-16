@@ -78,6 +78,7 @@
     <Compile Include="Assets\SimpleTilePathfinding\Script\NavNode.cs" />
     <Compile Include="Assets\SimpleTilePathfinding\Script\Path.cs" />
     <Compile Include="Assets\SimpleTilePathfinding\Script\SimplePathFinding2D.cs" />
+    <None Include="Assets\Shaders\Blur.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>/Users/wileywiggins/Development/Thicket/Prototype/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
