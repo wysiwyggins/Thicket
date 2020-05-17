@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 
 public class ConsumePiece : PieceBehaviour
@@ -8,6 +9,7 @@ public class ConsumePiece : PieceBehaviour
 
 	Grid grid;
 	Tilemap navmap;
+	private Text TextOutput;
 
 	//piece attributes
 	Vector3Int pieceCoords
@@ -37,6 +39,7 @@ public class ConsumePiece : PieceBehaviour
 	{
 		grid = GameObject.Find("Grid").GetComponent<Grid>();
         navmap = GameObject.Find("NavigationTilemap").GetComponent<Tilemap>();
+		TextOutput = GameObject.Find("Text").GetComponent<Text>();
 
 	}
 
@@ -51,6 +54,7 @@ public class ConsumePiece : PieceBehaviour
     {
 		Debug.Log("CHOMP: " + prey.PieceName);
 		Destroy(prey.gameObject, 1);
+		TextOutput.text += "The " + piece.PieceName + " catches the " + prey.PieceName + ".\n";
 	}
 
 }
