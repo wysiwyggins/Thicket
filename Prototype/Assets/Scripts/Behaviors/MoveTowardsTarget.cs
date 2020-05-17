@@ -61,6 +61,7 @@ public class MoveTowardsTarget : PieceBehaviour
 	void FindPath()
 	{
 		Vector3 location = transform.position;
+
 		Vector3 mouseWorldPos = piece.prey.transform.position;
 		mouseWorldPos.z = 0.0f;
 
