@@ -9,14 +9,15 @@ public class PlayerMovement : PieceBehaviour
 	private SimplePF2D.Path path;
 	private float moveSpeed = 4f; //speed for Moving()
 
-    //fog
-    //private Tilemap fogTilemap = GameObject.Find("Fog").GetComponent<Tilemap>();
-    public Tilemap fogTilemap;
+	//fog
+	private Tilemap fogTilemap;
+	private Tilemap overlayTilemap;
 
 	SimplePathFinding2D pf;
 
 	Grid grid;
-	Tilemap navmap;
+	public Tilemap navmap;
+	public Tile highlight;
 
 	//piece attributes
 	Vector3Int pieceCoords
@@ -41,10 +42,11 @@ public class PlayerMovement : PieceBehaviour
 		UpdateFog();
 	}
 
-	// Start is called before the first frame update
 	void Start()
     {
-		grid = GameObject.Find("Grid").GetComponent<Grid>(); //why does any second piece added say this reference isn't set to an instance of an object?
+        fogTilemap = GameObject.Find("Fog").GetComponent<Tilemap>();
+        overlayTilemap = GameObject.Find("Overlays").GetComponent<Tilemap>();
+		grid = GameObject.Find("Grid").GetComponent<Grid>(); 
 		pf = GameObject.Find("Grid").GetComponent<SimplePathFinding2D>();
 		path = new SimplePF2D.Path(pf);
 		navmap = GameObject.Find("NavigationTilemap").GetComponent<Tilemap>();
@@ -58,6 +60,17 @@ public class PlayerMovement : PieceBehaviour
 		Vector3 location = transform.position;
 		Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		mouseWorldPos.z = 0.0f;
+
+
+		//lets try highlighting the tiles in range
+		Vector3Int PiecePosition = fogTilemap.WorldToCell(transform.position);
+		for (int i = -range-1; i <= range-1; i++)
+		{
+			for (int j = -range-1; j <= range-1; j++)
+			{
+				overlayTilemap.SetTile(PiecePosition + new Vector3Int(i, j, 0), highlight);
+			}
+		}
 
 		if (Input.GetMouseButtonDown(0) && PathIsValid() == false) //click the mouse
 		{
