@@ -13,6 +13,7 @@ public class MoveTowardsTarget : PieceBehaviour
 	Grid grid;
 	Tilemap navmap;
 
+
 	//piece attributes
 	Vector3Int pieceCoords
 	{ get { return grid.WorldToCell(transform.position); } }

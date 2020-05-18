@@ -73,7 +73,7 @@ public class PlayerMovement : PieceBehaviour
 				overlayTilemap.SetTile(PiecePosition + new Vector3Int(i, j, 0), highlight);
 			}
 		}
-        // well that's both drawing stuff out of range and needs to be deleted after 
+        // needs a blend mode shader and it's drawing beyond move range. :(
 
 		if (Input.GetMouseButtonDown(0) && PathIsValid() == false) //click the mouse
 		{
@@ -144,7 +144,7 @@ public class PlayerMovement : PieceBehaviour
 		}
 
 		SendCompleteMessage();
-
+        overlayTilemap.ClearAllTiles();
 		path = new SimplePF2D.Path(pf);
 	}
     
@@ -156,8 +156,8 @@ public class PlayerMovement : PieceBehaviour
         {
             for(int j = -3; j <= 3; j++)
             {
-				SetTileColour(new Color(255,255,255), new Vector3Int(i, j, 0), fogTilemap);
-				fogTilemap.SetTile(PiecePosition + new Vector3Int(i, j, 0), null);
+				//SetTileColour(new Color(0,0,0), new Vector3Int(i, j, 0), fogTilemap); //i was experimenting with trying to change the fog color
+			    fogTilemap.SetTile(PiecePosition + new Vector3Int(i, j, 0), null);
             }
         }
     }
