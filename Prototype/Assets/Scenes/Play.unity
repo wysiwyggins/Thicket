@@ -3163,7 +3163,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1969299499}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &947874199
 TilemapRenderer:
@@ -4484,7 +4484,7 @@ PrefabInstance:
     - target: {fileID: 8662392302649232685, guid: 13d6334a218364a9f9a97c36718b4aae,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8662392302649232685, guid: 13d6334a218364a9f9a97c36718b4aae,
         type: 3}
@@ -4707,8 +4707,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 860561281}
   m_HandleRect: {fileID: 860561280}
   m_Direction: 2
-  m_Value: 0.013375163
-  m_Size: 0.56835586
+  m_Value: -0.007282292
+  m_Size: 0.17141792
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4839,11 +4839,11 @@ RectTransform:
   m_Father: {fileID: 87173527}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -4.2443, y: 74.105995}
-  m_SizeDelta: {x: 372.97522, y: 138.56787}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -190.7318, y: -91.728}
+  m_SizeDelta: {x: 372.97522, y: 442.64307}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1489890464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5083,8 +5083,8 @@ Transform:
   - {fileID: 1155664155}
   - {fileID: 1674393453}
   - {fileID: 1003043987}
-  - {fileID: 1151752022}
   - {fileID: 947874198}
+  - {fileID: 1151752022}
   - {fileID: 918936702}
   - {fileID: 654988704}
   - {fileID: 152103616}

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -64,13 +65,15 @@ public class PlayerMovement : PieceBehaviour
 
 		//lets try highlighting the tiles in range
 		Vector3Int PiecePosition = fogTilemap.WorldToCell(transform.position);
-		for (int i = -range-1; i <= range-1; i++)
+		int adjustedRange = range - 1;
+		for (int i = -adjustedRange; i <= adjustedRange; i++)
 		{
-			for (int j = -range-1; j <= range-1; j++)
+			for (int j = -adjustedRange; j <= adjustedRange; j++)
 			{
 				overlayTilemap.SetTile(PiecePosition + new Vector3Int(i, j, 0), highlight);
 			}
 		}
+        // well that's both drawing stuff out of range and needs to be deleted after 
 
 		if (Input.GetMouseButtonDown(0) && PathIsValid() == false) //click the mouse
 		{
@@ -144,7 +147,7 @@ public class PlayerMovement : PieceBehaviour
 
 		path = new SimplePF2D.Path(pf);
 	}
-
+    
     void UpdateFog()
     {
         //ultimately it'd be cool to animate the blur shader size attribute and material color of the fog tiles before removing them for a visual effect
@@ -153,8 +156,26 @@ public class PlayerMovement : PieceBehaviour
         {
             for(int j = -3; j <= 3; j++)
             {
+				SetTileColour(new Color(255,255,255), new Vector3Int(i, j, 0), fogTilemap);
 				fogTilemap.SetTile(PiecePosition + new Vector3Int(i, j, 0), null);
             }
         }
     }
+
+    private void SetTileColour(int v, Vector3Int vector3Int, Tilemap fogTilemap)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void SetTileColour(Color colour, Vector3Int position, Tilemap tilemap)
+	{
+		// Flag the tile, inidicating that it can change colour.
+		// By default it's set to "Lock Colour".
+		tilemap.SetTileFlags(position, TileFlags.None);
+
+		// Set the colour.
+		tilemap.SetColor(position, colour);
+	}
+
+
 }
