@@ -16,7 +16,7 @@ public class Sleep : PieceBehaviour
 	public bool isNocturnal;
 	public Tilemap Terrain;
 	public Tile HomeTile;
-	public GameObject SleepSprite;
+	public Sprite SleepSprite;
 
 	public override void Begin()
 	{

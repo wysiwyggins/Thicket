@@ -2134,7 +2134,6 @@ GameObject:
   - component: {fileID: 654988704}
   - component: {fileID: 654988707}
   - component: {fileID: 654988706}
-  - component: {fileID: 654988705}
   m_Layer: 0
   m_Name: TerrainTiles
   m_TagString: Untagged
@@ -2156,22 +2155,6 @@ Transform:
   m_Father: {fileID: 1969299499}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!19719996 &654988705
-TilemapCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 654988703}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_MaximumTileChangeCount: 1000
-  m_ExtrusionFactor: 0.00001
 --- !u!483693784 &654988706
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -2210,9 +2193,9 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.13999999, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 2
@@ -2227,17 +2210,50 @@ Tilemap:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654988703}
   m_Enabled: 1
-  m_Tiles: {}
+  m_Tiles:
+  - first: {x: 6, y: 8, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
-  m_TileAssetArray: []
-  m_TileSpriteArray: []
-  m_TileMatrixArray: []
-  m_TileColorArray: []
+  m_TileAssetArray:
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: fef1e7feed0e84927bcf8e32303a516e, type: 2}
+  m_TileSpriteArray:
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 83d63feef0224448081c06c9f8a1422b, type: 3}
+  m_TileMatrixArray:
+  - m_RefCount: 1
+    m_Data:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  m_TileColorArray:
+  - m_RefCount: 1
+    m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 12
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: 0, y: 0, z: 0}
-  m_Size: {x: 0, y: 0, z: 1}
+  m_Size: {x: 7, y: 9, z: 1}
   m_TileAnchor: {x: 0, y: 0, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -2338,7 +2354,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 752202441}
   m_HandleRect: {fileID: 752202440}
   m_Direction: 2
-  m_Value: 0.00014683239
+  m_Value: 0.49999985
   m_Size: 0.27557912
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3377,21 +3393,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: wolf
       objectReference: {fileID: 0}
-    - target: {fileID: 1995694362969332112, guid: 13d6334a218364a9f9a97c36718b4aae,
-        type: 3}
-      propertyPath: range
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3391377592416467778, guid: 13d6334a218364a9f9a97c36718b4aae,
         type: 3}
       propertyPath: prey
       value: 
       objectReference: {fileID: 1411762998}
-    - target: {fileID: 3391377592416467778, guid: 13d6334a218364a9f9a97c36718b4aae,
+    - target: {fileID: 5545266364577110107, guid: 13d6334a218364a9f9a97c36718b4aae,
         type: 3}
-      propertyPath: Strength
-      value: 8
-      objectReference: {fileID: 0}
+      propertyPath: Terrain
+      value: 
+      objectReference: {fileID: 654988707}
+    - target: {fileID: 5545266364577110107, guid: 13d6334a218364a9f9a97c36718b4aae,
+        type: 3}
+      propertyPath: HomeTile
+      value: 
+      objectReference: {fileID: 11400000, guid: fef1e7feed0e84927bcf8e32303a516e,
+        type: 2}
+    - target: {fileID: 5545266364577110107, guid: 13d6334a218364a9f9a97c36718b4aae,
+        type: 3}
+      propertyPath: SleepSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 40f6827897372415a9d75f55df8e3250,
+        type: 3}
     - target: {fileID: 8662392302649232685, guid: 13d6334a218364a9f9a97c36718b4aae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3606,7 +3629,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12.1, y: 78.8}
+  m_AnchoredPosition: {x: -12.1, y: 0.000015258789}
   m_SizeDelta: {x: 339.03497, y: 217.617}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1178482011
