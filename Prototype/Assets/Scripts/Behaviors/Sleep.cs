@@ -32,7 +32,11 @@ public class Sleep : PieceBehaviour
 
 	private void Update()
 	{
-
+    // this shouldn't be in update and it's not getting the piecemanager state correclty
+    // if (isNocturnal && PieceManager.state == night)
+	// {
+	//      this.gameObject.GetComponent<SpriteRenderer>().sprite = SleepSprite;
+	// }
 	}
 
 }

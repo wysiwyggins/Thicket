@@ -21,7 +21,7 @@ public class PieceManager : MonoBehaviour
 
 	public int hour;
 
-	enum State
+	public enum State
 	{
 		Dawn,
 		Day,
