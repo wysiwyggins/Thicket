@@ -30,6 +30,15 @@ public class Sleep : PieceBehaviour
 
 	}
 
+	public bool ShouldSleep()
+	{
+		//check piece manager against nocturnal...
+		if (isNocturnal && PieceManager.state == PieceManager.State.Day)
+			return true;
+
+		return false;
+	}
+
 	private void Update()
 	{
     // this shouldn't be in update and it's not getting the piecemanager state correclty

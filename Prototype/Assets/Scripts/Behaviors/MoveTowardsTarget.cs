@@ -32,6 +32,16 @@ public class MoveTowardsTarget : PieceBehaviour
 
 	public override void Begin()
 	{
+		Sleep sleep = GetComponent<Sleep>();
+		if (sleep != null)
+		{
+			if (sleep.ShouldSleep())
+			{
+				SendCompleteMessage();
+				return;
+			}
+		}
+
 		path.Reset();
 		state = State.FindingPath;
 		startedMove = false;

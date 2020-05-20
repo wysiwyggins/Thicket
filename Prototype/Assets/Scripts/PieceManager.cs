@@ -28,7 +28,7 @@ public class PieceManager : MonoBehaviour
 		Dusk,
         Night,
 	}
-	State state;
+	public static State state;
 
 
 	public static Piece GetPieceAtPos(Vector3Int aCoord)
@@ -76,6 +76,15 @@ public class PieceManager : MonoBehaviour
 		TextOutput = GameObject.Find("Text").GetComponent<Text>();
 	}
 
+	public List<Vector3Int> TilesInRange(Vector3Int pos, int range)
+	{
+		List<Vector3Int> tiles = new List<Vector3Int>();
+
+		//..populate list
+
+
+		return tiles;
+	}
 
 	void StartPieceTurn()
 	{
@@ -91,13 +100,16 @@ public class PieceManager : MonoBehaviour
 		int nextIndex = AllPieces.IndexOf(currentPiece) +1;
 
 		if (nextIndex >= AllPieces.Count)
+		{
 			nextIndex = 0;
+			hour += 1;
+			TextOutput.text += "Hour: " + hour + "\n";
+			CheckHour();
+		}
+
 
 		currentPiece = AllPieces[nextIndex];
-        
-		hour += 1; //trying to advance the hour at the end of each turn but it's happening multiple times
-		TextOutput.text += "Hour: " + hour + "\n";
-		CheckHour();
+		 //trying to advance the hour at the end of each turn but it's happening multiple times
 		StartPieceTurn();
 		
 

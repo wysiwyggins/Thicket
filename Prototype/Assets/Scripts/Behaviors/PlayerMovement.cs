@@ -73,6 +73,7 @@ public class PlayerMovement : PieceBehaviour
 				overlayTilemap.SetTile(PiecePosition + new Vector3Int(i, j, 0), highlight);
 			}
 		}
+		
         // needs a blend mode shader and it's drawing beyond move range. :(
 
 		if (Input.GetMouseButtonDown(0) && PathIsValid() == false) //click the mouse
