@@ -35,17 +35,25 @@ public class Sleep : PieceBehaviour
 		//check piece manager against nocturnal...
 		if (isNocturnal && PieceManager.state == PieceManager.State.Day)
 			return true;
+		if (!isNocturnal && PieceManager.state == PieceManager.State.Night)
+			return true;
+
+		return false;
+	}
+	public bool ShouldGoHome()
+	{
+		//check piece manager against nocturnal...
+		if (isNocturnal && PieceManager.state == PieceManager.State.Dawn)
+			return true;
+		if (!isNocturnal && PieceManager.state == PieceManager.State.Dusk)
+			return true;
 
 		return false;
 	}
 
 	private void Update()
 	{
-    // this shouldn't be in update and it's not getting the piecemanager state correclty
-    // if (isNocturnal && PieceManager.state == night)
-	// {
-	//      this.gameObject.GetComponent<SpriteRenderer>().sprite = SleepSprite;
-	// }
+
 	}
 
 }
