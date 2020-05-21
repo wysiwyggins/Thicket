@@ -17,6 +17,7 @@ public class Sleep : PieceBehaviour
 	public Tilemap Terrain;
 	public Tile HomeTile;
 	public Sprite SleepSprite;
+	public Sprite AwakeSprite;
 
 	public override void Begin()
 	{
@@ -53,7 +54,15 @@ public class Sleep : PieceBehaviour
 
 	private void Update()
 	{
-
+		if(ShouldSleep())
+        {
+			this.gameObject.GetComponent<SpriteRenderer>().sprite = SleepSprite;
+		}
+		else
+        {
+			this.gameObject.GetComponent<SpriteRenderer>().sprite = AwakeSprite;
+		}
+		SendCompleteMessage();
 	}
 
 }
