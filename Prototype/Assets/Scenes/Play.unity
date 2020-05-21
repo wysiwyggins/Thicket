@@ -2418,8 +2418,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 174.84, y: 0.99268}
-  m_SizeDelta: {x: 21.679886, y: 57.98535}
+  m_AnchoredPosition: {x: 174.84, y: -0.000014931}
+  m_SizeDelta: {x: 21.679771, y: 61.843224}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &703298640
 MonoBehaviour:
@@ -2463,8 +2463,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 752202441}
   m_HandleRect: {fileID: 752202440}
   m_Direction: 2
-  m_Value: 0.000000056161518
-  m_Size: 0.37575018
+  m_Value: 0
+  m_Size: 0.28418377
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2484,6 +2484,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2557,6 +2558,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3736,7 +3738,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12.1, y: 67.923676}
+  m_AnchoredPosition: {x: -12.1, y: 77.88692}
   m_SizeDelta: {x: 339.03497, y: 217.617}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1178482011
@@ -3754,6 +3756,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4000,8 +4003,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 128, y: -149.16}
-  m_SizeDelta: {x: -428.6403, y: -363.9684}
+  m_AnchoredPosition: {x: 128, y: -167.41}
+  m_SizeDelta: {x: -428.6403, y: -400.46353}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1762168864
 MonoBehaviour:
@@ -4031,6 +4034,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.392}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
