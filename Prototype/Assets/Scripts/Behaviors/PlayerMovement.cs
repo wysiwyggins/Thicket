@@ -64,13 +64,13 @@ public class PlayerMovement : PieceBehaviour
 
 
 		//lets try highlighting the tiles in range
-		Vector3Int PiecePosition = fogTilemap.WorldToCell(transform.position);
+		Vector3Int PiecePosition = overlayTilemap.WorldToCell(transform.position);
 		int adjustedRange = range - 1;
-		for (int i = -adjustedRange; i <= adjustedRange; i++)
+		for (int i =  -adjustedRange; i <= adjustedRange; i++)
 		{
-			for (int j = -adjustedRange; j <= adjustedRange; j++)
+			for (int j = (Math.Abs(i % 2)) - adjustedRange; j <= adjustedRange; j++)
 			{
-				overlayTilemap.SetTile(PiecePosition + new Vector3Int(i, j, 0), highlight);
+				overlayTilemap.SetTile(PiecePosition + new Vector3Int(j, i, 0), highlight);
 			}
 		}
 		

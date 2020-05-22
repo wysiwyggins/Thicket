@@ -152,10 +152,10 @@ RectTransform:
   m_Father: {fileID: 1762168863}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12.1, y: 1.5282}
-  m_SizeDelta: {x: 339.03537, y: 56.91423}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -14.131, y: 0}
+  m_SizeDelta: {x: 343.0975, y: -0.93685913}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &78594945
 MonoBehaviour:
@@ -325,7 +325,7 @@ GameObject:
   - component: {fileID: 136015958}
   - component: {fileID: 136015957}
   m_Layer: 8
-  m_Name: GameObject
+  m_Name: Post Effects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2418,8 +2418,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 174.84, y: -0.000014931}
-  m_SizeDelta: {x: 21.679771, y: 61.843224}
+  m_AnchoredPosition: {x: 174.84, y: 0}
+  m_SizeDelta: {x: 21.679771, y: 77.063194}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &703298640
 MonoBehaviour:
@@ -4070,7 +4070,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 128, y: -167.41003}
+  m_AnchoredPosition: {x: 166, y: -167.41003}
   m_SizeDelta: {x: -428.6403, y: -400.46353}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1762168864
