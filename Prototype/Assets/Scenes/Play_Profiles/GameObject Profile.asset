@@ -53,10 +53,10 @@ MonoBehaviour:
     value: 1
   temperature:
     overrideState: 1
-    value: 11
+    value: 9
   tint:
     overrideState: 1
-    value: 18
+    value: 10
   colorFilter:
     overrideState: 0
     value: {r: 1, g: 1, b: 1, a: 1}
@@ -77,7 +77,7 @@ MonoBehaviour:
     value: 20.8
   mixerRedOutRedIn:
     overrideState: 0
-    value: 100
+    value: 0
   mixerRedOutGreenIn:
     overrideState: 0
     value: 0
@@ -1332,10 +1332,10 @@ MonoBehaviour:
     value: 0
   intensity:
     overrideState: 1
-    value: 0.694
+    value: 0.46
   size:
     overrideState: 1
-    value: 0.77
+    value: 0.75
   lumContrib:
     overrideState: 1
     value: 0.738
@@ -1400,10 +1400,10 @@ MonoBehaviour:
     value: 0.5
   threshold:
     overrideState: 1
-    value: 0.7
+    value: 0.6
   softKnee:
     overrideState: 1
-    value: 0.001
+    value: 0.012
   clamp:
     overrideState: 0
     value: 65472
@@ -1414,8 +1414,8 @@ MonoBehaviour:
     overrideState: 0
     value: 0
   color:
-    overrideState: 0
-    value: {r: 1, g: 1, b: 1, a: 1}
+    overrideState: 1
+    value: {r: 0.63710076, g: 0.9339623, b: 0.5683072, a: 1}
   fastMode:
     overrideState: 0
     value: 0
