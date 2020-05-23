@@ -74,7 +74,7 @@ public class PlayerMovement : PieceBehaviour
 			}
 		}
 		
-        // needs a blend mode shader and it's drawing beyond move range. :(
+        // this should be switched to cube co-ordinates!
 
 		if (Input.GetMouseButtonDown(0) && PathIsValid() == false) //click the mouse
 		{

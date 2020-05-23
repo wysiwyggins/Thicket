@@ -16,7 +16,7 @@ public class Sleep : PieceBehaviour
 
 	public bool isNocturnal;
 	public Tilemap Terrain;
-	public Tile HomeTile;
+	public Scenery Home;
 	public Sprite SleepSprite;
 	public Sprite AwakeSprite;
 
@@ -73,15 +73,15 @@ public class Sleep : PieceBehaviour
 			{
 				this.gameObject.GetComponent<SpriteRenderer>().sprite = SleepSprite;
 				if (state == State.Awake)
-					TextOutput.text += "The " + piece.PieceName + " stops to sleep.";
-				state = State.Asleep;
+					TextOutput.text += "The " + piece.PieceName + " stops to sleep.\n";
+					state = State.Asleep;
 			}
 			else
 			{
 				this.gameObject.GetComponent<SpriteRenderer>().sprite = AwakeSprite;
 				if (state == State.Asleep)
-					TextOutput.text += "The " + piece.PieceName + "wakes.";
-				state = State.Asleep;
+					TextOutput.text += "The " + piece.PieceName + " wakes.\n";
+					state = State.Awake;
 			}
 			sleepcheck = false;
 			if (ShouldGoHome())

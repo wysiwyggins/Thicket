@@ -12,6 +12,7 @@ public class MoveTowardsTarget : PieceBehaviour
 
 	Grid grid;
 	Tilemap navmap;
+	Sleep sleep;
 
 
 	//piece attributes
@@ -19,6 +20,8 @@ public class MoveTowardsTarget : PieceBehaviour
 	{ get { return grid.WorldToCell(transform.position); } }
 	List<Vector3Int> cellPositions;
 
+	private Vector3 homePosition;
+	private Vector3 preyPosition;
 
 	public int range;
 
@@ -32,7 +35,7 @@ public class MoveTowardsTarget : PieceBehaviour
 
 	public override void Begin()
 	{
-		Sleep sleep = GetComponent<Sleep>();
+		sleep = GetComponent<Sleep>();
 		if (sleep != null)
 		{
 			if (sleep.ShouldSleep())
@@ -61,29 +64,38 @@ public class MoveTowardsTarget : PieceBehaviour
 
 	private void Update()
 	{
-		if (state == State.FindingPath)
-			FindPath();
-		//else if (state == State.Move)
+		if (state == State.FindingPath && sleep != null)
 		{
-
+			if (sleep.ShouldGoHome())
+            {
+				homePosition = sleep.Home.transform.position;
+				homePosition.z = 0.0f;
+				FindPath(homePosition);
+			} else
+			{
+				preyPosition = piece.prey.transform.position;
+				preyPosition.z = 0.0f;
+				FindPath(preyPosition);
+				//else if (state == State.Move)
+			}
 		}
+		
 	}
 
-	void FindPath()
+
+	void FindPath(Vector3 target)
 	{
 		Vector3 location = transform.position;
-
-		Vector3 mouseWorldPos = piece.prey.transform.position;
-		mouseWorldPos.z = 0.0f;
+		
 
 		if (!startedMove && PathIsValid() == false) //click the mouse
 		{
 			startedMove = true;
 
-			Vector3Int coordinate = grid.WorldToCell(mouseWorldPos); //get a hex cell coordinate from a mouse click
+			Vector3Int coordinate = grid.WorldToCell(target); //get a hex cell coordinate from a mouse click
 																	 //Debug.Log("piece position: " + cellPosition);
 			Debug.Log("destination: " + coordinate);
-			path.CreatePath(location, mouseWorldPos); // generate a path
+			path.CreatePath(location, target); // generate a path
 
 			Debug.Log("path length " + path.GetPathPointList().Count + "/" + range);
 			if (path.GetPathPointList().Count > range)
