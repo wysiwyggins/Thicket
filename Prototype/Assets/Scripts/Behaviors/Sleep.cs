@@ -20,8 +20,17 @@ public class Sleep : PieceBehaviour
 	public Sprite SleepSprite;
 	public Sprite AwakeSprite;
 
+	public enum State
+	{
+		Awake,
+		Sleepy,
+		Asleep,
+	}
+	public static State state;
+
 	private Text TextOutput;
 	private bool sleepcheck;
+	
 
 	public override void Begin()
 	{
@@ -32,6 +41,7 @@ public class Sleep : PieceBehaviour
 	void Start()
 	{
 		TextOutput = GameObject.Find("Text").GetComponent<Text>();
+		state = State.Awake;
 	}
 
 	public bool ShouldSleep()
@@ -62,17 +72,21 @@ public class Sleep : PieceBehaviour
 			if (ShouldSleep())
 			{
 				this.gameObject.GetComponent<SpriteRenderer>().sprite = SleepSprite;
-				TextOutput.text += "The " + piece.PieceName + " stops to sleep.";
+				if (state == State.Awake;)
+					TextOutput.text += "The " + piece.PieceName + " stops to sleep.";
+				state = State.Asleep;
 			}
 			else
 			{
 				this.gameObject.GetComponent<SpriteRenderer>().sprite = AwakeSprite;
-				TextOutput.text += "The " + piece.PieceName + "wakes.";
+				if (state == State.Asleep;)
+					TextOutput.text += "The " + piece.PieceName + "wakes.";
+				state = State.Asleep;
 			}
 			sleepcheck = false;
 			if (ShouldGoHome())
 			{
-
+				state = State.Sleepy;
 			}
 		}
 		
