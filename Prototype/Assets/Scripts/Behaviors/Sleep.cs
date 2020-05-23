@@ -72,14 +72,14 @@ public class Sleep : PieceBehaviour
 			if (ShouldSleep())
 			{
 				this.gameObject.GetComponent<SpriteRenderer>().sprite = SleepSprite;
-				if (state == State.Awake;)
+				if (state == State.Awake)
 					TextOutput.text += "The " + piece.PieceName + " stops to sleep.";
 				state = State.Asleep;
 			}
 			else
 			{
 				this.gameObject.GetComponent<SpriteRenderer>().sprite = AwakeSprite;
-				if (state == State.Asleep;)
+				if (state == State.Asleep)
 					TextOutput.text += "The " + piece.PieceName + "wakes.";
 				state = State.Asleep;
 			}
