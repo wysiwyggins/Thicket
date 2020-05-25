@@ -32,34 +32,27 @@ public struct HexCoordinates
         return X.ToString() + "\n" + Z.ToString();
     }
 
-}
+
+    //here's the redbloggames example functions, which I tried to convert from C++. oddr means 'pointy-top' hexes.
+
+    //https://www.redblobgames.com/grids/hexagons/#coordinates
+
+    //public static Vector3Int cube_to_oddr(Vector3Int cube)
+    //{
+    //    int col = cube.x + (cube.z - (cube.z & 1)) / 2;
+    //    int row = cube.z;
+    //    return new Vector3Int(col, row, 0);
+    //}
 
 
-//here's the redbloggames example functions. oddr means 'pointy-top' hexes.
-
-function cube_to_oddr(cube):
-{
-    var col = cube.x + (cube.z - (cube.z & 1)) / 2;
-    var row = cube.z;
-    return OffsetCoord(col, row)
-}
-    
-
-function oddr_to_cube(hex):
-{
-    var x = hex.col - (hex.row - (hex.row & 1)) / 2;
-    var z = hex.row;
-    var y = -x - z;
-    return Cube(x, y, z);
-}
-
-// here's another example I found
-
-public Vector3 getVector3Coord(Vector2 pos)
-{
-
-    int x = (int)pos.x, y = (int)pos.y;
-    int tileX = x, tileZ = y - (x - (x & 1)) / 2, tileY = -tileX - tileZ;
-    return new Vector3(tileX, tileY, tileZ);
+    //public static Vector3Int oddr_to_cube(Vector3Int hex)
+    //{
+    //    int x = hex.col - (hex.row - (hex.row & 1)) / 2;
+    //    int z = hex.row;
+    //    int y = -x - z;
+    //    return new Vector3Int( x, y, z);
+    //}
 
 }
+
+
