@@ -3,56 +3,122 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public struct HexCoordinates
+
+
+//This stuff all comes from the redblobgames page on hexgrids, I haven't het integrated it with the game. 
+
+public struct Hex
 {
-    //https://catlikecoding.com/unity/tutorials/hex-map/part-1/
-
-    public int X { get; private set; }
-
-    public int Z { get; private set; }
-
-    public HexCoordinates(int x, int z)
+    public Hex(int q, int r, int s)
     {
-        X = x;
-        Z = z;
+        this.q = q;
+        this.r = r;
+        this.s = s;
+        if (q + r + s != 0)
+            Debug.Log("q + r + s must be 0");
     }
+    public readonly int q;
+    public readonly int r;
+    public readonly int s;
 
-    public static HexCoordinates FromOffsetCoordinates(int x, int z)
+    public Hex Add(Hex b)
     {
-        return new HexCoordinates(x, z);
-    }
-
-    public override string ToString()
-    {
-        return "(" + X.ToString() + ", " + Z.ToString() + ")";
-    }
-
-    public string ToStringOnSeparateLines()
-    {
-        return X.ToString() + "\n" + Z.ToString();
+        return new Hex(q + b.q, r + b.r, s + b.s);
     }
 
 
-    //here's the redbloggames example functions, which I tried to convert from C++. oddr means 'pointy-top' hexes.
-
-    //https://www.redblobgames.com/grids/hexagons/#coordinates
-
-    //public static Vector3Int cube_to_oddr(Vector3Int cube)
-    //{
-    //    int col = cube.x + (cube.z - (cube.z & 1)) / 2;
-    //    int row = cube.z;
-    //    return new Vector3Int(col, row, 0);
-    //}
+    public Hex Subtract(Hex b)
+    {
+        return new Hex(q - b.q, r - b.r, s - b.s);
+    }
 
 
-    //public static Vector3Int oddr_to_cube(Vector3Int hex)
-    //{
-    //    int x = hex.col - (hex.row - (hex.row & 1)) / 2;
-    //    int z = hex.row;
-    //    int y = -x - z;
-    //    return new Vector3Int( x, y, z);
-    //}
+    public Hex Scale(int k)
+    {
+        return new Hex(q * k, r * k, s * k);
+    }
+
+
+    public Hex RotateLeft()
+    {
+        return new Hex(-s, -q, -r);
+    }
+
+
+    public Hex RotateRight()
+    {
+        return new Hex(-r, -s, -q);
+    }
+
+    static public List<Hex> directions = new List<Hex> { new Hex(1, 0, -1), new Hex(1, -1, 0), new Hex(0, -1, 1), new Hex(-1, 0, 1), new Hex(-1, 1, 0), new Hex(0, 1, -1) };
+
+    static public Hex Direction(int direction)
+    {
+        return Hex.directions[direction];
+    }
+
+
+    public Hex Neighbor(int direction)
+    {
+        return Add(Hex.Direction(direction));
+    }
+
+    static public List<Hex> diagonals = new List<Hex> { new Hex(2, -1, -1), new Hex(1, -2, 1), new Hex(-1, -1, 2), new Hex(-2, 1, 1), new Hex(-1, 2, -1), new Hex(1, 1, -2) };
+
+    public Hex DiagonalNeighbor(int direction)
+    {
+        return Add(Hex.diagonals[direction]);
+    }
+
+
+    public int Length()
+    {
+        return (int)((Mathf.Abs(q) + Mathf.Abs(r) + Mathf.Abs(s)) / 2);
+    }
+
+
+    public int Distance(Hex b)
+    {
+        return Subtract(b).Length();
+    }
 
 }
 
 
+public struct OffsetCoord
+{
+    public OffsetCoord(int col, int row)
+    {
+        this.col = col;
+        this.row = row;
+    }
+    public readonly int col;
+    public readonly int row;
+    static public int EVEN = 1;
+    static public int ODD = -1;
+
+    static public OffsetCoord RoffsetFromCube(int offset, Hex h) //the R means "pointy-top" hexes
+    {
+        int col = h.q + (int)((h.r + offset * (h.r & 1)) / 2);
+        int row = h.r;
+        if (offset != OffsetCoord.EVEN && offset != OffsetCoord.ODD)
+        {
+            Debug.Log("offset must be EVEN (+1) or ODD (-1)");
+        }
+        return new OffsetCoord(col, row);
+    }
+
+
+    static public Hex RoffsetToCube(int offset, OffsetCoord h)
+    {
+        int q = h.col - (int)((h.row + offset * (h.row & 1)) / 2);
+        int r = h.row;
+        int s = -q - r;
+        if (offset != OffsetCoord.EVEN && offset != OffsetCoord.ODD)
+        {
+            Debug.Log("offset must be EVEN (+1) or ODD (-1)");
+        }
+        return new Hex(q, r, s);
+    }
+
+}
