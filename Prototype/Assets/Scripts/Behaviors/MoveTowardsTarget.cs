@@ -71,13 +71,18 @@ public class MoveTowardsTarget : PieceBehaviour
 				homePosition = sleep.Home.transform.position;
 				homePosition.z = 0.0f;
 				FindPath(homePosition);
-			} else
+			} else if (piece.prey)
 			{
 				preyPosition = piece.prey.transform.position;
 				preyPosition.z = 0.0f;
 				FindPath(preyPosition);
 				//else if (state == State.Move)
-			}
+			} else
+            {
+				int randomX = Random.Range(0, 100);
+				int randomY = Random.Range(0, 100);
+				FindPath(new Vector3Int(randomX, randomY, 0));
+            }
 		}
 		
 	}
