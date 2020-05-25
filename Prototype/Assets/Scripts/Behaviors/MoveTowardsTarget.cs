@@ -79,6 +79,7 @@ public class MoveTowardsTarget : PieceBehaviour
 				//else if (state == State.Move)
 			} else
             {
+				Debug.Log("The " + piece.PieceName + " is not sleepy, has no prey");
 				int randomX = Random.Range(0, 100);
 				int randomY = Random.Range(0, 100);
 				FindPath(new Vector3Int(randomX, randomY, 0));
