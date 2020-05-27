@@ -35,6 +35,7 @@ public class MoveTowardsTarget : PieceBehaviour
 
 	public override void Begin()
 	{
+		Debug.Log(gameObject.name + " movetowardstarget begin");
 		sleep = GetComponent<Sleep>();
 		if (sleep != null)
 		{
@@ -44,7 +45,7 @@ public class MoveTowardsTarget : PieceBehaviour
 				return;
 			}
 		}
-
+		Debug.Log(gameObject.name + " reset path, entering state findingpath");
 		path.Reset();
 		state = State.FindingPath;
 		startedMove = false;
@@ -64,28 +65,28 @@ public class MoveTowardsTarget : PieceBehaviour
 
 	private void Update()
 	{
-		if (state == State.FindingPath && sleep != null)
+		if (state != State.FindingPath) return;
+
+		if (sleep != null && sleep.ShouldGoHome())
 		{
-			if (sleep.ShouldGoHome())
-            {
-				homePosition = sleep.Home.transform.position;
-				homePosition.z = 0.0f;
-				FindPath(homePosition);
-			} else if (piece.prey)
-			{
-				preyPosition = piece.prey.transform.position;
-				preyPosition.z = 0.0f;
-				FindPath(preyPosition);
-				//else if (state == State.Move)
-			} else
-            {
-				Debug.Log("The " + piece.PieceName + " is not sleepy, has no prey");
-				int randomX = Random.Range(0, 100);
-				int randomY = Random.Range(0, 100);
-				FindPath(new Vector3Int(randomX, randomY, 0));
-            }
+			homePosition = sleep.Home.transform.position;
+			homePosition.z = 0.0f;
+			FindPath(homePosition);
 		}
-		
+		else if (piece.prey)
+		{
+			preyPosition = piece.prey.transform.position;
+			preyPosition.z = 0.0f;
+			FindPath(preyPosition);
+			//else if (state == State.Move)
+		}
+		else
+		{
+			Debug.Log("The " + piece.PieceName + " is not sleepy, has no prey");
+			int randomX = pieceCoords.x + Random.Range(-range, range);
+			int randomY = pieceCoords.y + Random.Range(-range, range);
+			FindPath(new Vector3Int(randomX, randomY, 0));
+		}
 	}
 
 

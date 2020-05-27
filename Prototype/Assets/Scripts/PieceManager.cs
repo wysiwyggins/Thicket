@@ -76,6 +76,14 @@ public class PieceManager : MonoBehaviour
 		StartPieceTurn();
 		fogTilemap = GameObject.Find("Fog").GetComponent<Tilemap>();
 		TextOutput = GameObject.Find("Text").GetComponent<Text>();
+
+		string pieceNames = "pieces in order:\n";
+
+		foreach(Piece aPiece in AllPieces)
+		{
+			pieceNames += aPiece.gameObject.name + "\n";
+		}
+		Debug.Log(pieceNames);
 	}
 
 	public List<Vector3Int> TilesInRange(Vector3Int pos, int range)
