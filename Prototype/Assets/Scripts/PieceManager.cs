@@ -114,12 +114,12 @@ public class PieceManager : MonoBehaviour
 			nextIndex = 0;
 			hour += 1;
 			TextOutput.text += "Hour: " + hour + "\n";
+			//MessageManager.AddMessage.text("Hour: " + hour + "\n");
 			CheckHour();
 		}
 
 
 		currentPiece = AllPieces[nextIndex];
-		 //trying to advance the hour at the end of each turn but it's happening multiple times
 		StartPieceTurn();
 		
 
@@ -134,11 +134,13 @@ public class PieceManager : MonoBehaviour
 		{
 			state = State.Day;
 			TextOutput.text += "The sun is high in the air now, you feel its warmth over your skin.\n";
+			//MessageManager.AddMessage("The sun is high in the air now, you feel its warmth over your skin.\n");
 		}
 		if (hour == 6)
 		{
 			state = State.Dusk;
 			TextOutput.text += "The sun dwindles, red, in the west. There is a shudder across the land as the wolf begins to stir in her den.\n";
+			//MessageManager.AddMessage("The sun dwindles, red, in the west. There is a shudder across the land as the wolf begins to stir in her den.\n");
 
 		}
 		if (hour == 8)

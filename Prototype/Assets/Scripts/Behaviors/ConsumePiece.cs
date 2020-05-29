@@ -10,6 +10,13 @@ public class ConsumePiece : PieceBehaviour
 	Grid grid;
 	Tilemap navmap;
 	private Text TextOutput;
+	public int Metabilism;
+	public enum State
+	{
+		Hungry,
+		Full,
+	}
+	public static State state;
 
 	//piece attributes
 	Vector3Int pieceCoords
@@ -55,6 +62,7 @@ public class ConsumePiece : PieceBehaviour
 		Debug.Log("CHOMP: " + prey.PieceName);
 		Destroy(prey.gameObject, 1);
 		TextOutput.text += "The " + piece.PieceName + " catches the " + prey.PieceName + ".\n";
+		state = State.Full;
 	}
 
 }

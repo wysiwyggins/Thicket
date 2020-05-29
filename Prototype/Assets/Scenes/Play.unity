@@ -2123,6 +2123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneryName: unnamed
+  Description: There's nothing here.
 --- !u!1 &570308148
 GameObject:
   m_ObjectHideFlags: 0
@@ -2629,8 +2630,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 752202441}
   m_HandleRect: {fileID: 752202440}
   m_Direction: 2
-  m_Value: -0.00000019610697
-  m_Size: 0.3557473
+  m_Value: -0.000043782133
+  m_Size: 0.09037396
   m_NumberOfSteps: 11
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3949,8 +3950,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -12.1, y: 77.80853}
-  m_SizeDelta: {x: 339.0351, y: 155.617}
+  m_AnchoredPosition: {x: -12.1, y: 387.55017}
+  m_SizeDelta: {x: 339.0351, y: 775.1003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1178482011
 MonoBehaviour:

@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Behaviors\Sleep.cs" />
     <Compile Include="Assets\Scripts\Cursor.cs" />
     <Compile Include="Assets\Scripts\HexCoordinates.cs" />
+    <Compile Include="Assets\Scripts\MessageManager.cs" />
     <Compile Include="Assets\Scripts\Piece.cs" />
     <Compile Include="Assets\Scripts\PieceBehaviour.cs" />
     <Compile Include="Assets\Scripts\PieceManager.cs" />
@@ -272,9 +273,6 @@
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
       <HintPath>/Users/wileywiggins/Development/Thicket/Prototype/Library/PackageCache/com.unity.analytics@3.3.5/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Purchasing">
-      <HintPath>/Users/wileywiggins/Development/Thicket/Prototype/Library/PackageCache/com.unity.purchasing@2.0.6/UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>/Applications/Unity/Hub/Editor/2019.3.14f1/PlaybackEngines/AppleTVSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
