@@ -1,15 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Behaviors/Sleep.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PieceManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Behaviors/Sleep.cs" Line="23" Column="2" />
-      <File FileName="Assets/Scripts/Behaviors/MoveTowardsTarget.cs" Line="136" Column="61" />
+      <File FileName="Assets/Scripts/Behaviors/Sleep.cs" Line="61" Column="3" />
+      <File FileName="Assets/Scripts/Behaviors/MoveTowardsTarget.cs" Line="38" Column="38" />
       <File FileName="Assets/Scripts/Piece.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PieceManager.cs" Line="122" Column="39" />
-      <File FileName="Assets/Scripts/Behaviors/PlayerMovement.cs" />
-      <File FileName="Assets/Scripts/Scenery.cs" Line="9" Column="1" />
-      <File FileName="Assets/Scripts/HexCoordinates.cs" />
+      <File FileName="Assets/Scripts/PieceManager.cs" Line="135" Column="4" />
+      <File FileName="Assets/Scripts/Behaviors/PlayerMovement.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/MessageManager.cs" Line="22" Column="1" />
-      <File FileName="Assets/Scripts/Behaviors/ConsumePiece.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Behaviors/ConsumePiece.cs" Line="46" Column="3" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

@@ -11,12 +11,15 @@ public class ConsumePiece : PieceBehaviour
 	Tilemap navmap;
 	private Text TextOutput;
 	public int Metabilism;
+
 	public enum State
 	{
 		Hungry,
 		Full,
 	}
 	public static State state;
+
+
 
 	//piece attributes
 	Vector3Int pieceCoords
@@ -26,6 +29,7 @@ public class ConsumePiece : PieceBehaviour
 	{
 		Debug.Log("ConsumePiece Began, " + piece.PieceName + " strength: " + piece.Strength);
 		Piece[] neighbors = PieceManager.GetPiecesAtPos(pieceCoords);
+
 
 		for (int i = 0; i < neighbors.Length; i++)
 		{
@@ -52,7 +56,6 @@ public class ConsumePiece : PieceBehaviour
 
 	private void Update()
 	{
-		
 
 			
 	}
@@ -63,6 +66,15 @@ public class ConsumePiece : PieceBehaviour
 		Destroy(prey.gameObject, 1);
 		TextOutput.text += "The " + piece.PieceName + " catches the " + prey.PieceName + ".\n";
 		state = State.Full;
+	}
+
+	public bool IsFull()
+	{
+		//check piece manager against nocturnal...
+		if (state == State.Full)
+			return true;
+
+		return false;
 	}
 
 }

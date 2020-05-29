@@ -19,7 +19,6 @@ public class Sleep : PieceBehaviour
 	public Scenery Home;
 	public Sprite SleepSprite;
 	public Sprite AwakeSprite;
-
 	public enum State
 	{
 		Awake,
@@ -30,11 +29,14 @@ public class Sleep : PieceBehaviour
 
 	private Text TextOutput;
 	private bool sleepcheck;
+
+	ConsumePiece consumePiece;
 	
 
 	public override void Begin()
 	{
 		sleepcheck = true;
+		consumePiece = GetComponent<ConsumePiece>();
 	}
 
 	// Start is called before the first frame update
@@ -50,6 +52,9 @@ public class Sleep : PieceBehaviour
 		if (isNocturnal && PieceManager.state == PieceManager.State.Day)
 			return true;
 		if (!isNocturnal && PieceManager.state == PieceManager.State.Night)
+			return true;
+		if (consumePiece.IsFull())
+			//how do we burn down from the metabolism int each turn to take a nap?
 			return true;
 
 		return false;
