@@ -53,8 +53,11 @@ public class Sleep : PieceBehaviour
 		if (consumePiece.IsFull())
         {
 			Debug.Log("I'm full!");
-			consumePiece.CheckNap();
-			return true;
+			if (consumePiece.isNapping())
+            {
+				return true;
+			}
+			
         }
 			
 

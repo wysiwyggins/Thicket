@@ -2154,7 +2154,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1969299499}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &433754082
 SpriteRenderer:
@@ -3752,7 +3752,7 @@ PrefabInstance:
     - target: {fileID: 4219304734354112181, guid: 13d6334a218364a9f9a97c36718b4aae,
         type: 3}
       propertyPath: Metabolism
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5545266364577110107, guid: 13d6334a218364a9f9a97c36718b4aae,
         type: 3}
@@ -4462,8 +4462,8 @@ Transform:
   - {fileID: 1787557428}
   - {fileID: 261544346}
   - {fileID: 1151752022}
-  - {fileID: 70495968853009437}
   - {fileID: 433754081}
+  - {fileID: 70495968853009437}
   - {fileID: 418938347}
   - {fileID: 918936702}
   - {fileID: 152103616}

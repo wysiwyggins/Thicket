@@ -84,7 +84,7 @@ public class ConsumePiece : PieceBehaviour
 		return false;
 	}
 
-	public void CheckNap()
+	public bool isNapping()
 	{
 		//tick down the nap timer
 		digestion -= 1;
@@ -94,7 +94,10 @@ public class ConsumePiece : PieceBehaviour
 			state = State.Hungry;
 			Debug.Log(state);
 			digestion = Metabolism;
+			return false;
 		}
+
+		return true;
 
 	}
 
