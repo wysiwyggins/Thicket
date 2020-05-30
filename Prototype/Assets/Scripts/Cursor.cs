@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+//using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 
 public class Cursor : MonoBehaviour
@@ -9,7 +9,7 @@ public class Cursor : MonoBehaviour
 
     Grid grid;
     public Tilemap cursorTilemap;
-    private Text TextOutput;
+    //private Text TextOutput;
     private Tilemap fogTilemap;
 
 
@@ -17,7 +17,7 @@ public class Cursor : MonoBehaviour
     void Start()
     {
         grid = GameObject.Find("Grid").GetComponent<Grid>();
-        TextOutput = GameObject.Find("Text").GetComponent<Text>();
+        //TextOutput = GameObject.Find("Text").GetComponent<Text>();
         fogTilemap = GameObject.Find("Fog").GetComponent<Tilemap>();
     }
 
@@ -40,17 +40,21 @@ public class Cursor : MonoBehaviour
             Debug.Log("cursor location: " + coordinate);
 
 
-            TextOutput.text += "cursor location: " + coordinate + "\n";
-            if(fogTilemap.GetTile(coordinate) == null)
+            //TextOutput.text += "cursor location: " + coordinate ;
+            MessageManager.AddMessage("cursor location: " + coordinate );
+            if (fogTilemap.GetTile(coordinate) == null)
             {
                 if (piece != null)
                 {
 
-                    TextOutput.text += piece.PieceName + "\n";
+                    //TextOutput.text += piece.PieceName ;
+                    MessageManager.AddMessage(piece.PieceName );
+
                 }
             } else
             {
-                TextOutput.text += "Darkness.\n";
+                //TextOutput.text += "Darkness.\n";
+                MessageManager.AddMessage("Darkness.");
             }
             
          

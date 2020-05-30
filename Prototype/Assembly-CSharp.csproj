@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Behaviors\ConsumePiece.cs" />
     <Compile Include="Assets\Scripts\Behaviors\MoveTowardsTarget.cs" />
     <Compile Include="Assets\Scripts\Behaviors\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\Behaviors\Scent.cs" />
     <Compile Include="Assets\Scripts\Behaviors\Sleep.cs" />
     <Compile Include="Assets\Scripts\Cursor.cs" />
     <Compile Include="Assets\Scripts\HexCoordinates.cs" />

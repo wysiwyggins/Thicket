@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 
 public class Sleep : PieceBehaviour
@@ -27,7 +26,6 @@ public class Sleep : PieceBehaviour
 	}
 	public static State state;
 
-	private Text TextOutput;
 	private bool sleepcheck;
 
 	ConsumePiece consumePiece;
@@ -42,7 +40,6 @@ public class Sleep : PieceBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		TextOutput = GameObject.Find("Text").GetComponent<Text>();
 		state = State.Awake;
 	}
 
@@ -78,14 +75,16 @@ public class Sleep : PieceBehaviour
 			{
 				this.gameObject.GetComponent<SpriteRenderer>().sprite = SleepSprite;
 				if (state == State.Awake)
-					TextOutput.text += "The " + piece.PieceName + " stops to sleep.\n";
+					MessageManager.AddMessage("The " + piece.PieceName + " stops to sleep.");
+				
 					state = State.Asleep;
 			}
 			else
 			{
 				this.gameObject.GetComponent<SpriteRenderer>().sprite = AwakeSprite;
-				if (state == State.Asleep)
-					TextOutput.text += "The " + piece.PieceName + " wakes.\n";
+				if (state == State.Asleep) 
+					MessageManager.AddMessage("The " + piece.PieceName + " wakes.");
+
 					state = State.Awake;
 			}
 			sleepcheck = false;

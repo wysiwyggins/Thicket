@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+//using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 
 public class ConsumePiece : PieceBehaviour
@@ -9,8 +9,8 @@ public class ConsumePiece : PieceBehaviour
 
 	Grid grid;
 	Tilemap navmap;
-	private Text TextOutput;
-	public int Metabilism;
+	//private Text TextOutput;
+	public int Metabolism;
 
 	public enum State
 	{
@@ -50,7 +50,7 @@ public class ConsumePiece : PieceBehaviour
 	{
 		grid = GameObject.Find("Grid").GetComponent<Grid>();
         navmap = GameObject.Find("NavigationTilemap").GetComponent<Tilemap>();
-		TextOutput = GameObject.Find("Text").GetComponent<Text>();
+		//TextOutput = GameObject.Find("Text").GetComponent<Text>();
 
 	}
 
@@ -64,7 +64,8 @@ public class ConsumePiece : PieceBehaviour
     {
 		Debug.Log("CHOMP: " + prey.PieceName);
 		Destroy(prey.gameObject, 1);
-		TextOutput.text += "The " + piece.PieceName + " catches the " + prey.PieceName + ".\n";
+		//TextOutput.text += "The " + piece.PieceName + " catches the " + prey.PieceName + ".\n";
+		MessageManager.AddMessage("The " + piece.PieceName + " catches the " + prey.PieceName );
 		state = State.Full;
 	}
 

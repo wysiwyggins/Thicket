@@ -154,7 +154,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.00005722, y: -0.0010070801}
+  m_AnchoredPosition: {x: 0.00005722, y: -0.0009765625}
   m_SizeDelta: {x: 371.35947, y: 0.0020065308}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &78594945
@@ -3664,6 +3664,11 @@ PrefabInstance:
       propertyPath: pieceBehaviors.Array.data[1]
       value: 
       objectReference: {fileID: 1661162799}
+    - target: {fileID: 4219304734354112181, guid: 13d6334a218364a9f9a97c36718b4aae,
+        type: 3}
+      propertyPath: Metabolism
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5545266364577110107, guid: 13d6334a218364a9f9a97c36718b4aae,
         type: 3}
       propertyPath: Terrain
@@ -3959,6 +3964,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1384519192}
   - component: {fileID: 1384519191}
+  - component: {fileID: 1384519193}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -3996,6 +4002,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1384519193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384519190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d4b67fa0ff1320468d86c17d9b8fb64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1411762998 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1673489313515321916, guid: 541d05a6bd816438b92bc2f952e6d04c,
@@ -4206,7 +4224,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 141.6, y: -154.4}
+  m_AnchoredPosition: {x: 141.6, y: -154.40002}
   m_SizeDelta: {x: -428.6403, y: -369.0205}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1762168864
@@ -4283,7 +4301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c26d7b8dfd0c345be9212196221189ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Metabilism: 0
+  Metabolism: 0
 --- !u!1 &1969299496
 GameObject:
   m_ObjectHideFlags: 0

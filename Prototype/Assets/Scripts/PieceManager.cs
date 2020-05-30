@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+//using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 
 public class PieceManager : MonoBehaviour
@@ -17,7 +17,7 @@ public class PieceManager : MonoBehaviour
 	private Tilemap fogTilemap;
 	public Tile fogTile;
 
-	private Text TextOutput;
+	//private Text TextOutput;
 
 	public int hour;
 
@@ -28,6 +28,7 @@ public class PieceManager : MonoBehaviour
 		Dusk,
         Night,
 	}
+
 	public static State state;
 
 
@@ -75,7 +76,8 @@ public class PieceManager : MonoBehaviour
 		currentPiece = AllPieces[0];
 		StartPieceTurn();
 		fogTilemap = GameObject.Find("Fog").GetComponent<Tilemap>();
-		TextOutput = GameObject.Find("Text").GetComponent<Text>();
+		//TextOutput = GameObject.Find("Text").GetComponent<Text>();
+
 
 		string pieceNames = "pieces in order:\n";
 
@@ -113,8 +115,8 @@ public class PieceManager : MonoBehaviour
 		{
 			nextIndex = 0;
 			hour += 1;
-			TextOutput.text += "Hour: " + hour + "\n";
-			//MessageManager.AddMessage.text("Hour: " + hour + "\n");
+			MessageManager.AddMessage("Moment: " + hour );
+			
 			CheckHour();
 		}
 
@@ -133,20 +135,21 @@ public class PieceManager : MonoBehaviour
 		if (hour == 2)
 		{
 			state = State.Day;
-			TextOutput.text += "The sun is high in the air now, you feel its warmth over your skin.\n";
-			//MessageManager.AddMessage("The sun is high in the air now, you feel its warmth over your skin.\n");
+			//TextOutput.text += "The sun is high in the air now, you feel its warmth over your skin.\n";
+			MessageManager.AddMessage("The sun is high in the air now, you feel its warmth over your skin.");
 		}
 		if (hour == 6)
 		{
 			state = State.Dusk;
-			TextOutput.text += "The sun dwindles, red, in the west. There is a shudder across the land as the wolf begins to stir in her den.\n";
-			//MessageManager.AddMessage("The sun dwindles, red, in the west. There is a shudder across the land as the wolf begins to stir in her den.\n");
+			//TextOutput.text += "The sun dwindles, red, in the west. There is a shudder across the land as the wolf begins to stir in her den.\n";
+			MessageManager.AddMessage("The sun dwindles, red, in the west. There is a shudder across the land as the wolf begins to stir in her den.\n");
 
 		}
 		if (hour == 8)
 		{
 			state = State.Night;
-			TextOutput.text += "The sun is swallowed up by the dark horizon of the earth.\n";
+			//TextOutput.text += "The sun is swallowed up by the dark horizon of the earth.\n";
+			MessageManager.AddMessage("The sun is swallowed up by the dark horizon of the earth.");
 			foreach (var position in fogTilemap.cellBounds.allPositionsWithin)
 			{
 				fogTilemap.SetTile(position, fogTile);
@@ -155,7 +158,8 @@ public class PieceManager : MonoBehaviour
 		if (hour >= 13)
 		{
 			state = State.Dawn;
-			TextOutput.text += "The air around you sings to life. The red sun wakes over the land.\n";
+			//TextOutput.text += "The air around you sings to life. The red sun wakes over the land.\n";
+			MessageManager.AddMessage("The air around you sings to life. The red sun wakes over the land.");
 			fogTilemap.ClearAllTiles();
 			hour = 0;
 		}
