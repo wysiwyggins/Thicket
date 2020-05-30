@@ -51,21 +51,27 @@ public class Sleep : PieceBehaviour
 		if (!isNocturnal && PieceManager.state == PieceManager.State.Night)
 			return true;
 		if (consumePiece.IsFull())
-			//how do we burn down from the metabolism int each turn to take a nap?
+        {
+			Debug.Log("I'm full!");
+			consumePiece.CheckNap();
 			return true;
+        }
+			
 
 		return false;
 	}
 	public bool ShouldGoHome()
 	{
+		Debug.Log(state);
 		//check piece manager against nocturnal...
-		if (isNocturnal && PieceManager.state == PieceManager.State.Dawn)
+		if (state != State.Asleep && isNocturnal && PieceManager.state == PieceManager.State.Dawn)
 			return true;
-		if (!isNocturnal && PieceManager.state == PieceManager.State.Dusk)
+		if (state != State.Asleep && !isNocturnal && PieceManager.state == PieceManager.State.Dusk)
 			return true;
 
 		return false;
 	}
+
 
 	private void Update()
 	{

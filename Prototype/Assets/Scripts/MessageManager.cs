@@ -15,15 +15,12 @@ public class MessageManager : MonoBehaviour
         allMessages.Insert(0, messageText);
         
         string output = "";
-        Debug.Log("adding a message!");
         int length = Mathf.Min(30, allMessages.Count);
         for (int i = length - 1; i >= 0; i--)
             {
                 output += allMessages[i] + "\n";
-                Debug.Log("doin thangs!");
             }
         TextOutput.text = output;
-        Debug.Log("outputted");
 
 
     }

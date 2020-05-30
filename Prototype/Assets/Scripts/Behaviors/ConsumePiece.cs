@@ -11,6 +11,7 @@ public class ConsumePiece : PieceBehaviour
 	Tilemap navmap;
 	//private Text TextOutput;
 	public int Metabolism;
+	int digestion;
 
 	public enum State
 	{
@@ -50,6 +51,7 @@ public class ConsumePiece : PieceBehaviour
 	{
 		grid = GameObject.Find("Grid").GetComponent<Grid>();
         navmap = GameObject.Find("NavigationTilemap").GetComponent<Tilemap>();
+		digestion = Metabolism;
 		//TextOutput = GameObject.Find("Text").GetComponent<Text>();
 
 	}
@@ -73,9 +75,27 @@ public class ConsumePiece : PieceBehaviour
 	{
 		//check piece manager against nocturnal...
 		if (state == State.Full)
+        {
 			return true;
+		}
+
+			
 
 		return false;
+	}
+
+	public void CheckNap()
+	{
+		//tick down the nap timer
+		digestion -= 1;
+		Debug.Log(piece.PieceName + " digestion: " + digestion); //why is this starting at 0?  it should be 1
+		if (digestion < 0)
+		{
+			state = State.Hungry;
+			Debug.Log(state);
+			digestion = Metabolism;
+		}
+
 	}
 
 }

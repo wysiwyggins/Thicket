@@ -142,7 +142,9 @@ public class PieceManager : MonoBehaviour
 		{
 			state = State.Dusk;
 			//TextOutput.text += "The sun dwindles, red, in the west. There is a shudder across the land as the wolf begins to stir in her den.\n";
-			MessageManager.AddMessage("The sun dwindles, red, in the west. There is a shudder across the land as the wolf begins to stir in her den.\n");
+			MessageManager.AddMessage("The sun dwindles, red, in the west.");
+			
+			
 
 		}
 		if (hour == 8)

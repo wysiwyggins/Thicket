@@ -17,6 +17,7 @@ public class Piece : MonoBehaviour
 
 
 	public int Strength;
+	public Color PieceColor;
     
 
     public bool isPlayer {get { return GetComponent<PlayerMovement>() != null; }}
@@ -65,9 +66,10 @@ public class Piece : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
 
-    }
+		SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+		renderer.color = PieceColor;
+	}
 
 	private void OnEnable()
 	{

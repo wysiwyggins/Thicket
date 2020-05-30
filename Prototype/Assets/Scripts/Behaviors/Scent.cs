@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Scent : MonoBehaviour
 {
+    public int Drydown;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,4 +16,10 @@ public class Scent : MonoBehaviour
     {
         
     }
+
+    void LeaveSpoor(int drydown, Color color)
+    {
+        //leave a spoor
+    }
+
 }
