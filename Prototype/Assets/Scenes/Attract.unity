@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1476df624803f448f86d042950919c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color1: {r: 0.4716981, g: 0.01561657, b: 0, a: 1}
+  color1: {r: 0.4528302, g: 0.32285026, b: 0.31826273, a: 1}
   color2: {r: 0.11549741, g: 0, b: 0.62352943, a: 1}
   duration: 20
 --- !u!1 &376790363
@@ -712,7 +712,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 845ca0acd34564f8f925364f3a2dce9f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
