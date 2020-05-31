@@ -5,10 +5,11 @@ using UnityEngine;
 public class Scent : MonoBehaviour
 {
     public int Drydown;
+    public Transform SpoorPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -19,7 +20,10 @@ public class Scent : MonoBehaviour
 
     void LeaveSpoor(int drydown, Color color)
     {
-        //leave a spoor
+        Instantiate(SpoorPrefab, transform.position, transform.rotation);
+        //set color and transparency of spoor??
+        //SpoorPrefab.SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+        //renderer.color = color;
     }
 
 }
