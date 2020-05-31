@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Attract.unity
+    guid: 1ee8cd21024704d1299fdd82839b7693
+  - enabled: 1
+    path: Assets/Scenes/Play.unity
+    guid: b77c1574a684e41f4b555b382b0f9a67
   m_configObjects: {}
