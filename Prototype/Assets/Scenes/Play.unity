@@ -4614,7 +4614,7 @@ PrefabInstance:
     - target: {fileID: 233559409612725593, guid: c8a4165a861544fc298ceb38c15ab0e1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.6493893
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 233559409612725593, guid: c8a4165a861544fc298ceb38c15ab0e1,
         type: 3}
@@ -4656,10 +4656,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 995111443708775456, guid: c8a4165a861544fc298ceb38c15ab0e1,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1363417370396039885, guid: c8a4165a861544fc298ceb38c15ab0e1,
         type: 3}
       propertyPath: m_Name
       value: Water
+      objectReference: {fileID: 0}
+    - target: {fileID: 7452307121803611141, guid: c8a4165a861544fc298ceb38c15ab0e1,
+        type: 3}
+      propertyPath: SceneryName
+      value: Water
+      objectReference: {fileID: 0}
+    - target: {fileID: 7452307121803611141, guid: c8a4165a861544fc298ceb38c15ab0e1,
+        type: 3}
+      propertyPath: Description
+      value: A shallow pool.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8a4165a861544fc298ceb38c15ab0e1, type: 3}
