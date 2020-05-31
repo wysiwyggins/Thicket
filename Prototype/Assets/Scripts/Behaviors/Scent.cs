@@ -18,9 +18,10 @@ public class Scent : MonoBehaviour
         
     }
 
-    void LeaveSpoor(int drydown, Color color)
+    void LeaveSpoor(Color color)
     {
         Instantiate(SpoorPrefab, transform.position, transform.rotation);
+        //set Spoor.drydown to Drydown
         //set color and transparency of spoor??
         //SpoorPrefab.SpriteRenderer renderer = GetComponent<SpriteRenderer>();
         //renderer.color = color;
