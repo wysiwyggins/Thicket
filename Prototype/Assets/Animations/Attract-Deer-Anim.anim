@@ -35,8 +35,6 @@ AnimationClip:
       value: {fileID: 21300000, guid: 4d62a665157e4452db94d625bafa0b66, type: 3}
     - time: 0.71666664
       value: {fileID: 21300000, guid: a772b83838eca4ca6addf62290d177b1, type: 3}
-    - time: 0.8
-      value: {fileID: 21300000, guid: 4fa7185533c0f4c10b1ccf300d529a0a, type: 3}
     - time: 0.8833333
       value: {fileID: 21300000, guid: 4d62a665157e4452db94d625bafa0b66, type: 3}
     - time: 0.96666664
@@ -47,10 +45,8 @@ AnimationClip:
       value: {fileID: 21300000, guid: 544fc74839ee94250a4399227f230262, type: 3}
     - time: 1.25
       value: {fileID: 21300000, guid: 4d62a665157e4452db94d625bafa0b66, type: 3}
-    - time: 1.3166667
+    - time: 1.3333334
       value: {fileID: 21300000, guid: a772b83838eca4ca6addf62290d177b1, type: 3}
-    - time: 1.4166666
-      value: {fileID: 21300000, guid: 4fa7185533c0f4c10b1ccf300d529a0a, type: 3}
     - time: 1.5
       value: {fileID: 21300000, guid: 4d62a665157e4452db94d625bafa0b66, type: 3}
     - time: 1.6
@@ -286,14 +282,12 @@ AnimationClip:
     - {fileID: 21300000, guid: 544fc74839ee94250a4399227f230262, type: 3}
     - {fileID: 21300000, guid: 4d62a665157e4452db94d625bafa0b66, type: 3}
     - {fileID: 21300000, guid: a772b83838eca4ca6addf62290d177b1, type: 3}
-    - {fileID: 21300000, guid: 4fa7185533c0f4c10b1ccf300d529a0a, type: 3}
     - {fileID: 21300000, guid: 4d62a665157e4452db94d625bafa0b66, type: 3}
     - {fileID: 21300000, guid: 171b911ac28b2427bbcdac3b2cb72a41, type: 3}
     - {fileID: 21300000, guid: 94b0a2dc6af5e4a479360f19edb9a913, type: 3}
     - {fileID: 21300000, guid: 544fc74839ee94250a4399227f230262, type: 3}
     - {fileID: 21300000, guid: 4d62a665157e4452db94d625bafa0b66, type: 3}
     - {fileID: 21300000, guid: a772b83838eca4ca6addf62290d177b1, type: 3}
-    - {fileID: 21300000, guid: 4fa7185533c0f4c10b1ccf300d529a0a, type: 3}
     - {fileID: 21300000, guid: 4d62a665157e4452db94d625bafa0b66, type: 3}
     - {fileID: 21300000, guid: 171b911ac28b2427bbcdac3b2cb72a41, type: 3}
     - {fileID: 21300000, guid: 94b0a2dc6af5e4a479360f19edb9a913, type: 3}
