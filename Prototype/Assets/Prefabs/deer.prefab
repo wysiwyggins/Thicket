@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1673489313515321916}
   - component: {fileID: 3374691270529978704}
   - component: {fileID: 4550875875820027824}
+  - component: {fileID: 1003043989}
   m_Layer: 0
   m_Name: deer
   m_TagString: Player
@@ -45,11 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c28c8437a17149c4af6a53daf8f12e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PieceName: unnamed
+  PieceName: Deer
   Strength: 0
+  PieceColor: {r: 0.8490566, g: 0.5727127, b: 0.63247365, a: 1}
   Mate: {fileID: 0}
   prey: {fileID: 0}
-  pieceBehaviors: []
+  pieceBehaviors:
+  - {fileID: 3374691270529978704}
 --- !u!114 &3374691270529978704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,6 +65,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbeca8cb18e07421da7d7c191821c4b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  navmap: {fileID: 0}
+  highlight: {fileID: 11400000, guid: e4df08d5c87c147938706696bad03c90, type: 2}
   range: 2
 --- !u!212 &4550875875820027824
 SpriteRenderer:
@@ -113,3 +118,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1003043989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4550875875820027828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d355e002e359a4d19a697fd3e3a9ccf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Drydown: 6
+  SpoorPrefab: {fileID: 4952905340423705150, guid: e19263ed7548c47529bd622b8bc9c0b7,
+    type: 3}

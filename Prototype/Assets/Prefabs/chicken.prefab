@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7924227483357231894}
   - component: {fileID: 5036742079078645402}
   - component: {fileID: 1164804176810311697}
+  - component: {fileID: 1787557429}
+  - component: {fileID: 1787557425}
   m_Layer: 0
   m_Name: chicken
   m_TagString: npc
@@ -47,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PieceName: Chicken
   Strength: 0
+  PieceColor: {r: 0.8867924, g: 0.71538633, b: 0.23843002, a: 1}
   Mate: {fileID: 0}
   prey: {fileID: 0}
   pieceBehaviors:
@@ -113,4 +116,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6d11110bf5e445b95482458f4a4932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 1
+  range: 2
+--- !u!114 &1787557429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5036742079078645406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c26d7b8dfd0c345be9212196221189ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Metabolism: 0
+--- !u!114 &1787557425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5036742079078645406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d355e002e359a4d19a697fd3e3a9ccf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Drydown: 8
+  SpoorPrefab: {fileID: 4952905340423705150, guid: e19263ed7548c47529bd622b8bc9c0b7,
+    type: 3}

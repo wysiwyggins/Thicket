@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 4219304734354112181}
   - component: {fileID: 5545266364577110107}
   - component: {fileID: 1373137601813283672}
+  - component: {fileID: 613999014}
   m_Layer: 0
   m_Name: wolf
-  m_TagString: Player
+  m_TagString: npc
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,9 +50,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PieceName: Wolf
   Strength: 8
+  PieceColor: {r: 0.38781595, g: 0.7830189, b: 0.7164584, a: 1}
   Mate: {fileID: 0}
   prey: {fileID: 0}
   pieceBehaviors:
+  - {fileID: 5545266364577110107}
   - {fileID: 1995694362969332112}
   - {fileID: 4219304734354112181}
 --- !u!114 &1995694362969332112
@@ -66,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6d11110bf5e445b95482458f4a4932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 0
+  range: 3
 --- !u!114 &4219304734354112181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,6 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c26d7b8dfd0c345be9212196221189ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Metabolism: 3
 --- !u!114 &5545266364577110107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,8 +97,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNocturnal: 1
   Terrain: {fileID: 0}
-  HomeTile: {fileID: 0}
-  SleepSprite: {fileID: 0}
+  Home: {fileID: 0}
+  SleepSprite: {fileID: 21300000, guid: 40f6827897372415a9d75f55df8e3250, type: 3}
+  AwakeSprite: {fileID: 21300000, guid: ff30d12b8e013478eb562365ec22902e, type: 3}
 --- !u!212 &1373137601813283672
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -145,3 +150,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &613999014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373137601813283674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d355e002e359a4d19a697fd3e3a9ccf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Drydown: 5
+  SpoorPrefab: {fileID: 3271623743290980580, guid: c30518df655914837891717b5a9be926,
+    type: 3}
