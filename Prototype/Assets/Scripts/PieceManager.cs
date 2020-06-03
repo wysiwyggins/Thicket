@@ -10,6 +10,9 @@ public class PieceManager : MonoBehaviour
 
     public static List<Piece> AllPieces = new List<Piece>();
 
+	public delegate void PieceAction();
+	public static event PieceAction OnRoundComplete;
+
 	Piece currentPiece;
 
 	public Grid grid;
@@ -113,6 +116,9 @@ public class PieceManager : MonoBehaviour
 
 		if (nextIndex >= AllPieces.Count)
 		{
+			if (OnRoundComplete != null)
+				OnRoundComplete();
+
 			nextIndex = 0;
 			hour += 1;
 			MessageManager.AddMessage("Moment: " + hour );

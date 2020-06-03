@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.Events;
 
 public class PlayerMovement : PieceBehaviour
 {
@@ -27,6 +28,8 @@ public class PlayerMovement : PieceBehaviour
 	
 
 	public int range;
+
+	public UnityEvent OnEnterTile;
 
 	enum State
 	{
@@ -137,7 +140,8 @@ public class PlayerMovement : PieceBehaviour
 				yield return new WaitForEndOfFrame();
 				
 			}
-
+			if(i != 0)
+				OnEnterTile.Invoke();
 			Debug.Log("Reached path point");
 			Debug.Log("Piece: " + piece.PieceName + ", Location: " + pieceCoords);
 			yield return new WaitForSeconds(0.05f);

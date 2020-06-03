@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.Events;
 
 public class MoveTowardsTarget : PieceBehaviour
 {
@@ -24,6 +25,7 @@ public class MoveTowardsTarget : PieceBehaviour
 	private Vector3 preyPosition;
 
 	public int range;
+	public UnityEvent OnEnterTile;
 
 	enum State
 	{
@@ -146,6 +148,9 @@ public class MoveTowardsTarget : PieceBehaviour
 				//  transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * moveSpeed);
 				yield return new WaitForEndOfFrame();
 			}
+
+			if(i != 0)
+				OnEnterTile.Invoke();
 
 			Debug.Log("Reached path point");
 			Debug.Log("Piece: " + piece.PieceName + ", Location: " + pieceCoords);
