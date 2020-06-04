@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SceneryName: Water
   Description: A shallow pool.
+  Cleansing: 1
 --- !u!212 &995111443708775456
 SpriteRenderer:
   m_ObjectHideFlags: 0

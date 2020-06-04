@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Spoor : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Spoor : MonoBehaviour
 	public Color color;
 	public Piece source;
 	SpriteRenderer renderer;
+	Grid grid;
 
 
 	private void OnEnable()
@@ -32,7 +34,8 @@ public class Spoor : MonoBehaviour
     {
 		renderer = GetComponent<SpriteRenderer>();
 		SetColor();
-    }
+		grid = GameObject.Find("Grid").GetComponent<Grid>();
+	}
 
     // Update is called once per frame
     void Update()
@@ -53,9 +56,22 @@ public class Spoor : MonoBehaviour
         //tick down the drydown
         drydown -= 1;
 		SetColor();
+		Vector3Int coordinate = grid.WorldToCell(transform.position);
 
+		Scenery[] sceneries = SceneryManager.GetSceneriesAtPos(coordinate);
+		if (sceneries != null)
+		{
+			foreach (Scenery scenery in sceneries)
+			{
+				if(scenery.Cleansing)
+                {
+					MessageManager.AddMessage("The "+ scenery.SceneryName + " removes the scent of the " + source.PieceName);
+					Destroy(this.gameObject, 1);
+				}
+			}
 
-        if (drydown < 0)
+		}
+		if (drydown < 0)
         {
             Destroy(this.gameObject, 1);
         }

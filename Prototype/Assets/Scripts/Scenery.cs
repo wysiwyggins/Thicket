@@ -7,6 +7,7 @@ public class Scenery : MonoBehaviour
 
     public string SceneryName = "unnamed";
     public string Description = "There's nothing here.";
+    public bool Cleansing; 
     // Start is called before the first frame update
     void Start()
     {

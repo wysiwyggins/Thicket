@@ -86,7 +86,7 @@ public class MoveTowardsTarget : PieceBehaviour
 		{
 			Debug.Log("The " + piece.PieceName + " is not sleepy, has no prey");
 			int randomX = Random.Range(-5, 5) + 1; //I know this is weird, this is the currrent range of the board plus an offset fix
-			int randomY = Random.Range(-8, 8) -1 ;
+			int randomY = Random.Range(-5, 8) -1 ;
 			Debug.Log(piece.PieceName + " destination: "+ randomX +","+ randomY); 
 			FindPath(new Vector3Int(randomX, randomY, 0));
 		}

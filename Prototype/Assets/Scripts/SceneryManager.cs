@@ -35,6 +35,7 @@ public class SceneryManager : MonoBehaviour
 			Vector3Int coordinate = Instance.grid.WorldToCell(aScenery.transform.position);
 			if (aCoord == coordinate)
 			{
+				
 				Sceneries.Add(aScenery);
 			}
 		}
