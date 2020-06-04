@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 
 
-//This stuff all comes from the redblobgames page on hexgrids, I haven't het integrated it with the game. 
+//This stuff all comes from the redblobgames page on hexgrids, I haven't yet integrated it with the game. 
 
 public struct Hex
 {
