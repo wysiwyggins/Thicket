@@ -18,4 +18,15 @@ public class Scenery : MonoBehaviour
     {
         
     }
+
+    private void OnEnable()
+    {
+        SceneryManager.AllScenery.Add(this);
+    }
+
+    private void OnDestroy()
+    {
+        SceneryManager.AllScenery.Remove(this);
+    }
+
 }

@@ -58,7 +58,6 @@ public class Cursor : MonoBehaviour
                 if (scenery != null)
                 {
                     MessageManager.AddMessage(scenery.SceneryName);
-                    MessageManager.AddMessage(scenery.Description);
                 }
             } else
             {

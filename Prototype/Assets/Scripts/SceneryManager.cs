@@ -14,27 +14,20 @@ public class SceneryManager : MonoBehaviour
 	public static List<Scenery> AllScenery = new List<Scenery>();
 	Grid grid;
 
-
-
-
 	public static Scenery GetSceneryAtPos(Vector3Int aCoord)
 	{
-		Debug.Log("I'm looking for scenery");
 		foreach (Scenery aScenery in AllScenery)
 		{
-			Debug.Log("found a Scenery" + aScenery.SceneryName);
 			Vector3Int coordinate = Instance.grid.WorldToCell(aScenery.transform.position);
 			if (aCoord == coordinate)
 			{
-
-				Debug.Log("found a Scenery");
 				return aScenery;
 			}
 		}
 		return null;
 	}
 
-	public static Scenery[] GetSceneriesAtPos(Vector3Int aCoord) //seems like this isn't getting any scenery yet?
+	public static Scenery[] GetSceneriesAtPos(Vector3Int aCoord)
 	{
 		List<Scenery> Sceneries = new List<Scenery>();
 		foreach (Scenery aScenery in AllScenery)
@@ -42,7 +35,6 @@ public class SceneryManager : MonoBehaviour
 			Vector3Int coordinate = Instance.grid.WorldToCell(aScenery.transform.position);
 			if (aCoord == coordinate)
 			{
-				Debug.Log("found a Scenery");
 				Sceneries.Add(aScenery);
 			}
 		}
