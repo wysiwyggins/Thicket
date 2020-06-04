@@ -37,7 +37,7 @@ public class Cursor : MonoBehaviour
         {
             
             Piece piece = PieceManager.GetPieceAtPos(coordinate);
-            Scenery[] sceneries = SceneryManager.GetSceneriesAtPos(coordinate);
+            Scenery scenery = SceneryManager.GetSceneryAtPos(coordinate);
             Debug.Log("cursor location: " + coordinate);
 
 
@@ -49,16 +49,14 @@ public class Cursor : MonoBehaviour
                 {
 
                     //TextOutput.text += piece.PieceName ;
-                    MessageManager.AddMessage(piece.PieceName );
+                    MessageManager.AddMessage(piece.PieceName);
 
                 }
 
-                if (sceneries != null)
+                if (scenery != null)
                 {
-                    foreach (Scenery scenery in sceneries)
-                    {
-                        MessageManager.AddMessage(scenery.Description);
-                    }
+                    MessageManager.AddMessage(scenery.SceneryName);
+                    MessageManager.AddMessage(scenery.Description);
                 }
             } else
             {

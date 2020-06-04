@@ -8,6 +8,7 @@ public class Spoor : MonoBehaviour
 	int drydown_max = 10;
 	public int drydown;
 	public Color color;
+	public Piece source;
 	SpriteRenderer renderer;
 
 

@@ -27,11 +27,17 @@ public class Scent : MonoBehaviour
 		Spoor spoor = spoorObject.GetComponent<Spoor>();
 		spoor.drydown = Drydown;
 		spoor.color = color;
+		spoor.source = piece;
 
         //set Spoor.drydown to Drydown
         //set color and transparency of spoor??
         //SpoorPrefab.SpriteRenderer renderer = GetComponent<SpriteRenderer>();
         //renderer.color = color;
+    }
+
+	void Smell()
+    {
+
     }
 
 }
