@@ -28,6 +28,8 @@ public class Cursor : MonoBehaviour
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPos.z = 0.0f;
         Vector3Int coordinate = grid.WorldToCell(mouseWorldPos); //get a hex cell coordinate from a mouse click
+        coordinate.x = Mathf.Clamp(coordinate.x, -5, 5);
+        coordinate.y = Mathf.Clamp(coordinate.y, -5, 8);
 
         transform.position = grid.CellToWorld(coordinate);
 
