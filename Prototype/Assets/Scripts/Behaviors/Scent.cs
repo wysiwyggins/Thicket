@@ -37,7 +37,7 @@ public class Scent : MonoBehaviour
 
 	void Smell()
     {
-
+		//list the smells at a location
     }
 
 }
