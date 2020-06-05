@@ -59,7 +59,7 @@ public class SceneryManager : MonoBehaviour
 		{
 			sceneryNames += aScenery.gameObject.name + "\n";
 		}
-		Debug.Log(sceneryNames);
+		//Debug.Log(sceneryNames);
 	}
 
 }

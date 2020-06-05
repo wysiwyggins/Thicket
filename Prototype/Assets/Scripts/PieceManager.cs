@@ -88,7 +88,7 @@ public class PieceManager : MonoBehaviour
 		{
 			pieceNames += aPiece.gameObject.name + "\n";
 		}
-		Debug.Log(pieceNames);
+		//Debug.Log(pieceNames);
 	}
 
 	public List<Vector3Int> TilesInRange(Vector3Int pos, int range)

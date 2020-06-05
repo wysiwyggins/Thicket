@@ -28,7 +28,7 @@ public class ConsumePiece : PieceBehaviour
 
 	public override void Begin()
 	{
-		Debug.Log("ConsumePiece Began, " + piece.PieceName + " strength: " + piece.Strength);
+		//Debug.Log("ConsumePiece Began, " + piece.PieceName + " strength: " + piece.Strength);
 		Piece[] neighbors = PieceManager.GetPiecesAtPos(pieceCoords);
 
 

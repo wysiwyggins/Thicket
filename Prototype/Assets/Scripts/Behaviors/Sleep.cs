@@ -65,7 +65,7 @@ public class Sleep : PieceBehaviour
 	}
 	public bool ShouldGoHome()
 	{
-		Debug.Log(state);
+		//Debug.Log(state);
 		//check piece manager against nocturnal...
 		if (state != State.Asleep && isNocturnal && PieceManager.state == PieceManager.State.Dawn)
 			return true;
