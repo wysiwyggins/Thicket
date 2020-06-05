@@ -14,6 +14,7 @@ public class Scenery : MonoBehaviour
     public string Description = "There's nothing here.";
     public bool Cleansing;
     public bool Obstacle;
+    Vector3Int coordinates;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,18 +33,19 @@ public class Scenery : MonoBehaviour
     private void OnEnable()
     {
         SceneryManager.AllScenery.Add(this);
+        coordinates = grid.WorldToCell(transform.position);
         if (Obstacle)
         {
-            navigationTilemap.SetTile(grid.WorldToCell(transform.position), blockTile);
+            pf.SetNavTileBlocked(coordinates, true);
         }
     }
 
     private void OnDestroy()
     {
-        
+        coordinates = grid.WorldToCell(transform.position);
         if (Obstacle)
         {
-           //how do we destroy the blockTile at the same hex on navigationTilemap?
+            pf.SetNavTileBlocked(coordinates, false);
         }
         SceneryManager.AllScenery.Remove(this);
     }

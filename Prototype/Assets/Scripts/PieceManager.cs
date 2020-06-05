@@ -42,8 +42,6 @@ public class PieceManager : MonoBehaviour
             Vector3Int coordinate = Instance.grid.WorldToCell(aPiece.transform.position);
             if (aCoord == coordinate)
             {
-
-				Debug.Log("found a piece");
 				return aPiece;
             }
         }
