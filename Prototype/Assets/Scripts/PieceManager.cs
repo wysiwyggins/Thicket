@@ -77,7 +77,6 @@ public class PieceManager : MonoBehaviour
 		currentPiece = AllPieces[0];
 		StartPieceTurn();
 		fogTilemap = GameObject.Find("Fog").GetComponent<Tilemap>();
-		//TextOutput = GameObject.Find("Text").GetComponent<Text>();
 
 
 		string pieceNames = "pieces in order:\n";
@@ -102,6 +101,7 @@ public class PieceManager : MonoBehaviour
 	void StartPieceTurn()
 	{
 		currentPiece.OnCompleteMove += CurrentPiece_OnCompleteMove;
+		//MessageManager.AddMessage("Win: " + CheckWin()); 
 		currentPiece.BeginTurn();
 		
 	}
@@ -131,6 +131,36 @@ public class PieceManager : MonoBehaviour
 
 
 	}
+
+
+	// my win check is causing hangs
+	//private bool CheckWin()
+ //   {
+	//	List<Piece> hunters = new List<Piece>();
+	//	foreach (Piece aPiece in AllPieces)
+	//	{
+			
+	//		if (aPiece.Prey != null)
+	//		{
+	//			hunters.Add(aPiece);
+	//		}
+	//	}
+	//	if ( hunters.Count > 0)
+ //       {
+	//		foreach (Piece aPiece in AllPieces)
+ //           {
+	//			foreach (Piece aHunter in hunters)
+ //               {
+	//				if (aHunter.Prey == aPiece)
+	//					return false;
+	//			}
+ //           }
+ //       } else
+ //       {
+	//		return true;
+	//	}
+	//	return false;
+	//}
 
 
     private void CheckHour()

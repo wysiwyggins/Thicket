@@ -33,20 +33,20 @@ public class Scenery : MonoBehaviour
     private void OnEnable()
     {
         SceneryManager.AllScenery.Add(this);
-        coordinates = grid.WorldToCell(transform.position);
-        if (Obstacle)
-        {
-            pf.SetNavTileBlocked(coordinates, true);
-        }
+        //coordinates = grid.WorldToCell(transform.position);
+        //if (Obstacle)
+        //{
+        //    pf.SetNavTileBlocked(coordinates, true);
+        //}
     }
 
     private void OnDestroy()
     {
-        coordinates = grid.WorldToCell(transform.position);
-        if (Obstacle)
-        {
-            pf.SetNavTileBlocked(coordinates, false);
-        }
+        //coordinates = grid.WorldToCell(transform.position);
+        //if (Obstacle)
+        //{
+        //    pf.SetNavTileBlocked(coordinates, false);
+        //}
         SceneryManager.AllScenery.Remove(this);
     }
 

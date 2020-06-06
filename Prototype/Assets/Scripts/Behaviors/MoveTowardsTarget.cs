@@ -77,9 +77,9 @@ public class MoveTowardsTarget : PieceBehaviour
 			homePosition.z = 0.0f;
 			FindPath(homePosition);
 		}
-		else if (piece.prey)
+		else if (piece.Prey)
 		{
-			preyPosition = piece.prey.transform.position;
+			preyPosition = piece.Prey.transform.position;
 			preyPosition.z = 0.0f;
 			FindPath(preyPosition);
 			//else if (state == State.Move)

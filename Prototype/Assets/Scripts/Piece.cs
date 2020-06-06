@@ -23,7 +23,7 @@ public class Piece : MonoBehaviour
     public bool isPlayer {get { return GetComponent<PlayerMovement>() != null; }}
 
 	public Piece Mate;
-	public Piece prey;
+	public Piece Prey;
    
 	public List<PieceBehaviour> pieceBehaviors = new List<PieceBehaviour>();
 	PieceBehaviour curBehaviour;
