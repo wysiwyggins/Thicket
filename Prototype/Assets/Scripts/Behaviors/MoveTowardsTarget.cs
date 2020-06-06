@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.Events;
+using SimplePF2D;
 
 public class MoveTowardsTarget : PieceBehaviour
 {
@@ -23,6 +24,7 @@ public class MoveTowardsTarget : PieceBehaviour
 
 	private Vector3 homePosition;
 	private Vector3 preyPosition;
+	private Vector3 randomWorldTarget;
 
 	public int range;
 	public UnityEvent OnEnterTile;
@@ -87,9 +89,19 @@ public class MoveTowardsTarget : PieceBehaviour
 			Debug.Log("The " + piece.PieceName + " is not sleepy, has no prey");
 			int randomX = Random.Range(-5, 5);
 			int randomY = Random.Range(-5, 8);
+
 			Debug.Log(piece.PieceName + " thinks its going to: "+ randomX +","+ randomY); //these co-ordinates look right but the piece is going off map.
-			Vector3 randomWorldTarget = grid.CellToWorld(new Vector3Int(randomX, randomY, 0));
-			FindPath(randomWorldTarget);
+			randomWorldTarget = grid.CellToWorld(new Vector3Int(randomX, randomY, 0));
+			NavNode node = pf.GetNode(randomWorldTarget);
+			if (node.IsBlocked())
+			{
+				randomX = Random.Range(-5, 5);
+				randomY = Random.Range(-5, 8);
+				randomWorldTarget = grid.CellToWorld(new Vector3Int(randomX, randomY, 0));
+			} else
+            {
+				FindPath(randomWorldTarget);
+			}	
 		}
 	}
 
@@ -99,12 +111,11 @@ public class MoveTowardsTarget : PieceBehaviour
 		Vector3 location = transform.position;
 		
 
-		if (!startedMove && PathIsValid() == false) //click the mouse
+		if (!startedMove && PathIsValid() == false)
 		{
 			startedMove = true;
 
-			Vector3Int coordinate = grid.WorldToCell(target); //get a hex cell coordinate from a mouse click
-																	 //Debug.Log("piece position: " + cellPosition);
+			Vector3Int coordinate = grid.WorldToCell(target); 
 			Debug.Log(piece.PieceName + " actual destination: " + coordinate);
 			path.CreatePath(location, target); // generate a path
 

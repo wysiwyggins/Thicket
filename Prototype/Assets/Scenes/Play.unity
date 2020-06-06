@@ -2768,7 +2768,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 752202441}
   m_HandleRect: {fileID: 752202440}
   m_Direction: 2
-  m_Value: 0.0000034457182
+  m_Value: 0.0000036023418
   m_Size: 0.16329573
   m_NumberOfSteps: 11
   m_OnValueChanged:
@@ -3712,7 +3712,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -12.8, y: 194.84532}
+  m_AnchoredPosition: {x: -12.8, y: 194.84525}
   m_SizeDelta: {x: 254.80261, y: 389.69336}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1178482011
@@ -3864,6 +3864,11 @@ PrefabInstance:
       propertyPath: pieceBehaviors.Array.data[2]
       value: 
       objectReference: {fileID: 54213841}
+    - target: {fileID: 3391377592416467778, guid: 13d6334a218364a9f9a97c36718b4aae,
+        type: 3}
+      propertyPath: Strength
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4219304734354112181, guid: 13d6334a218364a9f9a97c36718b4aae,
         type: 3}
       propertyPath: Metabolism
@@ -4365,14 +4370,14 @@ MonoBehaviour:
   ColliderTileMaps: []
   NavigationMovementPenaltyTiles: []
   CorrespondingMovementPenalty: 
-  NavigationMapWidth: 256
-  NavigationMapHeight: 256
+  NavigationMapWidth: 20
+  NavigationMapHeight: 20
   DynamicAmortisation: 1
   PathLoad: 64
   MinimumPathIterationsPerFrame: 8
   MaximumPathIterationsPerFrame: 512
-  DebugDrawPaths: 1
-  DebugDrawNavGrid: 1
+  DebugDrawPaths: 0
+  DebugDrawNavGrid: 0
   DebugMarkerObject: {fileID: 3271623743290980581, guid: c30518df655914837891717b5a9be926,
     type: 3}
 --- !u!156049354 &1969299498
