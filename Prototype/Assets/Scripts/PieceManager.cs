@@ -23,6 +23,10 @@ public class PieceManager : MonoBehaviour
 	//private Text TextOutput;
 
 	public int hour;
+	public float sunPerc
+	{
+		get { return hour / 13f; }
+	}
 
 	public enum State
 	{

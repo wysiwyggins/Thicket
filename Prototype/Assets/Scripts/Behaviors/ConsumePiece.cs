@@ -47,7 +47,7 @@ public class ConsumePiece : PieceBehaviour
 	}
 
 
-	void Start()
+	void Awake()
 	{
 		grid = GameObject.Find("Grid").GetComponent<Grid>();
         navmap = GameObject.Find("NavigationTilemap").GetComponent<Tilemap>();

@@ -58,7 +58,7 @@ public class MoveTowardsTarget : PieceBehaviour
 	bool startedMove = false;
 
 	// Start is called before the first frame update
-	void Start()
+	void Awake()
 	{
 		grid = GameObject.Find("Grid").GetComponent<Grid>();
 		pf = GameObject.Find("Grid").GetComponent<SimplePathFinding2D>();

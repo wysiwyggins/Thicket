@@ -46,7 +46,7 @@ public class PlayerMovement : PieceBehaviour
 		UpdateFog();
 	}
 
-	void Start()
+	void Awake()
     {
         fogTilemap = GameObject.Find("Fog").GetComponent<Tilemap>();
         overlayTilemap = GameObject.Find("Overlays").GetComponent<Tilemap>();
