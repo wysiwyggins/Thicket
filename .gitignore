@@ -1,9 +1,9 @@
-/[Ll]ibrary/
-/[Tt]emp/
-/[Bb]uild/
-/[Bb]uilds/
-/[Ll]ogs/
-/[Uu]ser[Ss]ettings/
+Prototype/[Ll]ibrary/
+Prototype/[Tt]emp/
+Prototype/[Bb]uild/
+Prototype/[Bb]uilds/
+Prototype/[Ll]ogs/
+Prototype/[Uu]ser[Ss]ettings/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
