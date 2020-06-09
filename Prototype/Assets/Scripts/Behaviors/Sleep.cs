@@ -90,7 +90,7 @@ public class Sleep : PieceBehaviour
 			}
 			else
 			{
-				this.gameObject.GetComponent<SpriteRenderer>().sprite = AwakeSprite;
+				this.gameObject.GetComponent<SpriteRenderer>().sprite = AwakeSprite; // every once in a while the sprite is still asleep while moving?
 				if (state == State.Asleep) 
 					MessageManager.AddMessage("The " + piece.PieceName + " wakes.");
 
