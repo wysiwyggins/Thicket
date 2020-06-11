@@ -5,7 +5,8 @@ using UnityEngine;
 [System.Serializable]
 
 
-//This stuff all comes from the redblobgames page on hexgrids, I haven't yet integrated it with the game. 
+//This stuff all comes from the redblobgames page on hexgrids, I haven't yet integrated it with the game.
+// it creates a new struct called Hex which is a little intimidating for me to try to incorporate but is probably the way to go.
 
 public struct Hex
 {
@@ -84,7 +85,6 @@ public struct Hex
 
 }
 
-
 public struct OffsetCoord
 {
     public OffsetCoord(int col, int row)
@@ -122,3 +122,5 @@ public struct OffsetCoord
     }
 
 }
+
+

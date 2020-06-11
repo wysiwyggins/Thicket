@@ -8,7 +8,6 @@ public class Cursor : MonoBehaviour
 {
 
     Grid grid;
-    public Tilemap cursorTilemap;
     //private Text TextOutput;
     private Tilemap fogTilemap;
 
