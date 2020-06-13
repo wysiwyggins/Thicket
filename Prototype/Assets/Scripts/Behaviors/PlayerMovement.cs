@@ -29,6 +29,7 @@ public class PlayerMovement : PieceBehaviour
 
 	public int range;
 
+	
 	public UnityEvent OnEnterTile;
 
 	enum State
@@ -44,6 +45,8 @@ public class PlayerMovement : PieceBehaviour
 		path.Reset();
 		state = State.WaitForInput;
 		UpdateFog();
+		// fix range off by one error
+		
 	}
 
 	void Awake()
@@ -71,20 +74,28 @@ public class PlayerMovement : PieceBehaviour
 
 		Vector3Int CubeCoords = HexCoordinates.OffsetToCube(PiecePosition); //here's the new cube co-ordinates
 																			// https://www.redblobgames.com/grids/hexagons/#coordinates-cube 
-		// new cube range goes here
 		
 		int x = CubeCoords.x;
 		int y = CubeCoords.y;
 		int z = CubeCoords.z;
-		for (int i = - range; i <= range; i++)
+		// I love constantly fixing range by one
+		int adjustedRange = range - 1;
+		for (int i = -adjustedRange; i <= adjustedRange; i++)
         {
-			overlayTilemap.SetTile(HexCoordinates.CubeToOffset(new Vector3Int(x - i, y + i, z)), highlight);
-			overlayTilemap.SetTile(HexCoordinates.CubeToOffset(new Vector3Int(x, y + i, z - i)), highlight);
-			overlayTilemap.SetTile(HexCoordinates.CubeToOffset(new Vector3Int(x + i, y, z - i)), highlight);
-			overlayTilemap.SetTile(HexCoordinates.CubeToOffset(new Vector3Int(x + i, y - i, z)), highlight);
-			overlayTilemap.SetTile(HexCoordinates.CubeToOffset(new Vector3Int(x, y - i, z + i)), highlight);
-			overlayTilemap.SetTile(HexCoordinates.CubeToOffset(new Vector3Int(x - i, y, z + i)), highlight);
-		}
+			for (int j = -adjustedRange; j<= adjustedRange; j++)
+            {
+				for (int k = -adjustedRange; k <= adjustedRange; k++)
+                {
+					if ( i + j + k == 0 )
+                    {
+						overlayTilemap.SetTile(HexCoordinates.CubeToOffset(new Vector3Int(x + i, y + j, z + k)), highlight);
+					}
+					
+				}
+
+			}
+        }
+
 		
 		//here's the old square range we did
 
@@ -174,17 +185,46 @@ public class PlayerMovement : PieceBehaviour
     
     void UpdateFog()
     {
-        //ultimately it'd be cool to animate the blur shader size attribute and material color of the fog tiles before removing them for a visual effect
+
+		//new hot line-of-sight cube action!
 		Vector3Int PiecePosition = fogTilemap.WorldToCell(transform.position);
-        for(int i = -3; i <= 3; i++)
-        {
-            for(int j = -3; j <= 3; j++)
-            {
-				//SetTileColour(new Color(0,0,0), new Vector3Int(i, j, 0), fogTilemap); //i was experimenting with trying to change the fog color
-			    fogTilemap.SetTile(PiecePosition + new Vector3Int(i, j, 0), null);
-            }
-        }
-    }
+		Vector3Int CubeCoords = HexCoordinates.OffsetToCube(PiecePosition);
+
+		int x = CubeCoords.x;
+		int y = CubeCoords.y;
+		int z = CubeCoords.z;
+		// I love constantly fixing range by one
+		int adjustedRange = range - 1;
+
+		for (int i = -adjustedRange; i <= adjustedRange; i++)
+		{
+			for (int j = -adjustedRange; j <= adjustedRange; j++)
+			{
+				for (int k = -adjustedRange; k <= adjustedRange; k++)
+				{
+					if (i + j + k == 0)
+					{
+						fogTilemap.SetTile(HexCoordinates.CubeToOffset(new Vector3Int(x + i, y + j, z + k)), null);
+					}
+
+				}
+
+			}
+		}
+
+
+
+		// old square bullshit
+		//Vector3Int PiecePosition = fogTilemap.WorldToCell(transform.position);
+		//      for(int i = -3; i <= 3; i++)
+		//      {
+		//          for(int j = -3; j <= 3; j++)
+		//          {
+		//		//SetTileColour(new Color(0,0,0), new Vector3Int(i, j, 0), fogTilemap); //i was experimenting with trying to change the fog color
+		//	    fogTilemap.SetTile(PiecePosition + new Vector3Int(i, j, 0), null);
+		//          }
+		//      }
+	}
 
     private void SetTileColour(int v, Vector3Int vector3Int, Tilemap fogTilemap)
     {

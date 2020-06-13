@@ -45,6 +45,6 @@ public class HexCoordinates : MonoBehaviour
         }
         return new Vector3Int(x, y, z);
     }
-
     
+
 }

@@ -34,22 +34,22 @@ public class Scenery : MonoBehaviour
     private void OnEnable()
     {
 
-        Debug.Log(pieceCoords);
-        Debug.Log("yo");
-        if (Obstacle)
-        {
-            pf.SetNavTileBlocked(grid.WorldToCell(transform.position), true);
-        }
+        // this doesn't work yet - trying to auto add/remove a block tile but gives null reference exception
+        //if (Obstacle)
+        //{
+        //    pf.SetNavTileBlocked(grid.WorldToCell(transform.position), true);
+        //}
         SceneryManager.AllScenery.Add(this);
         
     }
 
     private void OnDestroy()
     {
-        if (Obstacle)
-        {
-            pf.SetNavTileBlocked(grid.WorldToCell(transform.position), false);
-        }
+        // this doesn't work yet
+        //if (Obstacle)
+        //{
+        //    pf.SetNavTileBlocked(grid.WorldToCell(transform.position), false);
+        //}
         SceneryManager.AllScenery.Remove(this);
     }
 
