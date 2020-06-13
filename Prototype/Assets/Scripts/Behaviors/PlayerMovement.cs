@@ -71,19 +71,32 @@ public class PlayerMovement : PieceBehaviour
 
 		Vector3Int CubeCoords = HexCoordinates.OffsetToCube(PiecePosition); //here's the new cube co-ordinates
 																			// https://www.redblobgames.com/grids/hexagons/#coordinates-cube 
-
-		//here's the old square range we did
-
-		int adjustedRange = range - 1;
-		for (int i =  -adjustedRange; i <= adjustedRange; i++)
-		{
-			for (int j = (Math.Abs(i % 2)) - adjustedRange; j <= adjustedRange; j++)
-			{
-				overlayTilemap.SetTile(PiecePosition + new Vector3Int(j, i, 0), highlight);
-			}
+		// new cube range goes here
+		
+		int x = CubeCoords.x;
+		int y = CubeCoords.y;
+		int z = CubeCoords.z;
+		for (int i = - range; i <= range; i++)
+        {
+			overlayTilemap.SetTile(HexCoordinates.CubeToOffset(new Vector3Int(x - i, y + i, z)), highlight);
+			overlayTilemap.SetTile(HexCoordinates.CubeToOffset(new Vector3Int(x, y + i, z - i)), highlight);
+			overlayTilemap.SetTile(HexCoordinates.CubeToOffset(new Vector3Int(x + i, y, z - i)), highlight);
+			overlayTilemap.SetTile(HexCoordinates.CubeToOffset(new Vector3Int(x + i, y - i, z)), highlight);
+			overlayTilemap.SetTile(HexCoordinates.CubeToOffset(new Vector3Int(x, y - i, z + i)), highlight);
+			overlayTilemap.SetTile(HexCoordinates.CubeToOffset(new Vector3Int(x - i, y, z + i)), highlight);
 		}
 		
-        // this should be switched to cube co-ordinates!
+		//here's the old square range we did
+
+		//int adjustedRange = range - 1;
+		//for (int i =  -adjustedRange; i <= adjustedRange; i++)
+		//{
+		//	for (int j = (Math.Abs(i % 2)) - adjustedRange; j <= adjustedRange; j++)
+		//	{
+		//		overlayTilemap.SetTile(PiecePosition + new Vector3Int(j, i, 0), highlight);
+		//	}
+		//}
+		
 
 		if (Input.GetMouseButtonDown(0) && PathIsValid() == false) //click the mouse
 		{

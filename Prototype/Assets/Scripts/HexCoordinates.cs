@@ -27,18 +27,24 @@ public class HexCoordinates : MonoBehaviour
         return new Vector2Int(x - z / 2, z);
     }
 
-    public static Vector3Int OffsetToCube(Vector3Int offset)
-    {
-        int x = offset.x - (offset.x - (offset.y & 1)) / 2;
-        int z = offset.y;
-        int y = -x - z;
-    return new Vector3Int(x, y, z);
-    }
-
     public static Vector3Int CubeToOffset(Vector3Int cube)
     {
         int col = cube.x + (cube.z - (cube.z & 1)) / 2;
         int row = cube.z;
         return new Vector3Int(col, row, 0);
     }
+
+    public static Vector3Int OffsetToCube(Vector3Int offset)
+    {
+        int x = offset.x - (offset.y - (offset.y & 1)) / 2;
+        int z = offset.y;
+        int y = -x - z;
+        if (x + y + z != 0)
+        {
+            Debug.Log("the sum of cube vectors must always be zero!");
+        }
+        return new Vector3Int(x, y, z);
+    }
+
+    
 }
