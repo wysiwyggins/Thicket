@@ -68,6 +68,12 @@ public class PlayerMovement : PieceBehaviour
 
 		//lets try highlighting the tiles in range
 		Vector3Int PiecePosition = overlayTilemap.WorldToCell(transform.position);
+
+		Vector3Int CubeCoords = HexCoordinates.OffsetToCube(PiecePosition); //here's the new cube co-ordinates
+																			// https://www.redblobgames.com/grids/hexagons/#coordinates-cube 
+
+		//here's the old square range we did
+
 		int adjustedRange = range - 1;
 		for (int i =  -adjustedRange; i <= adjustedRange; i++)
 		{
