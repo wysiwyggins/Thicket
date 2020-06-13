@@ -2,125 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-
-
-//This stuff all comes from the redblobgames page on hexgrids, I haven't yet integrated it with the game.
-// it creates a new struct called Hex which is a little intimidating for me to try to incorporate but is probably the way to go.
-
-public struct Hex
+public class HexCoordinates : MonoBehaviour
 {
-    public Hex(int q, int r, int s)
+    // Start is called before the first frame update
+    void Start()
     {
-        this.q = q;
-        this.r = r;
-        this.s = s;
-        if (q + r + s != 0)
-            Debug.Log("q + r + s must be 0");
-    }
-    public readonly int q;
-    public readonly int r;
-    public readonly int s;
-
-    public Hex Add(Hex b)
-    {
-        return new Hex(q + b.q, r + b.r, s + b.s);
+        
     }
 
-
-    public Hex Subtract(Hex b)
+    // Update is called once per frame
+    void Update()
     {
-        return new Hex(q - b.q, r - b.r, s - b.s);
+        
     }
 
+    //new attempts at offset to axial and cube and viceversa
 
-    public Hex Scale(int k)
+
+    public static Vector2Int OffsetToAxial(Vector3Int offset)
     {
-        return new Hex(q * k, r * k, s * k);
+
+        int x = offset.x;
+        int z = offset.y;
+        return new Vector2Int(x - z / 2, z);
     }
 
-
-    public Hex RotateLeft()
+    public static Vector3Int OffsetToCube(Vector3Int offset)
     {
-        return new Hex(-s, -q, -r);
+        int x = offset.x - (offset.x - (offset.y & 1)) / 2;
+        int z = offset.y;
+        int y = -x - z;
+    return new Vector3Int(x, y, z);
     }
 
-
-    public Hex RotateRight()
+    public static Vector3Int CubeToOffset(Vector3Int cube)
     {
-        return new Hex(-r, -s, -q);
+        int col = cube.x + (cube.z - (cube.z & 1)) / 2;
+        int row = cube.z;
+        return new Vector3Int(col, row, 0);
     }
-
-    static public List<Hex> directions = new List<Hex> { new Hex(1, 0, -1), new Hex(1, -1, 0), new Hex(0, -1, 1), new Hex(-1, 0, 1), new Hex(-1, 1, 0), new Hex(0, 1, -1) };
-
-    static public Hex Direction(int direction)
-    {
-        return Hex.directions[direction];
-    }
-
-
-    public Hex Neighbor(int direction)
-    {
-        return Add(Hex.Direction(direction));
-    }
-
-    static public List<Hex> diagonals = new List<Hex> { new Hex(2, -1, -1), new Hex(1, -2, 1), new Hex(-1, -1, 2), new Hex(-2, 1, 1), new Hex(-1, 2, -1), new Hex(1, 1, -2) };
-
-    public Hex DiagonalNeighbor(int direction)
-    {
-        return Add(Hex.diagonals[direction]);
-    }
-
-
-    public int Length()
-    {
-        return (int)((Mathf.Abs(q) + Mathf.Abs(r) + Mathf.Abs(s)) / 2);
-    }
-
-
-    public int Distance(Hex b)
-    {
-        return Subtract(b).Length();
-    }
-
 }
-
-public struct OffsetCoord
-{
-    public OffsetCoord(int col, int row)
-    {
-        this.col = col;
-        this.row = row;
-    }
-    public readonly int col;
-    public readonly int row;
-    static public int EVEN = 1;
-    static public int ODD = -1;
-
-    static public OffsetCoord RoffsetFromCube(int offset, Hex h) //the R means "pointy-top" hexes
-    {
-        int col = h.q + (int)((h.r + offset * (h.r & 1)) / 2);
-        int row = h.r;
-        if (offset != OffsetCoord.EVEN && offset != OffsetCoord.ODD)
-        {
-            Debug.Log("offset must be EVEN (+1) or ODD (-1)");
-        }
-        return new OffsetCoord(col, row);
-    }
-
-
-    static public Hex RoffsetToCube(int offset, OffsetCoord h)
-    {
-        int q = h.col - (int)((h.row + offset * (h.row & 1)) / 2);
-        int r = h.row;
-        int s = -q - r;
-        if (offset != OffsetCoord.EVEN && offset != OffsetCoord.ODD)
-        {
-            Debug.Log("offset must be EVEN (+1) or ODD (-1)");
-        }
-        return new Hex(q, r, s);
-    }
-
-}
-
-

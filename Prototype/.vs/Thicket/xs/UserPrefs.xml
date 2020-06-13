@@ -1,15 +1,7 @@
 ﻿<Properties StartupConfiguration="{B1235EE4-71EE-C815-28F8-C3378E5ADB84}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Behaviors/MoveTowardsTarget.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HexCoordinates.cs">
     <Files>
-      <File FileName="Assets/Scripts/Scenery.cs" Line="38" Column="25" />
-      <File FileName="Assets/Scripts/Cursor.cs" Line="26" Column="9" />
-      <File FileName="Assets/Scripts/PieceBehaviour.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PieceManager.cs" Line="195" Column="17" />
-      <File FileName="Assets/Scripts/Piece.cs" Line="22" Column="1" />
-      <File FileName="Assets/Scripts/Behaviors/PlayerMovement.cs" Line="26" Column="58" />
-      <File FileName="Assets/Scripts/Behaviors/ConsumePiece.cs" Line="30" Column="3" />
-      <File FileName="Assets/Scripts/Behaviors/Scent.cs" Line="15" Column="30" />
-      <File FileName="Assets/Scripts/Behaviors/MoveTowardsTarget.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/HexCoordinates.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -17,9 +9,8 @@
           <Node name="Thicket" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Behaviors" expanded="True">
-                  <Node name="MoveTowardsTarget.cs" selected="True" />
-                </Node>
+                <Node name="Behaviors" expanded="True" />
+                <Node name="HexCoordinates.cs" selected="True" />
               </Node>
               <Node name="SimpleTilePathfinding" expanded="True" />
             </Node>
