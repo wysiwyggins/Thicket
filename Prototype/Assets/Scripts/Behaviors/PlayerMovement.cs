@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.Events;
+using SimplePF2D;
 
 public class PlayerMovement : PieceBehaviour
 {
@@ -72,8 +73,7 @@ public class PlayerMovement : PieceBehaviour
 		//lets try highlighting the tiles in range
 		Vector3Int PiecePosition = overlayTilemap.WorldToCell(transform.position);
 
-		Vector3Int CubeCoords = HexCoordinates.OffsetToCube(PiecePosition); //here's the new cube co-ordinates
-																			// https://www.redblobgames.com/grids/hexagons/#coordinates-cube 
+		Vector3Int CubeCoords = HexCoordinates.OffsetToCube(PiecePosition); 
 		
 		int x = CubeCoords.x;
 		int y = CubeCoords.y;
@@ -86,9 +86,11 @@ public class PlayerMovement : PieceBehaviour
             {
 				for (int k = -adjustedRange; k <= adjustedRange; k++)
                 {
-					if ( i + j + k == 0 )
+					Vector3Int offsetCoords = HexCoordinates.CubeToOffset(new Vector3Int(x + i, y + j, z + k));
+					NavNode node = pf.GetNode(grid.CellToWorld(offsetCoords));
+					if ( i + j + k == 0 && !node.IsBlocked())
                     {
-						overlayTilemap.SetTile(HexCoordinates.CubeToOffset(new Vector3Int(x + i, y + j, z + k)), highlight);
+						overlayTilemap.SetTile(offsetCoords, highlight);
 					}
 					
 				}
