@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\Scenery.cs" />
     <Compile Include="Assets\Scripts\SceneryManager.cs" />
     <Compile Include="Assets\Scripts\Spoor.cs" />
+    <Compile Include="Assets\Scripts\SpoorManager.cs" />
     <Compile Include="Assets\SimpleTilePathfinding\Demo\Ant.cs" />
     <Compile Include="Assets\SimpleTilePathfinding\Demo\Mouse.cs" />
     <Compile Include="Assets\SimpleTilePathfinding\Demo\Peter.cs" />

@@ -79,9 +79,15 @@ public class MoveTowardsTarget : PieceBehaviour
 		}
 		else if (piece.Prey)
 		{
-			preyPosition = piece.Prey.transform.position;
-			preyPosition.z = 0.0f;
-			FindPath(preyPosition);
+			// temp turning this off, eventually this will only happen if in line-of-sight 
+			//preyPosition = piece.Prey.transform.position;
+			//preyPosition.z = 0.0f;
+			//FindPath(preyPosition);
+
+
+
+
+
 			//else if (state == State.Move)
 		}
 		else
