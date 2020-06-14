@@ -79,13 +79,52 @@ public class MoveTowardsTarget : PieceBehaviour
 		}
 		else if (piece.Prey)
 		{
-			// temp turning this off, eventually this will only happen if in line-of-sight 
-			//preyPosition = piece.Prey.transform.position;
-			//preyPosition.z = 0.0f;
-			//FindPath(preyPosition);
+			
+			Debug.Log("Piece has prey: " + piece.Prey.PieceName);
 
+			Vector3 location = transform.position;
+			Vector3Int selfCoords = grid.WorldToCell(transform.position);
 
+			Spoor[] spoors = SpoorManager.GetSpoorAtPos(selfCoords);
 
+			if (spoors.Length > 0) //if there's a spoor here
+            {
+				
+				foreach (Spoor spoor in spoors) //for every spoor at the spot of this piece
+				{
+					Debug.Log("there's a spoor here:" + spoor.source);
+					if (spoor.source == piece.Prey) //if that spoor is the one we're hunting
+					{
+						//get the neighboring positions
+						Vector3Int[] neighborCoords = HexCoordinates.GetNeighborsAtPos(selfCoords);
+						foreach (Vector3Int coord in neighborCoords) //for each of the neighboring positions
+						{
+							Spoor[] neighborSpoors = SpoorManager.GetSpoorAtPos(coord); //get all the spoors at that position
+							foreach (Spoor neighborSpoor in neighborSpoors) //for each of those spoors
+							{
+								if (neighborSpoor.source == piece.Prey)
+								{
+									if (neighborSpoor.drydown > spoor.drydown)
+									{
+										FindPath(coord);
+									}
+
+								}
+
+							}
+
+						}
+					}
+				}
+
+			} else
+            {
+				Debug.Log("I don't smell anything");
+				//eventually this will only happen if in line-of-sight
+				preyPosition = piece.Prey.transform.position;
+				preyPosition.z = 0.0f;
+				FindPath(preyPosition);
+			}
 
 
 			//else if (state == State.Move)

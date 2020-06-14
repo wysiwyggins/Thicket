@@ -26,15 +26,23 @@ public class SpoorManager : MonoBehaviour
 		return Spoors.ToArray();
 	}
 
-	// Start is called before the first frame update
-	void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	private void Awake()
+	{
+		if (Instance == null)
+			Instance = this;
+		else
+			Destroy(this);
+	}
+
+	private void Start()
+	{
+		grid = GameObject.Find("Grid").GetComponent<Grid>();
+
+		//string spoorNames = "spoor in order:\n";
+		//foreach (Spoor aSpoor in AllSpoor)
+		//{
+		//	spoorNames += aSpoor.source + "\n";
+		//}
+	}
 }

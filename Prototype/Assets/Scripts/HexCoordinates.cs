@@ -45,6 +45,24 @@ public class HexCoordinates : MonoBehaviour
         }
         return new Vector3Int(x, y, z);
     }
-    
+
+    public static Vector3Int[] GetNeighborsAtPos(Vector3Int aCoord)
+    {
+        List<Vector3Int> Neighbors = new List<Vector3Int>();
+
+        Vector3Int CubeCoords = HexCoordinates.OffsetToCube(aCoord); 
+        int x = CubeCoords.x;
+        int y = CubeCoords.y;
+        int z = CubeCoords.z;
+        Neighbors.Add(HexCoordinates.CubeToOffset(new Vector3Int(x - 1, y + 1, z)));
+        Neighbors.Add(HexCoordinates.CubeToOffset(new Vector3Int(x, y + 1, z - 1)));
+        Neighbors.Add(HexCoordinates.CubeToOffset(new Vector3Int(x + 1, y, z - 1)));
+        Neighbors.Add(HexCoordinates.CubeToOffset(new Vector3Int(x + 1, y - 1, z)));
+        Neighbors.Add(HexCoordinates.CubeToOffset(new Vector3Int(x, y - 1, z + 1)));
+        Neighbors.Add(HexCoordinates.CubeToOffset(new Vector3Int(x - 1, y, z + 1)));
+        
+        return Neighbors.ToArray();
+    }
+
 
 }
