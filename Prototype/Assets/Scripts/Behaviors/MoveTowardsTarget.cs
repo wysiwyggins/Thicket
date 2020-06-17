@@ -80,8 +80,6 @@ public class MoveTowardsTarget : PieceBehaviour
 		else if (piece.Prey)
 		{
 			
-			Debug.Log("Piece has prey: " + piece.Prey.PieceName);
-
 			Vector3 location = transform.position;
 			Vector3Int selfCoords = grid.WorldToCell(transform.position);
 
@@ -102,11 +100,11 @@ public class MoveTowardsTarget : PieceBehaviour
 							Spoor[] neighborSpoors = SpoorManager.GetSpoorAtPos(coord); //get all the spoors at that position
 							foreach (Spoor neighborSpoor in neighborSpoors) //for each of those spoors
 							{
-								if (neighborSpoor.source == piece.Prey)
+								if (neighborSpoor.source == piece.Prey) //if it's the one we're hunting
 								{
-									if (neighborSpoor.drydown > spoor.drydown)
+									if (neighborSpoor.drydown > spoor.drydown) //if it's fresher
 									{
-										FindPath(coord);
+										FindPath(coord); //follow it
 									}
 
 								}
