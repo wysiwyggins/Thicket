@@ -64,5 +64,22 @@ public class HexCoordinates : MonoBehaviour
         return Neighbors.ToArray();
     }
 
+    public static Vector3Int[] GetHexesAtDistance(Vector3Int center, int distance)
+    {
+        List<Vector3Int> Results = new List<Vector3Int>();
+        for (int x = (-1 * distance); x <= distance; x++ ) 
+        {
+            int maxValue = Mathf.Min(+distance, -center.x + distance);
+            for (int y = Mathf.Max(-distance, -center.x - distance); y <= maxValue; y++)
+            {
+                int z = -x - y;
+                Vector3Int hexPosition = new Vector3Int(x, y, z);
+                Results.Add(hexPosition);
+            }
+
+        }
+        return Results.ToArray();
+    }
+
 
 }
