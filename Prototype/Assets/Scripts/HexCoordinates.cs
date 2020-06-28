@@ -81,5 +81,57 @@ public class HexCoordinates : MonoBehaviour
         return Results.ToArray();
     }
 
+    public static int CubeDistance(Vector3Int a, Vector3Int b)
+    {
+        return (Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y) + Mathf.Abs(a.z - b.z)) / 2;
+    }
+
+    public static int Lerp(int a, int b, float t)
+    {
+        return (int)(a + (b - a) * t);
+    }
+
+    public static Vector3Int CubeRound(Vector3Int cube)
+    {
+        float rx = Mathf.Round(cube.x);
+        float ry = Mathf.Round(cube.y);
+        float rz = Mathf.Round(cube.z);
+
+        float x_diff = Mathf.Abs(rx - cube.x);
+        float y_diff = Mathf.Abs(ry - cube.y);
+        float z_diff = Mathf.Abs(rz - cube.z);
+
+        if ((x_diff > y_diff) && (x_diff > z_diff)) {
+            rx = -ry - rz;
+        }
+        else if (y_diff > z_diff)
+        {
+            ry = -rx - rz;
+        }
+        else
+        {
+            rz = -rx - ry;
+        }
+
+        return new Vector3Int((int)rx, (int)ry, (int)rz);
+    }
+
+    public static Vector3Int CubeLerp(Vector3Int a, Vector3Int b, float t)
+    {
+        return new Vector3Int(Lerp(a.x, b.x, t),
+                    Lerp(a.y, b.y, t),
+                    Lerp(a.z, b.z, t));
+    }
+
+    public static Vector3Int[] CubeLineDraw(Vector3Int a, Vector3Int b)
+    {
+        int N = CubeDistance(a, b);
+        List<Vector3Int> Results = new List<Vector3Int>();
+        for (int i = 0; i <= N; i++) {
+            Results.Add(CubeRound(CubeLerp(a, b, (float)(1.0 / N * i))));
+        }
+        return Results.ToArray();
+    }
+    
 
 }
