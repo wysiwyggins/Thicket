@@ -42,6 +42,7 @@ public class Cursor : MonoBehaviour
             Debug.Log("cursor location: " + coordinate);
 
 
+
             //TextOutput.text += "cursor location: " + coordinate ;
             MessageManager.AddMessage("cursor location: " + coordinate );
             if (fogTilemap.GetTile(coordinate) == null)
@@ -67,7 +68,6 @@ public class Cursor : MonoBehaviour
                 //TextOutput.text += "Darkness.\n";
                 MessageManager.AddMessage("Darkness.");
             }
-            
          
 
         }

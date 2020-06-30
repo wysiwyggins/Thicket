@@ -123,12 +123,45 @@ public class HexCoordinates : MonoBehaviour
                     Lerp(a.z, b.z, t));
     }
 
-    public static Vector3Int[] CubeLineDraw(Vector3Int a, Vector3Int b)
+    public static Vector3Int[] CubeLineDraw(Vector3Int origin, Vector3Int extent)
     {
-        int N = CubeDistance(a, b);
+        int N = CubeDistance(origin, extent);
         List<Vector3Int> Results = new List<Vector3Int>();
         for (int i = 0; i <= N; i++) {
-            Results.Add(CubeRound(CubeLerp(a, b, (float)(1.0 / N * i))));
+            Results.Add(CubeRound(CubeLerp(origin, extent, (float)(1.0 / N * i))));
+        }
+        return Results.ToArray();
+    }
+
+    public static Vector3Int[] GetFieldOfView(Vector3Int origin, int range)
+    {
+        List<Vector3Int> Results = new List<Vector3Int>();
+        Vector3Int[] targets = GetHexesAtDistance(origin, range);
+        foreach (Vector3Int target in targets)
+        {
+            Vector3Int[] lineHexes = CubeLineDraw(origin, target);
+            foreach(Vector3Int hexcoord in lineHexes)
+            {
+                Vector3Int coordinate = CubeToOffset(hexcoord);
+                Scenery[] sceneries = SceneryManager.GetSceneriesAtPos(coordinate);
+                if (sceneries != null)
+                {
+                    foreach (Scenery scenery in sceneries)
+                    {
+
+                        if (scenery.Obstacle)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            Results.Add(coordinate);
+                        }
+                    }
+
+                }
+            }
+
         }
         return Results.ToArray();
     }
