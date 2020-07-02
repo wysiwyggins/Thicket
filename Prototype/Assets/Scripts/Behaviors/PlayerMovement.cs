@@ -22,6 +22,8 @@ public class PlayerMovement : PieceBehaviour
 	public Tilemap navmap;
 	public Tile highlight;
 
+	Vision vision;
+
 	//piece attributes
 	Vector3Int pieceCoords
 	{ get { return grid.WorldToCell(transform.position); } }
@@ -46,8 +48,7 @@ public class PlayerMovement : PieceBehaviour
 		path.Reset();
 		state = State.WaitForInput;
 		UpdateFog();
-		// fix range off by one error
-		
+		vision = GetComponent<Vision>();
 	}
 
 	void Awake()
@@ -58,6 +59,7 @@ public class PlayerMovement : PieceBehaviour
 		pf = GameObject.Find("Grid").GetComponent<SimplePathFinding2D>();
 		path = new SimplePF2D.Path(pf);
 		navmap = GameObject.Find("NavigationTilemap").GetComponent<Tilemap>();
+
 		UpdateFog();
 	}
 
@@ -196,45 +198,55 @@ public class PlayerMovement : PieceBehaviour
     void UpdateFog()
     {
 
-		//new hot line-of-sight cube action!
+		
+
+
 		Vector3Int PiecePosition = fogTilemap.WorldToCell(transform.position);
 		Vector3Int CubeCoords = HexCoordinates.OffsetToCube(PiecePosition);
 
-		int x = CubeCoords.x;
-		int y = CubeCoords.y;
-		int z = CubeCoords.z;
-		// I love constantly fixing range by one
-		int adjustedRange = range - 1;
+        // Line of sight fog removal not working right yet
+        //if (vision != null)
+        //{
+        //	Debug.Log("player cubecoords: " + CubeCoords);
+        //	vision.UpdateFog();
+        //}
 
-		for (int i = -adjustedRange; i <= adjustedRange; i++)
-		{
-			for (int j = -adjustedRange; j <= adjustedRange; j++)
-			{
-				for (int k = -adjustedRange; k <= adjustedRange; k++)
-				{
-					if (i + j + k == 0)
-					{
-						fogTilemap.SetTile(HexCoordinates.CubeToOffset(new Vector3Int(x + i, y + j, z + k)), null);
-					}
+		// grabbing a range of hexes in the meantime
+        int x = CubeCoords.x;
+        int y = CubeCoords.y;
+        int z = CubeCoords.z;
+        // I love constantly fixing range by one
+        int adjustedRange = range - 1;
 
-				}
+        for (int i = -adjustedRange; i <= adjustedRange; i++)
+        {
+            for (int j = -adjustedRange; j <= adjustedRange; j++)
+            {
+                for (int k = -adjustedRange; k <= adjustedRange; k++)
+                {
+                    if (i + j + k == 0)
+                    {
+                        fogTilemap.SetTile(HexCoordinates.CubeToOffset(new Vector3Int(x + i, y + j, z + k)), null);
+                    }
 
-			}
-		}
+                }
+
+            }
+        }
 
 
 
-		// old square bullshit
-		//Vector3Int PiecePosition = fogTilemap.WorldToCell(transform.position);
-		//      for(int i = -3; i <= 3; i++)
-		//      {
-		//          for(int j = -3; j <= 3; j++)
-		//          {
-		//		//SetTileColour(new Color(0,0,0), new Vector3Int(i, j, 0), fogTilemap); //i was experimenting with trying to change the fog color
-		//	    fogTilemap.SetTile(PiecePosition + new Vector3Int(i, j, 0), null);
-		//          }
-		//      }
-	}
+        // old square bullshit
+        //Vector3Int PiecePosition = fogTilemap.WorldToCell(transform.position);
+        //      for(int i = -3; i <= 3; i++)
+        //      {
+        //          for(int j = -3; j <= 3; j++)
+        //          {
+        //		//SetTileColour(new Color(0,0,0), new Vector3Int(i, j, 0), fogTilemap); //i was experimenting with trying to change the fog color
+        //	    fogTilemap.SetTile(PiecePosition + new Vector3Int(i, j, 0), null);
+        //          }
+        //      }
+    }
 
     private void SetTileColour(int v, Vector3Int vector3Int, Tilemap fogTilemap)
     {

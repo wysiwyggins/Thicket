@@ -2535,6 +2535,18 @@ MonoBehaviour:
   Cleansing: 0
   Obstacle: 0
   Opaque: 0
+--- !u!114 &452296837 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6366142697534753649, guid: 541d05a6bd816438b92bc2f952e6d04c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1003043986}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4903995ed12fe44c084030134e1c9d41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &473288379 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 613999014, guid: 13d6334a218364a9f9a97c36718b4aae,
@@ -4020,7 +4032,7 @@ PrefabInstance:
     - target: {fileID: 3374691270529978704, guid: 541d05a6bd816438b92bc2f952e6d04c,
         type: 3}
       propertyPath: OnEnterTile.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3374691270529978704, guid: 541d05a6bd816438b92bc2f952e6d04c,
         type: 3}
@@ -4056,6 +4068,31 @@ PrefabInstance:
         type: 3}
       propertyPath: range
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3374691270529978704, guid: 541d05a6bd816438b92bc2f952e6d04c,
+        type: 3}
+      propertyPath: OnEnterTile.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3374691270529978704, guid: 541d05a6bd816438b92bc2f952e6d04c,
+        type: 3}
+      propertyPath: OnEnterTile.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3374691270529978704, guid: 541d05a6bd816438b92bc2f952e6d04c,
+        type: 3}
+      propertyPath: OnEnterTile.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 452296837}
+    - target: {fileID: 3374691270529978704, guid: 541d05a6bd816438b92bc2f952e6d04c,
+        type: 3}
+      propertyPath: OnEnterTile.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: TestView
+      objectReference: {fileID: 0}
+    - target: {fileID: 3374691270529978704, guid: 541d05a6bd816438b92bc2f952e6d04c,
+        type: 3}
+      propertyPath: OnEnterTile.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4550875875820027828, guid: 541d05a6bd816438b92bc2f952e6d04c,
         type: 3}
@@ -4117,6 +4154,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6366142697534753649, guid: 541d05a6bd816438b92bc2f952e6d04c,
+        type: 3}
+      propertyPath: highlight
+      value: 
+      objectReference: {fileID: 11400000, guid: e4df08d5c87c147938706696bad03c90,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 541d05a6bd816438b92bc2f952e6d04c, type: 3}
 --- !u!4 &1003043987 stripped

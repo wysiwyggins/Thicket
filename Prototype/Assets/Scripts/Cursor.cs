@@ -39,7 +39,7 @@ public class Cursor : MonoBehaviour
             
             Piece piece = PieceManager.GetPieceAtPos(coordinate);
             Scenery[] sceneries = SceneryManager.GetSceneriesAtPos(coordinate);
-            Debug.Log("cursor location: " + coordinate);
+            Debug.Log("cursor location: " + coordinate +"(cube:" + HexCoordinates.OffsetToCube(coordinate));
 
 
 

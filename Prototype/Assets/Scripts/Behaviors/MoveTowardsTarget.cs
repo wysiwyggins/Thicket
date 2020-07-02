@@ -39,7 +39,7 @@ public class MoveTowardsTarget : PieceBehaviour
 
 	public override void Begin()
 	{
-		Debug.Log(gameObject.name + " movetowardstarget begin");
+		//Debug.Log(gameObject.name + " movetowardstarget begin");
 		sleep = GetComponent<Sleep>();
 		if (sleep != null)
 		{
@@ -49,7 +49,7 @@ public class MoveTowardsTarget : PieceBehaviour
 				return;
 			}
 		}
-		Debug.Log(gameObject.name + " reset path, entering state findingpath");
+		//Debug.Log(gameObject.name + " reset path, entering state findingpath");
 		path.Reset();
 		state = State.FindingPath;
 		startedMove = false;
@@ -129,11 +129,11 @@ public class MoveTowardsTarget : PieceBehaviour
 		}
 		else
 		{
-			Debug.Log("The " + piece.PieceName + " is not sleepy, has no prey");
+			//Debug.Log("The " + piece.PieceName + " is not sleepy, has no prey");
 			int randomX = Random.Range(-5, 5);
 			int randomY = Random.Range(-5, 8);
 
-			Debug.Log(piece.PieceName + " thinks its going to: "+ randomX +","+ randomY); //these co-ordinates look right but the piece is going off map.
+			//Debug.Log(piece.PieceName + " thinks its going to: "+ randomX +","+ randomY);
 			randomWorldTarget = grid.CellToWorld(new Vector3Int(randomX, randomY, 0));
 			NavNode node = pf.GetNode(randomWorldTarget);
 			if (node.IsBlocked())
@@ -159,14 +159,14 @@ public class MoveTowardsTarget : PieceBehaviour
 			startedMove = true;
 
 			Vector3Int coordinate = grid.WorldToCell(target); 
-			Debug.Log(piece.PieceName + " actual destination: " + coordinate);
+			//Debug.Log(piece.PieceName + " actual destination: " + coordinate);
 			path.CreatePath(location, target); // generate a path
 
-			Debug.Log("path length " + path.GetPathPointList().Count + "/" + range);
+			//Debug.Log("path length " + path.GetPathPointList().Count + "/" + range);
 			if (path.GetPathPointList().Count > range)
 			{
 				path.Reset();
-				Debug.Log("resetting path!");
+				//Debug.Log("resetting path!");
 			}
 
 		}
@@ -193,7 +193,7 @@ public class MoveTowardsTarget : PieceBehaviour
 		
 		for (int i = 0; i < cellPositions.Count && i < range; i++) //Loop through them (lists have a "count", not a "length")
 		{
-			Debug.Log("Get path point");
+			//Debug.Log("Get path point");
 			Vector3 targetPos = path.GetPathPointWorld(i);
 
 			Vector3 vel = Vector3.zero;
@@ -208,7 +208,7 @@ public class MoveTowardsTarget : PieceBehaviour
 			if(i != 0)
 				OnEnterTile.Invoke();
 
-			Debug.Log("Reached path point");
+			//Debug.Log("Reached path point");
 			Debug.Log("Piece: " + piece.PieceName + ", Location: " + pieceCoords);
 			yield return new WaitForSeconds(0.05f);
 

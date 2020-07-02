@@ -36,7 +36,7 @@ public class Scent : MonoBehaviour
     {
 		Debug.Log("boop");
 
-		// this would pick up a scent at the end of the turn, and if it matches prey,
+		// this would pick up a scent at the end of the move, and if it matches prey,
 		// then it would scan neighbor tiles and set a new target, just like in MoveTowards,
 		// except how do we assign a new target so that it doesn't reset the number of moves?
 	}

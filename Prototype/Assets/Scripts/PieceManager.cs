@@ -92,15 +92,6 @@ public class PieceManager : MonoBehaviour
 		//Debug.Log(pieceNames);
 	}
 
-	public List<Vector3Int> TilesInRange(Vector3Int pos, int range)
-	{
-		List<Vector3Int> tiles = new List<Vector3Int>();
-
-		//..populate list
-
-
-		return tiles;
-	}
 
 	void StartPieceTurn()
 	{
@@ -169,7 +160,7 @@ public class PieceManager : MonoBehaviour
 
     private void CheckHour()
     {
-
+		
 		if (hour == 2)
 		{
 			state = State.Day;
@@ -182,19 +173,18 @@ public class PieceManager : MonoBehaviour
 			//TextOutput.text += "The sun dwindles, red, in the west. There is a shudder across the land as the wolf begins to stir in her den.\n";
 			MessageManager.AddMessage("The sun dwindles, red, in the west.");
 			
-			
+
 
 		}
 		if (hour == 8)
 		{
 			state = State.Night;
-			//TextOutput.text += "The sun is swallowed up by the dark horizon of the earth.\n";
 			MessageManager.AddMessage("The sun is swallowed up by the dark horizon of the earth.");
-			foreach (var position in fogTilemap.cellBounds.allPositionsWithin)
-			{
-				fogTilemap.SetTile(position, fogTile);
-			}
-		}
+            foreach (var position in fogTilemap.cellBounds.allPositionsWithin)
+            {
+                fogTilemap.SetTile(position, fogTile);
+            }
+        }
 		if (hour >= 13)
 		{
 			state = State.Dawn;

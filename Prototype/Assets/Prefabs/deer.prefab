@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4550875875820027830}
   - component: {fileID: 1673489313515321916}
   - component: {fileID: 3374691270529978704}
+  - component: {fileID: 6366142697534753649}
   - component: {fileID: 4550875875820027824}
   - component: {fileID: 1003043989}
   m_Layer: 0
@@ -50,7 +51,7 @@ MonoBehaviour:
   Strength: 0
   PieceColor: {r: 0.8490566, g: 0.5727127, b: 0.63247365, a: 1}
   Mate: {fileID: 0}
-  prey: {fileID: 0}
+  Prey: {fileID: 0}
   pieceBehaviors:
   - {fileID: 3374691270529978704}
 --- !u!114 &3374691270529978704
@@ -68,6 +69,32 @@ MonoBehaviour:
   navmap: {fileID: 0}
   highlight: {fileID: 11400000, guid: e4df08d5c87c147938706696bad03c90, type: 2}
   range: 2
+  OnEnterTile:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1003043989}
+        m_MethodName: Spoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6366142697534753649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4550875875820027828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4903995ed12fe44c084030134e1c9d41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &4550875875820027824
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -131,5 +158,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Drydown: 6
-  SpoorPrefab: {fileID: 4952905340423705150, guid: e19263ed7548c47529bd622b8bc9c0b7,
+  SpoorPrefab: {fileID: 4952905340423705149, guid: e19263ed7548c47529bd622b8bc9c0b7,
     type: 3}

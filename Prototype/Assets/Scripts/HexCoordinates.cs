@@ -135,32 +135,45 @@ public class HexCoordinates : MonoBehaviour
 
     public static Vector3Int[] GetFieldOfView(Vector3Int origin, int range)
     {
+
+        // this isn't working yet, could be a problem with origin?
+        Debug.Log("origin" + origin + ", range: " + range);
+
         List<Vector3Int> Results = new List<Vector3Int>();
         Vector3Int[] targets = GetHexesAtDistance(origin, range);
         foreach (Vector3Int target in targets)
         {
+            bool lineblocked = false;
             Vector3Int[] lineHexes = CubeLineDraw(origin, target);
+            
             foreach(Vector3Int hexcoord in lineHexes)
             {
+                
                 Vector3Int coordinate = CubeToOffset(hexcoord);
                 Scenery[] sceneries = SceneryManager.GetSceneriesAtPos(coordinate);
                 if (sceneries != null)
                 {
-                    foreach (Scenery scenery in sceneries)
+                    
+                    foreach(Scenery scenery in sceneries)
                     {
-
-                        if (scenery.Obstacle)
+                        if (scenery.Opaque)
                         {
-                            break;
-                        }
-                        else
-                        {
-                            Results.Add(coordinate);
+                            lineblocked = true;
                         }
                     }
+                }
+                
 
+            }
+            if (lineblocked == false) 
+            {
+                foreach (Vector3Int hexcoord in lineHexes)
+                {
+                    Results.Add(hexcoord);
                 }
             }
+
+            
 
         }
         return Results.ToArray();
