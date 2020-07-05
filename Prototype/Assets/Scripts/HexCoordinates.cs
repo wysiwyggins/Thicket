@@ -64,22 +64,50 @@ public class HexCoordinates : MonoBehaviour
         return Neighbors.ToArray();
     }
 
+
+
+    //public static Vector3Int[] GetHexesAtDistance(Vector3Int center, int distance)
+    //{
+    //    List<Vector3Int> Results = new List<Vector3Int>();
+    //    for (int x = (-1 * distance); x <= distance; x++ ) 
+    //    {
+    //        int maxValue = Mathf.Min(+distance, -center.x + distance);
+    //        for (int y = Mathf.Max(-distance, -center.x - distance); y <= maxValue; y++)
+    //        {
+    //            int z = -x - y;
+    //            Vector3Int hexPosition = new Vector3Int(x, y, z);
+    //            Results.Add(hexPosition);
+    //        }
+
+    //    }
+    //    return Results.ToArray();
+    //}
+
+
     public static Vector3Int[] GetHexesAtDistance(Vector3Int center, int distance)
     {
-        List<Vector3Int> Results = new List<Vector3Int>();
-        for (int x = (-1 * distance); x <= distance; x++ ) 
-        {
-            int maxValue = Mathf.Min(+distance, -center.x + distance);
-            for (int y = Mathf.Max(-distance, -center.x - distance); y <= maxValue; y++)
-            {
-                int z = -x - y;
-                Vector3Int hexPosition = new Vector3Int(x, y, z);
-                Results.Add(hexPosition);
-            }
 
+        List<Vector3Int> Results = new List<Vector3Int>();
+
+        int x = center.x;
+        int y = center.y;
+        int z = center.z;
+        for (int i = -distance; i <= distance; i++)
+        {
+            for (int j = -distance; j <= distance; j++)
+            {
+                for (int k = -distance; k <= distance; k++)
+                {
+                    if (i + j + k == 0)
+                    {
+                        Results.Add(new Vector3Int(x + i, y + j, z + k));
+                    }   
+                }
+            }
         }
         return Results.ToArray();
     }
+
 
     public static int CubeDistance(Vector3Int a, Vector3Int b)
     {
@@ -136,7 +164,6 @@ public class HexCoordinates : MonoBehaviour
     public static Vector3Int[] GetFieldOfView(Vector3Int origin, int range)
     {
 
-        // this isn't working yet, could be a problem with origin?
         Debug.Log("origin" + origin + ", range: " + range);
 
         List<Vector3Int> Results = new List<Vector3Int>();
@@ -162,8 +189,6 @@ public class HexCoordinates : MonoBehaviour
                         }
                     }
                 }
-                
-
             }
             if (lineblocked == false) 
             {
@@ -171,13 +196,8 @@ public class HexCoordinates : MonoBehaviour
                 {
                     Results.Add(hexcoord);
                 }
-            }
-
-            
-
+            }  
         }
         return Results.ToArray();
     }
-    
-
 }

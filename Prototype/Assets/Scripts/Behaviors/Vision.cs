@@ -24,9 +24,9 @@ public class Vision : MonoBehaviour
         fogTilemap = GameObject.Find("Fog").GetComponent<Tilemap>();
     }
 
-    public Vector3Int[] GetView()
+    public int GetViewRange()
     {
-
+        // the idea of this was to set the range based on time of day
         //at some point i'd like viewRange to increase and decrease with sunPerc
         //Debug.Log(PieceManager.Instance.sunPerc);
 
@@ -42,30 +42,18 @@ public class Vision : MonoBehaviour
         //}
 
         viewRange = 5;
-        Vector3Int coords = grid.WorldToCell(transform.position);
-        Vector3Int cubecoords = HexCoordinates.OffsetToCube(coords);
-
-        //Debug.Log("vision origin cubecoords: " + cubecoords);
-        Results = HexCoordinates.GetFieldOfView(cubecoords, viewRange);
-        return Results;
+        return viewRange;
     }
 
-    public void TestView()
-    {
-        //this should highlight visible tiles to test field of view
-        Vector3Int[] view = GetView();
-        foreach (Vector3Int coord in view)
-        {
-            overlayTilemap.SetTile(coord, highlight);
-            Debug.Log(coord + " is visible");
-        }
-    }
 
-    public void UpdateFog()
+    public void UpdateFog(Vector3Int center)
     {
+        
         //this would remove fog tiles from field of view
-        Vector3Int[] view = GetView();
-        foreach (Vector3Int coord in view)
+        int viewRange = GetViewRange();
+        Debug.Log("Attempting field of view with a center of " + center + " and a range of " + viewRange);
+        Vector3Int[] viewHexes = HexCoordinates.GetFieldOfView(center, viewRange);
+        foreach (Vector3Int coord in viewHexes)
         {
             fogTilemap.SetTile(coord, null);
         }

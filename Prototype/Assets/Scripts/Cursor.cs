@@ -39,12 +39,12 @@ public class Cursor : MonoBehaviour
             
             Piece piece = PieceManager.GetPieceAtPos(coordinate);
             Scenery[] sceneries = SceneryManager.GetSceneriesAtPos(coordinate);
-            Debug.Log("cursor location: " + coordinate +"(cube:" + HexCoordinates.OffsetToCube(coordinate));
+            Debug.Log("cursor location: " + coordinate.x + ","+ coordinate.y +" (cube:" + HexCoordinates.OffsetToCube(coordinate));
 
 
 
             //TextOutput.text += "cursor location: " + coordinate ;
-            MessageManager.AddMessage("cursor location: " + coordinate );
+            MessageManager.AddMessage("cursor location: " + coordinate.x + "," + coordinate.y);
             if (fogTilemap.GetTile(coordinate) == null)
             {
                 if (piece != null)
