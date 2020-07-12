@@ -29,7 +29,10 @@ public class PlayerMovement : PieceBehaviour
 	Vector3Int pieceCoords
 	{ get { return grid.WorldToCell(transform.position); } }
 	List<Vector3Int> cellPositions;
-	
+
+	NavNode node;
+
+
 
 	public int range;
 

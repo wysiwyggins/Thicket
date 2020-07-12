@@ -4053,11 +4053,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnEnterTile.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 452296837}
+      objectReference: {fileID: 1660182813}
     - target: {fileID: 3374691270529978704, guid: 541d05a6bd816438b92bc2f952e6d04c,
         type: 3}
       propertyPath: OnEnterTile.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TestView
+      value: Spoor
       objectReference: {fileID: 0}
     - target: {fileID: 3374691270529978704, guid: 541d05a6bd816438b92bc2f952e6d04c,
         type: 3}
@@ -4067,7 +4067,7 @@ PrefabInstance:
     - target: {fileID: 3374691270529978704, guid: 541d05a6bd816438b92bc2f952e6d04c,
         type: 3}
       propertyPath: range
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3374691270529978704, guid: 541d05a6bd816438b92bc2f952e6d04c,
         type: 3}
@@ -4917,6 +4917,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c28c8437a17149c4af6a53daf8f12e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1660182813 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1003043989, guid: 541d05a6bd816438b92bc2f952e6d04c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1003043986}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d355e002e359a4d19a697fd3e3a9ccf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1674393452
