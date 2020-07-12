@@ -138,11 +138,11 @@ public class PlayerMovement : PieceBehaviour
 			path.CreatePath(location, mouseWorldPos); // generate a path
 
             //let's test our line drawing function!
-            //Vector3Int[] linenodes = HexCoordinates.CubeLineDraw(HexCoordinates.OffsetToCube(grid.WorldToCell(mouseWorldPos)), HexCoordinates.OffsetToCube(grid.WorldToCell(location)));
-            //foreach (Vector3Int step in linenodes)
-            //{
-            //    overlayTilemap.SetTile(HexCoordinates.CubeToOffset(step), highlight);
-            //}
+            Vector3Int[] linenodes = HexCoordinates.CubeLineDraw(HexCoordinates.OffsetToCube(grid.WorldToCell(mouseWorldPos)), HexCoordinates.OffsetToCube(grid.WorldToCell(location)));
+            foreach (Vector3Int step in linenodes)
+            {
+                overlayTilemap.SetTile(HexCoordinates.CubeToOffset(step), highlight);
+            }
             //it worked!
 
             Debug.Log("path length " + path.GetPathPointList().Count + "/" + range);
