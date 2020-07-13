@@ -5191,8 +5191,8 @@ MonoBehaviour:
   ColliderTileMaps: []
   NavigationMovementPenaltyTiles: []
   CorrespondingMovementPenalty: 
-  NavigationMapWidth: 16
-  NavigationMapHeight: 20
+  NavigationMapWidth: 50
+  NavigationMapHeight: 50
   DynamicAmortisation: 1
   PathLoad: 64
   MinimumPathIterationsPerFrame: 8

@@ -1,8 +1,9 @@
 ﻿<Properties StartupConfiguration="{B1235EE4-71EE-C815-28F8-C3378E5ADB84}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Behaviors/PlayerMovement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HexCoordinates.cs">
     <Files>
       <File FileName="Assets/Scripts/Behaviors/PlayerMovement.cs" Line="146" Column="15" />
       <File FileName="Assets/Scripts/Behaviors/MoveTowardsTarget.cs" />
+      <File FileName="Assets/Scripts/HexCoordinates.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -10,9 +11,8 @@
           <Node name="Thicket" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Behaviors" expanded="True">
-                  <Node name="PlayerMovement.cs" selected="True" />
-                </Node>
+                <Node name="Behaviors" expanded="True" />
+                <Node name="HexCoordinates.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -22,7 +22,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="5a1683e3-9808-40de-8488-e789b1950a4a" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="63bf1e4f-a385-4946-9a79-969bf9fa6d1b" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

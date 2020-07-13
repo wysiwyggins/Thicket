@@ -80,11 +80,12 @@ public class PlayerMovement : PieceBehaviour
 		Vector3Int PiecePosition = overlayTilemap.WorldToCell(transform.position);
 		Vector3Int CubeCoords = HexCoordinates.OffsetToCube(PiecePosition);
 		int adjustedRange = range - 1;
+		Vector3Int offsetCoord;
 
 		Vector3Int[] rangeHexes = HexCoordinates.GetHexesAtDistance(CubeCoords, adjustedRange);
 		foreach (Vector3Int coord in rangeHexes)
         {
-			Vector3Int offsetCoord = HexCoordinates.CubeToOffset(coord);
+            offsetCoord = HexCoordinates.CubeToOffset(coord);
 			NavNode node = pf.GetNode(grid.CellToWorld(offsetCoord));
 			if (!node.IsBlocked())
 			{
@@ -138,11 +139,11 @@ public class PlayerMovement : PieceBehaviour
 			path.CreatePath(location, mouseWorldPos); // generate a path
 
             //let's test our line drawing function!
-            Vector3Int[] linenodes = HexCoordinates.CubeLineDraw(HexCoordinates.OffsetToCube(grid.WorldToCell(mouseWorldPos)), HexCoordinates.OffsetToCube(grid.WorldToCell(location)));
-            foreach (Vector3Int step in linenodes)
-            {
-                overlayTilemap.SetTile(HexCoordinates.CubeToOffset(step), highlight);
-            }
+            //Vector3Int[] linenodes = HexCoordinates.CubeLineDraw(HexCoordinates.OffsetToCube(grid.WorldToCell(mouseWorldPos)), HexCoordinates.OffsetToCube(grid.WorldToCell(location)));
+            //foreach (Vector3Int step in linenodes)
+            //{
+            //    overlayTilemap.SetTile(HexCoordinates.CubeToOffset(step), highlight);
+            //}
             //it worked!
 
             Debug.Log("path length " + path.GetPathPointList().Count + "/" + range);
@@ -224,20 +225,20 @@ public class PlayerMovement : PieceBehaviour
 
         // temp range  only fog removal
         // tracked bug in full field of view down to SceneeyManager.GetSceneryAtPos, which works fine in spoor?
-        foreach (Vector3Int rangeCubeCoord in rangeHexes)
-        {
-			fogTilemap.SetTile(HexCoordinates.CubeToOffset(rangeCubeCoord), null);
-		}
-        
+        //      foreach (Vector3Int rangeCubeCoord in rangeHexes)
+        //      {
+        //	fogTilemap.SetTile(HexCoordinates.CubeToOffset(rangeCubeCoord), null);
+        //}
+
 
 
 
         //Line of sight fog removal not working right yet
-        //if (vision != null)
-        //{
-        //    Debug.Log("player cubecoords: " + CubeCoords);
-        //    vision.UpdateFog(CubeCoords);
-        //}
+        if (vision != null)
+        {
+            Debug.Log("player cubecoords: " + PieceCubeCoord);
+            vision.UpdateFog(PieceCubeCoord);
+        }
 
 
         // here is the pre-field of view version
