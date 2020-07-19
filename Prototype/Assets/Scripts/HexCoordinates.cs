@@ -114,12 +114,12 @@ public class HexCoordinates : MonoBehaviour
         return (Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y) + Mathf.Abs(a.z - b.z)) / 2;
     }
 
-    public static int Lerp(int a, int b, float t)
-    {
-        return (int)(a + (b - a) * t);
+    public static float Lerp(float a, float b, float t)
+    {  
+        return a + (b - a) * t;
     }
 
-    public static Vector3Int CubeRound(Vector3Int cube)
+    public static Vector3Int CubeRound(Vector3 cube)
     {
         float rx = Mathf.Round(cube.x);
         float ry = Mathf.Round(cube.y);
@@ -144,9 +144,12 @@ public class HexCoordinates : MonoBehaviour
         return new Vector3Int((int)rx, (int)ry, (int)rz);
     }
 
-    public static Vector3Int CubeLerp(Vector3Int a, Vector3Int b, float t)
+    public static Vector3 CubeLerp(Vector3Int ai, Vector3Int bi, float t)
     {
-        return new Vector3Int(Lerp(a.x, b.x, t),
+        Vector3 a = new Vector3((float)ai.x + 0.0001f, (float)ai.y + 0.0001f, (float)ai.z + 0.0001f);
+        Vector3 b = new Vector3((float)bi.x, (float)bi.y, (float)bi.z);
+
+        return new Vector3(Lerp(a.x, b.x, t),
                     Lerp(a.y, b.y, t),
                     Lerp(a.z, b.z, t));
     }
@@ -156,7 +159,7 @@ public class HexCoordinates : MonoBehaviour
         int N = CubeDistance(origin, extent);
         List<Vector3Int> Results = new List<Vector3Int>();
         for (int i = 0; i <= N; i++) {
-            Results.Add(CubeRound(CubeLerp(origin, extent, (float)(1.0 / N * i))));
+            Results.Add(CubeRound(CubeLerp(origin, extent, (float)(1.0 / (float)N * (float)i))));
         }
         return Results.ToArray();
     }
@@ -179,8 +182,7 @@ public class HexCoordinates : MonoBehaviour
                 Vector3Int coordinate = CubeToOffset(hexcoord);
                 Scenery[] sceneries = SceneryManager.GetSceneriesAtPos(coordinate);
                 if (sceneries != null)
-                {
-                    
+                {   
                     foreach(Scenery scenery in sceneries)
                     {
                         if (scenery.Opaque)
@@ -192,10 +194,7 @@ public class HexCoordinates : MonoBehaviour
             }
             if (lineblocked == false) 
             {
-                foreach (Vector3Int hexcoord in lineHexes)
-                {
-                    Results.Add(hexcoord);
-                }
+                Results.Add(target);
             }  
         }
         return Results.ToArray();

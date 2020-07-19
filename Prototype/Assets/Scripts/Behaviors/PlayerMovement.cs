@@ -87,7 +87,7 @@ public class PlayerMovement : PieceBehaviour
         {
             offsetCoord = HexCoordinates.CubeToOffset(coord);
 			NavNode node = pf.GetNode(grid.CellToWorld(offsetCoord));
-			if (!node.IsBlocked())
+			if ((node != null) && (!node.IsBlocked()))
 			{
 				overlayTilemap.SetTile(offsetCoord, highlight);
 			}

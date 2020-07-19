@@ -55,7 +55,7 @@ public class Vision : MonoBehaviour
         Vector3Int[] viewHexes = HexCoordinates.GetFieldOfView(center, viewRange);
         foreach (Vector3Int coord in viewHexes)
         {
-            fogTilemap.SetTile(coord, null);
+            fogTilemap.SetTile(HexCoordinates.CubeToOffset(coord), null);
         }
 
         
