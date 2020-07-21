@@ -1,10 +1,11 @@
 ﻿<Properties StartupConfiguration="{B1235EE4-71EE-C815-28F8-C3378E5ADB84}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Behaviors/Vision.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Behaviors/PlayerMovement.cs">
     <Files>
-      <File FileName="Assets/Scripts/Behaviors/PlayerMovement.cs" Line="86" Column="16" />
+      <File FileName="Assets/Scripts/Behaviors/PlayerMovement.cs" Line="57" Column="22" />
       <File FileName="Assets/Scripts/Behaviors/MoveTowardsTarget.cs" />
       <File FileName="Assets/Scripts/HexCoordinates.cs" />
-      <File FileName="Assets/Scripts/Behaviors/Vision.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Behaviors/Vision.cs" Line="26" Column="24" />
+      <File FileName="Assets/Scripts/PieceManager.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,7 +14,7 @@
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
                 <Node name="Behaviors" expanded="True">
-                  <Node name="Vision.cs" selected="True" />
+                  <Node name="PlayerMovement.cs" selected="True" />
                 </Node>
               </Node>
             </Node>
@@ -24,7 +25,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="e1bd410c-bd88-4d16-92af-f45fd562a2b9" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="e405c6e9-1929-4738-90da-85f54041b368" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

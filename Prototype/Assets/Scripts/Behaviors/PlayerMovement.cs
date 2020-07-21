@@ -13,7 +13,6 @@ public class PlayerMovement : PieceBehaviour
 	private float moveSpeed = 4f; //speed for Moving()
 
 	//fog
-	private Tilemap fogTilemap;
 	private Tilemap overlayTilemap;
 
 	SimplePathFinding2D pf;
@@ -29,10 +28,6 @@ public class PlayerMovement : PieceBehaviour
 	Vector3Int pieceCoords
 	{ get { return grid.WorldToCell(transform.position); } }
 	List<Vector3Int> cellPositions;
-
-	NavNode node;
-
-
 
 	public int range;
 
@@ -51,20 +46,17 @@ public class PlayerMovement : PieceBehaviour
 	{
 		path.Reset();
 		state = State.WaitForInput;
-		UpdateFog();
 		vision = GetComponent<Vision>();
+		UpdateFog();
 	}
 
 	void Awake()
     {
-        fogTilemap = GameObject.Find("Fog").GetComponent<Tilemap>();
         overlayTilemap = GameObject.Find("Overlays").GetComponent<Tilemap>();
 		grid = GameObject.Find("Grid").GetComponent<Grid>(); 
 		pf = GameObject.Find("Grid").GetComponent<SimplePathFinding2D>();
 		path = new SimplePF2D.Path(pf);
 		navmap = GameObject.Find("NavigationTilemap").GetComponent<Tilemap>();
-
-		UpdateFog();
 	}
 
 	
@@ -216,82 +208,27 @@ public class PlayerMovement : PieceBehaviour
     void UpdateFog()
     {
 
-
-		Vector3Int PiecePosition = fogTilemap.WorldToCell(transform.position);
-		Vector3Int PieceCubeCoord = HexCoordinates.OffsetToCube(PiecePosition);
-
-
-		Vector3Int[] rangeHexes = HexCoordinates.GetHexesAtDistance(PieceCubeCoord, 4);
-
-        // temp range  only fog removal
-        // tracked bug in full field of view down to SceneeyManager.GetSceneryAtPos, which works fine in spoor?
-        //      foreach (Vector3Int rangeCubeCoord in rangeHexes)
-        //      {
-        //	fogTilemap.SetTile(HexCoordinates.CubeToOffset(rangeCubeCoord), null);
-        //}
-
-
-
-
-        //Line of sight fog removal not working right yet
         if (vision != null)
         {
-            Debug.Log("player cubecoords: " + PieceCubeCoord);
-            vision.UpdateFog(PieceCubeCoord);
+            vision.UpdateFog();
         }
 
-
-        // here is the pre-field of view version
-        //int x = CubeCoords.x;
-        //int y = CubeCoords.y;
-        //int z = CubeCoords.z;
-        //// I love constantly fixing range by one
-        //int adjustedRange = range - 1;
-
-        //for (int i = -adjustedRange; i <= adjustedRange; i++)
-        //{
-        //    for (int j = -adjustedRange; j <= adjustedRange; j++)
-        //    {
-        //        for (int k = -adjustedRange; k <= adjustedRange; k++)
-        //        {
-        //            if (i + j + k == 0)
-        //            {
-        //                fogTilemap.SetTile(HexCoordinates.CubeToOffset(new Vector3Int(x + i, y + j, z + k)), null);
-        //            }
-
-        //        }
-
-        //    }
-        //}
-
-
-
-        // old square bullshit
-        //Vector3Int PiecePosition = fogTilemap.WorldToCell(transform.position);
-        //      for(int i = -3; i <= 3; i++)
-        //      {
-        //          for(int j = -3; j <= 3; j++)
-        //          {
-        //		//SetTileColour(new Color(0,0,0), new Vector3Int(i, j, 0), fogTilemap); //i was experimenting with trying to change the fog color
-        //	    fogTilemap.SetTile(PiecePosition + new Vector3Int(i, j, 0), null);
-        //          }
-        //      }
     }
 
-	private void SetTileColour(int v, Vector3Int vector3Int, Tilemap fogTilemap)
-    {
-        throw new NotImplementedException();
-    }
+	//private void SetTileColour(int v, Vector3Int vector3Int, Tilemap fogTilemap)
+ //   {
+ //       throw new NotImplementedException();
+ //   }
 
-    private void SetTileColour(Color colour, Vector3Int position, Tilemap tilemap)
-	{
-		// Flag the tile, inidicating that it can change colour.
-		// By default it's set to "Lock Colour".
-		tilemap.SetTileFlags(position, TileFlags.None);
+ //   private void SetTileColour(Color colour, Vector3Int position, Tilemap tilemap)
+	//{
+	//	// Flag the tile, inidicating that it can change colour.
+	//	// By default it's set to "Lock Colour".
+	//	tilemap.SetTileFlags(position, TileFlags.None);
 
-		// Set the colour.
-		tilemap.SetColor(position, colour);
-	}
+	//	// Set the colour.
+	//	tilemap.SetColor(position, colour);
+	//}
 
 
 }

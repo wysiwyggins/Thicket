@@ -17,10 +17,9 @@ public class PieceManager : MonoBehaviour
 
 	public Grid grid;
 
-	private Tilemap fogTilemap;
-	public Tile fogTile;
-
 	//private Text TextOutput;
+
+	private Tilemap fogTilemap;
 
 	public int hour;
 	public float sunPerc
@@ -80,9 +79,6 @@ public class PieceManager : MonoBehaviour
 		state = State.Dawn;
 		currentPiece = AllPieces[0];
 		StartPieceTurn();
-		fogTilemap = GameObject.Find("Fog").GetComponent<Tilemap>();
-
-
 		string pieceNames = "pieces in order:\n";
 
 		foreach(Piece aPiece in AllPieces)
@@ -180,17 +176,13 @@ public class PieceManager : MonoBehaviour
 		{
 			state = State.Night;
 			MessageManager.AddMessage("The sun is swallowed up by the dark horizon of the earth.");
-            foreach (var position in fogTilemap.cellBounds.allPositionsWithin)
-            {
-                fogTilemap.SetTile(position, fogTile);
-            }
+            
         }
 		if (hour >= 13)
 		{
 			state = State.Dawn;
 			//TextOutput.text += "The air around you sings to life. The red sun wakes over the land.\n";
 			MessageManager.AddMessage("The air around you sings to life. The red sun wakes over the land.");
-			fogTilemap.ClearAllTiles();
 			hour = 0;
 		}
 	}

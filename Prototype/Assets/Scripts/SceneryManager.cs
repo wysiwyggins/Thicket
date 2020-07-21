@@ -13,8 +13,18 @@ public class SceneryManager : MonoBehaviour
 	public static SceneryManager Instance;
 	public static List<Scenery> AllScenery = new List<Scenery>();
 	Grid grid;
-	
 
+	private void Start()
+	{
+		grid = GameObject.Find("Grid").GetComponent<Grid>();
+
+		string sceneryNames = "scenery in order:\n";
+		foreach (Scenery aScenery in AllScenery)
+		{
+			sceneryNames += aScenery.gameObject.name + "\n";
+		}
+		//Debug.Log(sceneryNames);
+	}
 
 	public static Scenery GetSceneryAtPos(Vector3Int aCoord)
 	{
@@ -53,16 +63,6 @@ public class SceneryManager : MonoBehaviour
 			Destroy(this);
 	}
 
-	private void Start()
-	{
-		grid = GameObject.Find("Grid").GetComponent<Grid>();
-		
-		string sceneryNames = "scenery in order:\n";
-		foreach (Scenery aScenery in AllScenery)
-		{
-			sceneryNames += aScenery.gameObject.name + "\n";
-		}
-		//Debug.Log(sceneryNames);
-	}
+	
 
 }
