@@ -6,7 +6,7 @@ public class MapBuilder : MonoBehaviour
 {
 
     public int map_size;
-    public int bush;
+    public int brush;
     public int flowers;
     public int wolves;
     public int bears;
@@ -27,7 +27,8 @@ public class MapBuilder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //wipe out the old world to make room for the new world.
+
     }
 
     // Update is called once per frame

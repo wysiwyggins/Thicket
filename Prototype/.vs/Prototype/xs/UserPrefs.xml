@@ -1,5 +1,5 @@
 ﻿<Properties StartupConfiguration="{B1235EE4-71EE-C815-28F8-C3378E5ADB84}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MapBuilder.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SceneryManager.cs">
     <Files>
       <File FileName="Assets/Scripts/Cursor.cs" Line="44" Column="1" />
       <File FileName="Assets/Scripts/Scenery.cs" />
@@ -9,14 +9,14 @@
       <File FileName="Assets/Scripts/Behaviors/Vision.cs" />
       <File FileName="Assets/Scripts/PieceManager.cs" />
       <File FileName="Assets/Scripts/Piece.cs" />
-      <File FileName="Assets/Scripts/SceneryManager.cs" />
-      <File FileName="Assets/Scripts/MapBuilder.cs" Line="21" Column="58" />
-      <File FileName="Assets/Scripts/Behaviors/Sleep.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/SceneryManager.cs" Line="13" Column="2" />
+      <File FileName="Assets/Scripts/MapBuilder.cs" Line="31" Column="1" />
+      <File FileName="Assets/Scripts/Behaviors/Sleep.cs" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="ff973efc-3ec5-422f-a75e-6e26bd82291b" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="ae7eec6a-2798-4981-9a9b-29e2685cf2f6" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
