@@ -82,6 +82,7 @@
     <Compile Include="Assets/Scripts/Spoor.cs" />
     <Compile Include="Assets/Scripts/LightEffect.cs" />
     <Compile Include="Assets/Scripts/Cursor.cs" />
+    <Compile Include="Assets/Scripts/Zoomer.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets/Shaders/Blur.shader" />

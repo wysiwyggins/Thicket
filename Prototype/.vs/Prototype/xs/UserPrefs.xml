@@ -1,22 +1,21 @@
 ﻿<Properties StartupConfiguration="{B1235EE4-71EE-C815-28F8-C3378E5ADB84}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SceneryManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Zoomer.cs">
     <Files>
       <File FileName="Assets/Scripts/Cursor.cs" Line="44" Column="1" />
       <File FileName="Assets/Scripts/Scenery.cs" />
-      <File FileName="Assets/Scripts/HexCoordinates.cs" />
-      <File FileName="Assets/Scripts/Behaviors/PlayerMovement.cs" />
-      <File FileName="Assets/Scripts/PieceBehaviour.cs" />
-      <File FileName="Assets/Scripts/Behaviors/Vision.cs" />
-      <File FileName="Assets/Scripts/PieceManager.cs" />
-      <File FileName="Assets/Scripts/Piece.cs" />
-      <File FileName="Assets/Scripts/SceneryManager.cs" Line="13" Column="2" />
-      <File FileName="Assets/Scripts/MapBuilder.cs" Line="31" Column="1" />
-      <File FileName="Assets/Scripts/Behaviors/Sleep.cs" />
+      <File FileName="Assets/Scripts/HexCoordinates.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Behaviors/PlayerMovement.cs" Line="21" Column="24" />
+      <File FileName="Assets/Scripts/PieceBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Behaviors/Vision.cs" Line="62" Column="62" />
+      <File FileName="Assets/Scripts/TimeZoom.cs" Line="26" Column="38" />
+      <File FileName="Assets/Scripts/PieceManager.cs" Line="13" Column="37" />
+      <File FileName="Assets/Scripts/Behaviors/Sleep.cs" Line="31" Column="2" />
+      <File FileName="Assets/Scripts/LightEffect.cs" Line="12" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="ae7eec6a-2798-4981-9a9b-29e2685cf2f6" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="9ec8291d-78c6-45ad-a08c-d451620c1911" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

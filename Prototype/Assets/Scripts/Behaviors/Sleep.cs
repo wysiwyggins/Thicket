@@ -99,6 +99,7 @@ public class Sleep : PieceBehaviour
 			sleepcheck = false;
 			if (ShouldGoHome())
 			{
+				this.gameObject.GetComponent<SpriteRenderer>().sprite = AwakeSprite;
 				state = State.Sleepy;
 			}
 		}
