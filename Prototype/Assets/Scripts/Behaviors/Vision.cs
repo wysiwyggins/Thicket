@@ -10,7 +10,7 @@ public class Vision : MonoBehaviour
     Vector3Int[] Results;
     Grid grid;
     Camera m_MainCamera;
-    Zoomer zoomer;
+    Camera_Zoomer zoomer;
     private Tilemap overlayTilemap;
     //fog
     private Tilemap fogTilemap;
@@ -23,7 +23,7 @@ public class Vision : MonoBehaviour
     {
         grid = GameObject.Find("Grid").GetComponent<Grid>();
         m_MainCamera = Camera.main;
-        zoomer = m_MainCamera.GetComponent<Zoomer>();
+        zoomer = m_MainCamera.GetComponent<Camera_Zoomer>();
         overlayTilemap = GameObject.Find("Overlays").GetComponent<Tilemap>();
         fogTilemap = GameObject.Find("Fog").GetComponent<Tilemap>();
         viewRange = 2;
@@ -53,7 +53,7 @@ public class Vision : MonoBehaviour
         }
         if (PieceManager.state == PieceManager.State.Dawn | PieceManager.state == PieceManager.State.Dusk)
         {
-            viewRange = 5;
+            viewRange = 3;
             zoomer.ZoomCamera(viewRange, transform.position);
         }
         if (PieceManager.state == PieceManager.State.Night)

@@ -72,6 +72,7 @@
     <Compile Include="Assets/SimpleTilePathfinding/Script/AStarSearch.cs" />
     <Compile Include="Assets/SimpleTilePathfinding/Script/SimplePathFinding2D.cs" />
     <Compile Include="Assets/SimpleTilePathfinding/Script/NavNode.cs" />
+    <Compile Include="Assets/Scripts/Camera_Zoomer.cs" />
     <Compile Include="Assets/Scripts/Scenery.cs" />
     <Compile Include="Assets/Scripts/MessageManager.cs" />
     <Compile Include="Assets/Scripts/PieceBehaviour.cs" />
@@ -82,7 +83,7 @@
     <Compile Include="Assets/Scripts/Spoor.cs" />
     <Compile Include="Assets/Scripts/LightEffect.cs" />
     <Compile Include="Assets/Scripts/Cursor.cs" />
-    <Compile Include="Assets/Scripts/Zoomer.cs" />
+    <Compile Include="Assets/Scripts/Camera_Follow.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets/Shaders/Blur.shader" />
