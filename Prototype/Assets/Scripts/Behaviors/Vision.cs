@@ -11,12 +11,17 @@ public class Vision : MonoBehaviour
     Grid grid;
     Camera m_MainCamera;
     Camera_Zoomer zoomer;
+
+    public float transitionSpeed;
+    float visibility;
     private Tilemap overlayTilemap;
     //fog
     private Tilemap fogTilemap;
     public Tile fogTile;
     public Tile highlight;
 
+
+    public AnimationCurve fogSizeOverTime;
 
     // Start is called before the first frame update
     void Start()
@@ -44,24 +49,10 @@ public class Vision : MonoBehaviour
             fogTilemap.SetTile(position, fogTile);
         }
         //this would remove fog tiles from field of view
+        visibility = Mathf.PingPong(PieceManager.Instance.hour, 6) + 1;
+        Debug.Log("Attempting field of view with a center of " + center + " and a range of " + visibility);
 
-        Debug.Log("Attempting field of view with a center of " + center + " and a range of " + viewRange);
-        if (PieceManager.state == PieceManager.State.Day)
-        {
-            viewRange = 20;
-            zoomer.ResetZoomCamera();
-        }
-        if (PieceManager.state == PieceManager.State.Dawn | PieceManager.state == PieceManager.State.Dusk)
-        {
-            viewRange = 3;
-            zoomer.ZoomCamera(viewRange, transform.position);
-        }
-        if (PieceManager.state == PieceManager.State.Night)
-        {
-            viewRange = 2;
-            zoomer.ZoomCamera(viewRange, transform.position);
-        }
-        Vector3Int[] viewHexes = HexCoordinates.GetFieldOfView(center, viewRange);
+        Vector3Int[] viewHexes = HexCoordinates.GetFieldOfView(center, (int) visibility);
         foreach (Vector3Int coord in viewHexes)
         {
             fogTilemap.SetTile(HexCoordinates.CubeToOffset(coord), null);

@@ -2858,7 +2858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e58199ab30d64140a94369a485fcf22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maincamera: {fileID: 580885828}
+  transitionSpeed: 1
 --- !u!1001 &672849918
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4377,6 +4377,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6366142697534753649, guid: 541d05a6bd816438b92bc2f952e6d04c,
         type: 3}
+      propertyPath: cameraSizeOverTime.m_Curve.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366142697534753649, guid: 541d05a6bd816438b92bc2f952e6d04c,
+        type: 3}
       propertyPath: highlight
       value: 
       objectReference: {fileID: 11400000, guid: e4df08d5c87c147938706696bad03c90,
@@ -4387,6 +4392,66 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b61627db5fde54991b2ff2551c528753,
         type: 2}
+    - target: {fileID: 6366142697534753649, guid: 541d05a6bd816438b92bc2f952e6d04c,
+        type: 3}
+      propertyPath: cameraSizeOverTime.m_Curve.Array.data[1].time
+      value: 0.20033932
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366142697534753649, guid: 541d05a6bd816438b92bc2f952e6d04c,
+        type: 3}
+      propertyPath: cameraSizeOverTime.m_Curve.Array.data[1].value
+      value: 1.0011863
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366142697534753649, guid: 541d05a6bd816438b92bc2f952e6d04c,
+        type: 3}
+      propertyPath: cameraSizeOverTime.m_Curve.Array.data[1].inSlope
+      value: -0.2777851
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366142697534753649, guid: 541d05a6bd816438b92bc2f952e6d04c,
+        type: 3}
+      propertyPath: cameraSizeOverTime.m_Curve.Array.data[1].outSlope
+      value: -0.2777851
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366142697534753649, guid: 541d05a6bd816438b92bc2f952e6d04c,
+        type: 3}
+      propertyPath: cameraSizeOverTime.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366142697534753649, guid: 541d05a6bd816438b92bc2f952e6d04c,
+        type: 3}
+      propertyPath: cameraSizeOverTime.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366142697534753649, guid: 541d05a6bd816438b92bc2f952e6d04c,
+        type: 3}
+      propertyPath: cameraSizeOverTime.m_Curve.Array.data[1].inWeight
+      value: 0.5989307
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366142697534753649, guid: 541d05a6bd816438b92bc2f952e6d04c,
+        type: 3}
+      propertyPath: cameraSizeOverTime.m_PostInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366142697534753649, guid: 541d05a6bd816438b92bc2f952e6d04c,
+        type: 3}
+      propertyPath: cameraSizeOverTime.m_Curve.Array.data[2].time
+      value: 0.34268603
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366142697534753649, guid: 541d05a6bd816438b92bc2f952e6d04c,
+        type: 3}
+      propertyPath: cameraSizeOverTime.m_Curve.Array.data[2].value
+      value: 0.9996147
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366142697534753649, guid: 541d05a6bd816438b92bc2f952e6d04c,
+        type: 3}
+      propertyPath: cameraSizeOverTime.m_Curve.Array.data[3].time
+      value: 0.53162014
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366142697534753649, guid: 541d05a6bd816438b92bc2f952e6d04c,
+        type: 3}
+      propertyPath: cameraSizeOverTime.m_Curve.Array.data[3].value
+      value: 0.016454577
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 541d05a6bd816438b92bc2f952e6d04c, type: 3}
 --- !u!4 &1003043987 stripped

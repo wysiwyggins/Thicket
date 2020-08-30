@@ -4,29 +4,23 @@ using UnityEngine;
 
 public class Camera_Zoomer : MonoBehaviour
 {
-    public Camera maincamera;
-    public static Camera_Zoomer Instance;
 
-    float zoomlevel;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public static Camera_Zoomer Instance;
+	public float transitionSpeed;
+	Camera camera;
+	float currentTime;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	float targetSize;
 
-    public void ZoomCamera(float zoomint, Vector3 playerposition)
-    {
-        zoomlevel = (float)zoomint /1000;
-        maincamera.orthographicSize += zoomlevel;
-    }
-    public void ResetZoomCamera()
-    {
-        maincamera.orthographicSize = 6;
-    }
+	void Start()
+	{
+		camera = GetComponent<Camera>();
+	}
+
+	void Update()
+	{
+		currentTime = PieceManager.Instance.sunPerc;
+		Debug.Log("sunPerc:" + PieceManager.Instance.sunPerc);
+		//camera.orthographicSize = Mathf.MoveTowards(camera.orthographicSize, currentTime, Time.deltaTime * transitionSpeed);
+	}
 }
