@@ -4,15 +4,19 @@
       <File FileName="Assets/Scripts/PieceManager.cs" Line="27" Column="18" />
       <File FileName="Assets/Scripts/Camera_Zoomer.cs" />
       <File FileName="Assets/Scripts/Piece.cs" />
-      <File FileName="Assets/Scripts/Behaviors/Vision.cs" Line="51" Column="57" />
-      <File FileName="Assets/Scripts/LightEffect.cs" Line="12" Column="3" />
+      <File FileName="Assets/Scripts/Behaviors/Vision.cs" Line="57" Column="80" />
+      <File FileName="Assets/Scripts/LightEffect.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Prototype" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="Scripts" expanded="True" />
+              <Node name="Scripts" expanded="True">
+                <Node name="Behaviors" expanded="True">
+                  <Node name="Vision.cs" selected="True" />
+                </Node>
+              </Node>
             </Node>
           </Node>
         </State>
