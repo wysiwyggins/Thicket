@@ -37,14 +37,14 @@ public class MapBuilder : MonoBehaviour
     void Start()
     {
         //wipe out the old world to make room for the new world.
-        map_origin = new Vector3Int(0,0,0);
+        map_origin = new Vector3Int(0, 0, 0);
         HexMap();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void HexMap()
@@ -66,6 +66,7 @@ public class MapBuilder : MonoBehaviour
         //}
 
     }
+}
 
 
 
