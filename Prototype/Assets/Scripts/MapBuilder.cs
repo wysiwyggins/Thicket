@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class MapBuilder : MonoBehaviour
 {
@@ -12,6 +13,14 @@ public class MapBuilder : MonoBehaviour
     public int bears;
     public int chickens;
     public int water;
+    Vector3Int map_origin;
+
+    Grid grid;
+
+    public Tilemap floorTiles;
+    public Tilemap navigationTiles;
+    public Tile groundTile;
+    public Tile navTile;
 
 
     // Mapbuilder would
@@ -28,7 +37,8 @@ public class MapBuilder : MonoBehaviour
     void Start()
     {
         //wipe out the old world to make room for the new world.
-
+        map_origin = new Vector3Int(0,0,0);
+        HexMap();
     }
 
     // Update is called once per frame
@@ -36,6 +46,30 @@ public class MapBuilder : MonoBehaviour
     {
         
     }
+
+    void HexMap()
+    {
+        //this builds a hexagon-shaped map. There's redblobs implementations for other shapes, like triangles: https://www.redblobgames.com/grids/hexagons/implementation.html#hex-distance
+        Vector3Int[] groundCoords = HexCoordinates.GetHexesAtDistance(map_origin, map_size);
+
+        // This would make a ring of obstacle tiles around the map, but it's currently broken. Uses a neighbors array and CubeRing function that I probably did wrong.
+        //Vector3Int[] boundaryCoords = HexCoordinates.CubeRing(map_origin, map_size + 1);
+        foreach (Vector3Int coord in groundCoords)
+        {
+            floorTiles.SetTile(HexCoordinates.CubeToOffset(coord), groundTile);
+
+        }
+        //foreach (Vector3Int coord in boundaryCoords)
+        //{
+        //    navigationTiles.SetTile(HexCoordinates.CubeToOffset(coord), navTile);
+
+        //}
+
+    }
+
+
+
+
 
 
 

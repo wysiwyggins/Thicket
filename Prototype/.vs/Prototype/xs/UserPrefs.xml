@@ -1,11 +1,13 @@
 ﻿<Properties StartupConfiguration="{B1235EE4-71EE-C815-28F8-C3378E5ADB84}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Behaviors/Vision.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SceneryManager.cs">
     <Files>
       <File FileName="Assets/Scripts/PieceManager.cs" Line="27" Column="18" />
-      <File FileName="Assets/Scripts/Camera_Zoomer.cs" />
-      <File FileName="Assets/Scripts/Piece.cs" />
-      <File FileName="Assets/Scripts/Behaviors/Vision.cs" Line="57" Column="80" />
-      <File FileName="Assets/Scripts/LightEffect.cs" />
+      <File FileName="Assets/Scripts/LightEffect.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MapBuilder.cs" Line="20" Column="31" />
+      <File FileName="Assets/Scripts/HexCoordinates.cs" Line="105" Column="40" />
+      <File FileName="Assets/Scripts/Behaviors/Vision.cs" Line="60" Column="10" />
+      <File FileName="Assets/Scripts/Camera_Zoomer.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/SceneryManager.cs" Line="47" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,9 +15,8 @@
           <Node name="Prototype" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Behaviors" expanded="True">
-                  <Node name="Vision.cs" selected="True" />
-                </Node>
+                <Node name="Behaviors" expanded="True" />
+                <Node name="SceneryManager.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -25,7 +26,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="8ddb393f-5850-4ee2-b44d-03375367e5ac" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="3c56110b-3f76-49ed-9fc8-e341ca692aef" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

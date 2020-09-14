@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class HexCoordinates : MonoBehaviour
 {
+
+    static public List<Vector3Int> directions = new List<Vector3Int> { new Vector3Int(1, 0, -1), new Vector3Int(1, -1, 0), new Vector3Int(0, -1, 1), new Vector3Int(-1, 0, 1), new Vector3Int(-1, 1, 0), new Vector3Int(0, 1, -1) };
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +51,7 @@ public class HexCoordinates : MonoBehaviour
         return new Vector3Int(x, y, z);
     }
 
+
     public static Vector3Int[] GetNeighborsAtPos(Vector3Int aCoord)
     {
         List<Vector3Int> Neighbors = new List<Vector3Int>();
@@ -64,24 +70,10 @@ public class HexCoordinates : MonoBehaviour
         return Neighbors.ToArray();
     }
 
-
-
-    //public static Vector3Int[] GetHexesAtDistance(Vector3Int center, int distance)
-    //{
-    //    List<Vector3Int> Results = new List<Vector3Int>();
-    //    for (int x = (-1 * distance); x <= distance; x++ ) 
-    //    {
-    //        int maxValue = Mathf.Min(+distance, -center.x + distance);
-    //        for (int y = Mathf.Max(-distance, -center.x - distance); y <= maxValue; y++)
-    //        {
-    //            int z = -x - y;
-    //            Vector3Int hexPosition = new Vector3Int(x, y, z);
-    //            Results.Add(hexPosition);
-    //        }
-
-    //    }
-    //    return Results.ToArray();
-    //}
+    static public Vector3Int Direction(int direction)
+    {
+        return directions[direction];
+    }
 
 
     public static Vector3Int[] GetHexesAtDistance(Vector3Int center, int distance)
@@ -109,10 +101,29 @@ public class HexCoordinates : MonoBehaviour
     }
 
 
+
+    //public static Vector3Int[] CubeRing(Vector3Int center, int distance)
+    //{
+    //    List<Vector3Int> Results = new List<Vector3Int>();
+
+    //    Vector3Int cube = center * distance;
+
+    //    for (int i = 0; i <= 6; i++)
+    //    {
+    //        for (int j = 0; j <= distance; j++)
+    //        {
+    //            Results.Add(cube);
+    //            cube = cube + (cube + directions[i]);//cube neighbor(cube, i);
+    //        }
+    //    }
+    //    return Results.ToArray();
+    //}
+
     public static int CubeDistance(Vector3Int a, Vector3Int b)
     {
         return (Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y) + Mathf.Abs(a.z - b.z)) / 2;
     }
+
 
     public static float Lerp(float a, float b, float t)
     {  
