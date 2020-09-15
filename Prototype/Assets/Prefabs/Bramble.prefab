@@ -48,6 +48,7 @@ MonoBehaviour:
   Description: Bare and thorny branches
   Cleansing: 0
   Obstacle: 1
+  Opaque: 0
 --- !u!212 &421953499927840595
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -63,6 +64,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

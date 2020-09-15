@@ -102,22 +102,25 @@ public class HexCoordinates : MonoBehaviour
 
 
 
-    //public static Vector3Int[] CubeRing(Vector3Int center, int distance)
-    //{
-    //    List<Vector3Int> Results = new List<Vector3Int>();
+    public static Vector3Int[] CubeRing(Vector3Int center, int radius)
+    {
+        List<Vector3Int> Results = new List<Vector3Int>();
 
-    //    Vector3Int cube = center * distance;
+        Vector3Int cube = center + directions[4] * radius;
+        // Results.Add(cube);
 
-    //    for (int i = 0; i <= 6; i++)
-    //    {
-    //        for (int j = 0; j <= distance; j++)
-    //        {
-    //            Results.Add(cube);
-    //            cube = cube + (cube + directions[i]);//cube neighbor(cube, i);
-    //        }
-    //    }
-    //    return Results.ToArray();
-    //}
+        for (int i = 0; i <= 5; i++)
+        {
+
+            for (int j = 0; j <= radius; j++)
+            {
+                Results.Add(cube);
+                Vector3Int cubeNeighbor = cube + directions[i];
+                cube += cubeNeighbor;
+            }
+        }
+        return Results.ToArray();
+    }
 
     public static int CubeDistance(Vector3Int a, Vector3Int b)
     {

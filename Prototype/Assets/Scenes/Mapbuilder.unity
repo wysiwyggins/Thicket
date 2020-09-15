@@ -2477,7 +2477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map_size: 5
-  brush: 20
+  trees: 0
   flowers: 10
   wolves: 1
   bears: 1
@@ -2494,6 +2494,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 421953499927840594, guid: 6b5f5adbab58a44c3838b24c82c7d0a3,
+        type: 3}
+      propertyPath: Opaque
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 421953499927840596, guid: 6b5f5adbab58a44c3838b24c82c7d0a3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2841,8 +2846,8 @@ MonoBehaviour:
   PathLoad: 64
   MinimumPathIterationsPerFrame: 8
   MaximumPathIterationsPerFrame: 512
-  DebugDrawPaths: 0
-  DebugDrawNavGrid: 0
+  DebugDrawPaths: 1
+  DebugDrawNavGrid: 1
   DebugMarkerObject: {fileID: 3271623743290980581, guid: c30518df655914837891717b5a9be926,
     type: 3}
 --- !u!156049354 &1969299498

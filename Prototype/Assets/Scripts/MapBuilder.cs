@@ -53,17 +53,17 @@ public class MapBuilder : MonoBehaviour
         Vector3Int[] groundCoords = HexCoordinates.GetHexesAtDistance(map_origin, map_size);
 
         // This would make a ring of obstacle tiles around the map, but it's currently broken. Uses a neighbors array and CubeRing function that I probably did wrong.
-        //Vector3Int[] boundaryCoords = HexCoordinates.CubeRing(map_origin, map_size + 1);
+        Vector3Int[] boundaryCoords = HexCoordinates.CubeRing(map_origin, map_size + 1);
         foreach (Vector3Int coord in groundCoords)
         {
             floorTiles.SetTile(HexCoordinates.CubeToOffset(coord), groundTile);
 
         }
-        //foreach (Vector3Int coord in boundaryCoords)
-        //{
-        //    navigationTiles.SetTile(HexCoordinates.CubeToOffset(coord), navTile);
+        foreach (Vector3Int coord in boundaryCoords)
+        {
+            navigationTiles.SetTile(HexCoordinates.CubeToOffset(coord), navTile);
 
-        //}
+        }
 
     }
 }
