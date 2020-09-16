@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using SimplePF2D;
 
 public class MapBuilder : MonoBehaviour
 {
 
-    public int map_size;
+    public int map_radius;
     public int trees;
     public int flowers;
     public int wolves;
@@ -16,6 +17,7 @@ public class MapBuilder : MonoBehaviour
     Vector3Int map_origin;
 
     Grid grid;
+    SimplePathFinding2D pf;
 
     public Tilemap floorTiles;
     public Tilemap navigationTiles;
@@ -39,6 +41,7 @@ public class MapBuilder : MonoBehaviour
         //wipe out the old world to make room for the new world.
         map_origin = new Vector3Int(0, 0, 0);
         HexMap();
+        pf = GameObject.Find("Grid").GetComponent<SimplePathFinding2D>();
     }
 
     // Update is called once per frame
@@ -50,10 +53,10 @@ public class MapBuilder : MonoBehaviour
     void HexMap()
     {
         //this builds a hexagon-shaped map. There's redblobs implementations for other shapes, like triangles: https://www.redblobgames.com/grids/hexagons/implementation.html#hex-distance
-        Vector3Int[] groundCoords = HexCoordinates.GetHexesAtDistance(map_origin, map_size);
+        Vector3Int[] groundCoords = HexCoordinates.GetHexesAtDistance(map_origin, map_radius);
 
         // This would make a ring of obstacle tiles around the map, but it's currently broken. Uses a neighbors array and CubeRing function that I probably did wrong.
-        Vector3Int[] boundaryCoords = HexCoordinates.CubeRing(map_origin, map_size + 1);
+        Vector3Int[] boundaryCoords = HexCoordinates.CubeRing(map_origin, map_radius + 1);
         foreach (Vector3Int coord in groundCoords)
         {
             floorTiles.SetTile(HexCoordinates.CubeToOffset(coord), groundTile);
@@ -62,6 +65,7 @@ public class MapBuilder : MonoBehaviour
         foreach (Vector3Int coord in boundaryCoords)
         {
             navigationTiles.SetTile(HexCoordinates.CubeToOffset(coord), navTile);
+            pf.SetNavTileBlocked(HexCoordinates.CubeToOffset(coord), true);
 
         }
 

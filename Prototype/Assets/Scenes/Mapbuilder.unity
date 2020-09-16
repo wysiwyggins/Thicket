@@ -2476,7 +2476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b075f5330f02429b951ebc37b087369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map_size: 5
+  map_radius: 5
   trees: 0
   flowers: 10
   wolves: 1
@@ -2846,7 +2846,7 @@ MonoBehaviour:
   PathLoad: 64
   MinimumPathIterationsPerFrame: 8
   MaximumPathIterationsPerFrame: 512
-  DebugDrawPaths: 1
+  DebugDrawPaths: 0
   DebugDrawNavGrid: 1
   DebugMarkerObject: {fileID: 3271623743290980581, guid: c30518df655914837891717b5a9be926,
     type: 3}
