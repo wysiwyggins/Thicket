@@ -6,9 +6,9 @@ using UnityEngine.Tilemaps;
 public class Scenery : MonoBehaviour
 {
     Grid grid;
-    //SimplePathFinding2D pf;
-    Tilemap navigationTilemap;
-    Tile blockTile;
+    SimplePathFinding2D pf;
+    public Tilemap navigationTilemap;
+    public Tile navTile;
     Vector3Int pieceCoords
     { get { return grid.WorldToCell(transform.position); } }
 
@@ -21,10 +21,9 @@ public class Scenery : MonoBehaviour
     // Start is called before the first frame update
     void Begin()
     {
-        //pf = GameObject.Find("Grid").GetComponent<SimplePathFinding2D>();
+        pf = GameObject.Find("Grid").GetComponent<SimplePathFinding2D>();
         grid = GameObject.Find("Grid").GetComponent<Grid>();
-        navigationTilemap = GameObject.Find("NavigationTilemap").GetComponent<Tilemap>();
-        //blockTile = pf.BlockTile;
+        //navigationTilemap = GameObject.Find("NavigationTilemap").GetComponent<Tilemap>();
     }
 
     // Update is called once per frame
@@ -35,22 +34,22 @@ public class Scenery : MonoBehaviour
     private void OnEnable()
     {
 
-        // this doesn't work yet - trying to auto add/remove a block tile but gives null reference exception
-        //if (Obstacle)
-        //{
-        //    pf.SetNavTileBlocked(grid.WorldToCell(transform.position), true);
-        //}
+        if (Obstacle)
+        {
+            navigationTilemap.SetTile(grid.WorldToCell(transform.position), navTile);
+            pf.SetNavTileBlocked(grid.WorldToCell(transform.position), true);
+        }
         SceneryManager.AllScenery.Add(this);
         
     }
 
     private void OnDestroy()
     {
-        // this doesn't work yet
-        //if (Obstacle)
-        //{
-        //    pf.SetNavTileBlocked(grid.WorldToCell(transform.position), false);
-        //}
+        if (Obstacle)
+        {
+            navigationTilemap.SetTile(grid.WorldToCell(transform.position), null);
+            pf.SetNavTileBlocked(grid.WorldToCell(transform.position), false);
+        }
         SceneryManager.AllScenery.Remove(this);
     }
 
