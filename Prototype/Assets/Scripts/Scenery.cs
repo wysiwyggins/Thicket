@@ -36,8 +36,8 @@ public class Scenery : MonoBehaviour
 
         if (Obstacle)
         {
-            navigationTilemap.SetTile(grid.WorldToCell(transform.position), navTile);
-            pf.SetNavTileBlocked(grid.WorldToCell(transform.position), true);
+           // navigationTilemap.SetTile(grid.WorldToCell(transform.position), navTile);
+           // pf.SetNavTileBlocked(grid.WorldToCell(transform.position), true);
         }
         SceneryManager.AllScenery.Add(this);
         
@@ -47,8 +47,8 @@ public class Scenery : MonoBehaviour
     {
         if (Obstacle)
         {
-            navigationTilemap.SetTile(grid.WorldToCell(transform.position), null);
-            pf.SetNavTileBlocked(grid.WorldToCell(transform.position), false);
+           // navigationTilemap.SetTile(grid.WorldToCell(transform.position), null);
+           // pf.SetNavTileBlocked(grid.WorldToCell(transform.position), false);
         }
         SceneryManager.AllScenery.Remove(this);
     }
