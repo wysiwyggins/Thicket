@@ -50,7 +50,7 @@ public class Vision : MonoBehaviour
         }
         //this would remove fog tiles from field of view
         visibility = Mathf.PingPong(PieceManager.Instance.hour, 6) + 1;
-        Debug.Log("Attempting field of view with a center of " + center + " and a range of " + visibility);
+        //Debug.Log("Attempting field of view with a center of " + center + " and a range of " + visibility);
 
         Vector3Int[] viewHexes = HexCoordinates.GetFieldOfView(center, (int) visibility);
         foreach (Vector3Int coord in viewHexes)
