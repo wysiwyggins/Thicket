@@ -209,7 +209,7 @@ public class MoveTowardsTarget : PieceBehaviour
 				OnEnterTile.Invoke();
 
 			//Debug.Log("Reached path point");
-			Debug.Log("Piece: " + piece.PieceName + ", Location: " + pieceCoords);
+			//Debug.Log("Piece: " + piece.PieceName + ", Location: " + pieceCoords);
 			yield return new WaitForSeconds(0.05f);
 
 		}
