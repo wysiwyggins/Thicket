@@ -20,7 +20,7 @@ public class Camera_Zoomer : MonoBehaviour
 	void Update()
 	{
 		currentTime = PieceManager.Instance.sunPerc;
-		Debug.Log("sunPerc:" + PieceManager.Instance.sunPerc);
+		//Debug.Log("sunPerc:" + PieceManager.Instance.sunPerc);
 		//camera.orthographicSize = Mathf.MoveTowards(camera.orthographicSize, currentTime, Time.deltaTime * transitionSpeed);
 	}
 }

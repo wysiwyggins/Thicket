@@ -114,10 +114,15 @@ public class HexCoordinates : MonoBehaviour
 
             for (int j = 0; j <= radius; j++)
             {
+
                 Results.Add(cube);
                 Vector3Int cubeNeighbor = cube + directions[i];
                 cube += cubeNeighbor;
             }
+        }
+        foreach (var x in Results)
+        {
+            Debug.Log(x.ToString());
         }
         return Results.ToArray();
     }
