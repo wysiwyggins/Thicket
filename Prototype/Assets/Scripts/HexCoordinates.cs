@@ -122,7 +122,7 @@ public class HexCoordinates : MonoBehaviour
         }
         foreach (var x in Results)
         {
-            Debug.Log(x.ToString());
+            Debug.Log("Added hex to ring: " + x.ToString());
         }
         return Results.ToArray();
     }
