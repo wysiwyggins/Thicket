@@ -109,6 +109,9 @@ public class HexCoordinates : MonoBehaviour
         Vector3Int cube = center + directions[4] * radius;
         // Results.Add(cube);
 
+        Debug.Log("Started with center: " + center.ToString());
+        Debug.Log("Radius is: " + radius);
+
         for (int i = 0; i <= 5; i++)
         {
 
@@ -116,8 +119,7 @@ public class HexCoordinates : MonoBehaviour
             {
 
                 Results.Add(cube);
-                Vector3Int cubeNeighbor = cube + directions[i];
-                cube += cubeNeighbor;
+                cube = cube + directions[i];
             }
         }
         foreach (var x in Results)
