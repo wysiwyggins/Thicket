@@ -17,7 +17,6 @@ public class MapBuilder : MonoBehaviour
     Vector3Int map_origin;
 
     Grid grid;
-    SimplePathFinding2D pf;
 
     public Tilemap floorTiles;
     public Tilemap navigationTiles;
@@ -41,7 +40,6 @@ public class MapBuilder : MonoBehaviour
         //wipe out the old world to make room for the new world.
         map_origin = new Vector3Int(0, 0, 0);
         HexMap();
-        pf = GameObject.Find("Grid").GetComponent<SimplePathFinding2D>();
     }
 
     // Update is called once per frame
@@ -65,7 +63,6 @@ public class MapBuilder : MonoBehaviour
         foreach (Vector3Int coord in boundaryCoords)
         {
             navigationTiles.SetTile(HexCoordinates.CubeToOffset(coord), navTile);
-            pf.SetNavTileBlocked(HexCoordinates.CubeToOffset(coord), true);
 
         }
 

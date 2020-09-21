@@ -6,24 +6,27 @@ using UnityEngine.Tilemaps;
 public class Scenery : MonoBehaviour
 {
     Grid grid;
-    SimplePathFinding2D pf;
     public Tilemap navigationTilemap;
     public Tile navTile;
-    Vector3Int pieceCoords
-    { get { return grid.WorldToCell(transform.position); } }
 
     public string SceneryName = "unnamed";
     public string Description = "There's nothing here.";
     public bool Cleansing;
     public bool Obstacle;
     public bool Opaque;
+    Vector3Int pieceCoords
+    { get { return grid.WorldToCell(transform.position); } }
 
     // Start is called before the first frame update
     void Begin()
     {
-        pf = GameObject.Find("Grid").GetComponent<SimplePathFinding2D>();
+    }
+
+    void Awake()
+    {
         grid = GameObject.Find("Grid").GetComponent<Grid>();
-        //navigationTilemap = GameObject.Find("NavigationTilemap").GetComponent<Tilemap>();
+        navigationTilemap = GameObject.Find("NavigationTilemap").GetComponent<Tilemap>();
+
     }
 
     // Update is called once per frame
@@ -33,11 +36,9 @@ public class Scenery : MonoBehaviour
 
     private void OnEnable()
     {
-
         if (Obstacle)
         {
-           // navigationTilemap.SetTile(grid.WorldToCell(transform.position), navTile);
-           // pf.SetNavTileBlocked(grid.WorldToCell(transform.position), true);
+           navigationTilemap.SetTile(pieceCoords, navTile);
         }
         SceneryManager.AllScenery.Add(this);
         
@@ -47,8 +48,7 @@ public class Scenery : MonoBehaviour
     {
         if (Obstacle)
         {
-           // navigationTilemap.SetTile(grid.WorldToCell(transform.position), null);
-           // pf.SetNavTileBlocked(grid.WorldToCell(transform.position), false);
+           navigationTilemap.SetTile(pieceCoords, null);
         }
         SceneryManager.AllScenery.Remove(this);
     }

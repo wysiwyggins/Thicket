@@ -21,6 +21,6 @@ public class Camera_Zoomer : MonoBehaviour
 	{
 		currentTime = PieceManager.Instance.sunPerc;
 		//Debug.Log("sunPerc:" + PieceManager.Instance.sunPerc);
-		//camera.orthographicSize = Mathf.MoveTowards(camera.orthographicSize, currentTime, Time.deltaTime * transitionSpeed);
+		//camera.orthographicSize = Mathf.MoveTowards(camera.orthographicSize, currentTime, Time.deltaTime * transitionSpeed); //wanted to zoom into player based on time of night and reduction of visibility, doing it wrong.
 	}
 }

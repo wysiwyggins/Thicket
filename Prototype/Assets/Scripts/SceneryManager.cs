@@ -44,7 +44,7 @@ public class SceneryManager : MonoBehaviour
 		List<Scenery> Sceneries = new List<Scenery>();
 		foreach (Scenery aScenery in AllScenery)
 		{
-			Vector3Int coordinate = Instance.grid.WorldToCell(aScenery.transform.position);
+            Vector3Int coordinate = Instance.grid.WorldToCell(aScenery.transform.position);
 			if (aCoord == coordinate)
 			{
 				
