@@ -2495,6 +2495,11 @@ MonoBehaviour:
   navigationTiles: {fileID: 918936700}
   groundTile: {fileID: 11400000, guid: e9adf5d36330b4446b7199437bdb4106, type: 2}
   navTile: {fileID: 11400000, guid: e803cf3db5ed0455f9d6ca5970d7ed02, type: 2}
+  obstacleTiles:
+  - {fileID: 421953499927840594, guid: 6b5f5adbab58a44c3838b24c82c7d0a3, type: 3}
+  - {fileID: 3683709132267767543, guid: af343c09b875b498d9e24922ae5545d9, type: 3}
+  - {fileID: 6069647451205213703, guid: 15d8b6832306d448eb122a60e0a3e0fe, type: 3}
+  - {fileID: 2047196379617070819, guid: edcfb2843570643f88ac8d927d27ecf3, type: 3}
 --- !u!1001 &1616198714
 PrefabInstance:
   m_ObjectHideFlags: 0

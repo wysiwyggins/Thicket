@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: hedge
+  m_Name: brambles3
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 3dd2c06dbd82e4ec7aa34c0b77573053, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 09037a3a4098a4174ba4e9c90ed99489, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

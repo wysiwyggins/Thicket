@@ -22,6 +22,7 @@ public class MapBuilder : MonoBehaviour
     public Tilemap navigationTiles;
     public Tile groundTile;
     public Tile navTile;
+    public List<Scenery> obstacleTiles;
 
 
     // Mapbuilder would
@@ -51,7 +52,6 @@ public class MapBuilder : MonoBehaviour
         //this builds a hexagon-shaped map. There's redblobs implementations for other shapes, like triangles: https://www.redblobgames.com/grids/hexagons/implementation.html#hex-distance
         Vector3Int[] groundCoords = HexCoordinates.GetHexesAtDistance(map_origin, map_radius);
 
-        // This would make a ring of obstacle tiles around the map, but it's currently broken. Uses a neighbors array and CubeRing function that I probably did wrong.
         Vector3Int[] boundaryCoords = HexCoordinates.CubeRing(map_origin, map_radius + 1);
         foreach (Vector3Int coord in groundCoords)
         {
@@ -65,6 +65,8 @@ public class MapBuilder : MonoBehaviour
         }
 
     }
+
+
 }
 
 
