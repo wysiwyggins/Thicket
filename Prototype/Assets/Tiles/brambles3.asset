@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: brambles3
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 09037a3a4098a4174ba4e9c90ed99489, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.23137255, g: 0.45490196, b: 0.3137255, a: 1}
   m_Transform:
     e00: 1
     e01: 0

@@ -30,6 +30,7 @@ public class MapBuilder : MonoBehaviour
     // lays down floor tiles based on size var
     // randomly creates a maze of scenery and obstacle tiles
     // I'd like to use this- http://gamelogic.co.za/grids/features/examples-that-ship-with-grids/prims-maze-generation-algorithm-on-a-hexagonal-grid/
+    // see also- https://weblog.jamisbuck.org/2011/1/10/maze-generation-prim-s-algorithm
     // randomly place water and animals and plants based on public variables for each
 
 
