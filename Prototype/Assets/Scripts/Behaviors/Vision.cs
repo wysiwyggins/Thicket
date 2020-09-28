@@ -48,6 +48,9 @@ public class Vision : MonoBehaviour
         {
             fogTilemap.SetTile(position, fogTile);
         }
+        // never fog on player tile
+        fogTilemap.SetTile(PiecePosition, null);
+
         //this would remove fog tiles from field of view
         visibility = Mathf.PingPong(PieceManager.Instance.hour, 6) + 1;
         //Debug.Log("Attempting field of view with a center of " + center + " and a range of " + visibility);
