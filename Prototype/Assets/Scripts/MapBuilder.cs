@@ -76,6 +76,62 @@ public class MapBuilder : MonoBehaviour
 
         //create the map, this should probably be a coroutine?
         HexMap();
+
+        //--- Pick a random starting cell on the maze, and add it to the maze
+        Vector2Int firstMazeCoord = new Vector2Int(Random.Range(0, mazeDimensions.x), Random.Range(0, mazeDimensions.y));
+        var startingMazeNode = new MazeNode(firstMazeCoord);
+        mazeNodes.Add(firstMazeCoord, startingMazeNode);
+
+        //-- Get the frontier (cells not yet in the maze, but adjcent to existing maze cells) //changing this from vec2's to vec3's 
+        List<Vector2Int> frontier = new List<Vector2Int>();
+        frontier.AddRange(getNeighbors(firstMazeCoord));
+        //started to try to use the existing cube coord GetNeighbors, but would have still needed to convert to Vec2Ints
+        //frontier.AddRange(HexCoordinates.GetNeighborsAtPos(HexCoordinates.OffsetToCube(new Vector3Int(firstMazeCoord.y, firstMazeCoord.y, 0);
+
+        //-- Keep track of every cell we've considered in the process
+        List<Vector2Int> visited = new List<Vector2Int>();
+        visited.Add(firstMazeCoord);
+
+        int sanity = 9999; //prevent an infinite loop, probably not necessary anymore
+
+        while (frontier.Count > 0 && sanity > 0)
+        {
+            sanity--;
+
+            //Pick a random frontier cell, and mark visitied
+            Vector2Int randomFrontierCoord = frontier[Random.Range(0, frontier.Count)];
+            visited.Add(randomFrontierCoord);
+
+            //Find existing maze node that leads to this frontier cell...
+            List<Vector2Int> neighbors = getNeighbors(randomFrontierCoord);
+            int randOffset = Random.Range(0, neighbors.Count);
+            for (int i = 0; i < neighbors.Count; i++)
+            {
+                Vector2Int neighb = neighbors[(i + randOffset) % neighbors.Count];
+                if (mazeNodes.ContainsKey(neighb)) //Found it!
+                {
+                    //Remove the cell from frontier...
+                    frontier.Remove(randomFrontierCoord);
+
+                    //Add it to the maze, connected the previous maze node
+                    MazeNode newNode = new MazeNode(randomFrontierCoord);
+                    mazeNodes[randomFrontierCoord] = newNode;
+                    mazeNodes[neighb].connections.Add(newNode);
+
+                    //Add the new maze node's adjacents cells to the frontier
+                    foreach (var neighborCoord in neighbors)
+                    {
+                        if (!mazeNodes.ContainsKey(neighborCoord) && !frontier.Contains(neighborCoord) && !visited.Contains(neighborCoord))
+                        {
+                            frontier.Add(neighborCoord);
+                        }
+                    }
+
+                    //only connect in 1 place
+                    break;
+                }
+            }
+        }
     }
 
     // Update is called once per frame
@@ -108,6 +164,69 @@ public class MapBuilder : MonoBehaviour
 
     }
 
+
+    //alex's Vector2Int neighbor function
+    List<Vector2Int> getNeighbors(Vector2Int v)
+    {
+        int x = v.x;
+        int y = v.y;
+        List<Vector2Int> neighbors = new List<Vector2Int>();
+
+        bool atXmin = x == 0;
+        bool atXmax = x == mazeDimensions.x - 1;
+
+        bool atYmin = y == 0;
+        bool atYmax = y == mazeDimensions.y - 1;
+
+        if (!atYmin)
+        {
+            neighbors.Add(new Vector2Int(x, y - 1));
+        }
+
+        if (!atYmax)
+        {
+            neighbors.Add(new Vector2Int(x, y + 1));
+        }
+
+        if (!atXmin)
+        {
+            neighbors.Add(new Vector2Int(x - 1, y));
+
+            if (y % 2 == 0)
+            {
+                if (!atYmin)
+                {
+                    neighbors.Add(new Vector2Int(x - 1, y - 1));
+                }
+
+                if (!atYmax)
+                {
+                    neighbors.Add(new Vector2Int(x - 1, y + 1));
+                }
+            }
+        }
+
+        if (!atXmax)
+        {
+            neighbors.Add(new Vector2Int(x + 1, y));
+
+
+            if (y % 2 == 1)
+            {
+                if (!atYmin)
+                {
+                    neighbors.Add(new Vector2Int(x + 1, y - 1));
+                }
+
+                if (!atYmax)
+                {
+                    neighbors.Add(new Vector2Int(x + 1, y + 1));
+                }
+            }
+        }
+
+        return neighbors;
+    }
 
 }
 
