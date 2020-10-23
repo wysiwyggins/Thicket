@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24ebbba236d2433d8c391f2e8ab577e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  navigationTilemap: {fileID: 0}
+  navTile: {fileID: 11400000, guid: e803cf3db5ed0455f9d6ca5970d7ed02, type: 2}
   SceneryName: Brambles
   Description: Bare and thorny branches
   Cleansing: 0
@@ -88,7 +90,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 19
   m_Sprite: {fileID: 21300000, guid: 04711b399e9c04b16a7dbad2bef10205, type: 3}
   m_Color: {r: 0.3100233, g: 0.509434, b: 0.23789605, a: 1}
   m_FlipX: 0

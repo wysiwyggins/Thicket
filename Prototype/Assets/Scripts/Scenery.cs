@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class Scenery : MonoBehaviour
 {
     Grid grid;
-    public Tilemap navigationTilemap;
+    Tilemap navigationTilemap;
     public Tile navTile;
 
     public string SceneryName = "unnamed";
