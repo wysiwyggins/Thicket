@@ -2484,25 +2484,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b075f5330f02429b951ebc37b087369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map_radius: 5
-  trees: 0
-  flowers: 10
-  wolves: 1
-  bears: 1
-  chickens: 1
-  water: 5
+  map_radius: 6
+  trees_amount: 0
+  flowers_amount: 0
+  predator_amount: 0
+  apex_amount: 0
+  chickens_amount: 0
+  water_amount: 0
   floorTiles: {fileID: 152103619}
   navigationTiles: {fileID: 918936700}
   groundTile: {fileID: 11400000, guid: e9adf5d36330b4446b7199437bdb4106, type: 2}
   navTile: {fileID: 11400000, guid: e803cf3db5ed0455f9d6ca5970d7ed02, type: 2}
+  water: {fileID: 0}
   obstacleTiles:
   - {fileID: 421953499927840594, guid: 6b5f5adbab58a44c3838b24c82c7d0a3, type: 3}
   - {fileID: 3683709132267767543, guid: af343c09b875b498d9e24922ae5545d9, type: 3}
   - {fileID: 6069647451205213703, guid: 15d8b6832306d448eb122a60e0a3e0fe, type: 3}
   - {fileID: 2047196379617070819, guid: edcfb2843570643f88ac8d927d27ecf3, type: 3}
-  - {fileID: 2047196379617070819, guid: edcfb2843570643f88ac8d927d27ecf3, type: 3}
-  - {fileID: 2047196379617070819, guid: edcfb2843570643f88ac8d927d27ecf3, type: 3}
-  - {fileID: 2047196379617070819, guid: edcfb2843570643f88ac8d927d27ecf3, type: 3}
+  predator: {fileID: 3391377592416467778, guid: 13d6334a218364a9f9a97c36718b4aae,
+    type: 3}
+  apex: {fileID: 3660528557949446543, guid: a1dd7069733fc442e869644005483c77, type: 3}
+  flower: {fileID: 0}
+  mazeDimensions: {x: 16, y: 16}
+  cellDistance: 3
+  markNodeTiles: 0
 --- !u!1001 &1616198714
 PrefabInstance:
   m_ObjectHideFlags: 0

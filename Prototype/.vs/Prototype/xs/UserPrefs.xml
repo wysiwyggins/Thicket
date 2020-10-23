@@ -1,11 +1,14 @@
 ﻿<Properties StartupConfiguration="{B1235EE4-71EE-C815-28F8-C3378E5ADB84}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MapBuilder.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SpoorManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/HexCoordinates.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Behaviors/Vision.cs" Line="52" Column="41" />
-      <File FileName="Assets/Scripts/MapBuilder.cs" Line="23" Column="16" />
+      <File FileName="Assets/Scripts/HexCoordinates.cs" Line="53" Column="1" />
+      <File FileName="Assets/Scripts/Behaviors/Vision.cs" />
+      <File FileName="Assets/Scripts/MapBuilder.cs" Line="274" Column="98" />
       <File FileName="Assets/Examples/PrimHexMaze/Assets/HexMazeGenerator.cs" />
       <File FileName="Assets/Scripts/Behaviors/MoveTowardsTarget.cs" />
+      <File FileName="Assets/Scripts/Behaviors/Scent.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Spoor.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/SpoorManager.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,7 +22,7 @@
               </Node>
               <Node name="Scripts" expanded="True">
                 <Node name="Behaviors" expanded="True" />
-                <Node name="MapBuilder.cs" selected="True" />
+                <Node name="SpoorManager.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -29,7 +32,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="d3204202-f3cb-4ede-813b-683307770739" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="97213411-7b6e-4814-b0e3-465333570ee3" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

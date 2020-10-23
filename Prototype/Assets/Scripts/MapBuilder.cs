@@ -8,12 +8,12 @@ public class MapBuilder : MonoBehaviour
 {
     // map elements
     public int map_radius = 7;
-    public int trees;
-    public int flowers;
-    public int wolves;
-    public int bears;
-    public int chickens;
-    public int water;
+    public int trees_amount;
+    public int flowers_amount;
+    public int predator_amount;
+    public int apex_amount;
+    public int chickens_amount;
+    public int water_amount;
     Vector3Int map_origin;
 
     Grid grid;
@@ -24,7 +24,12 @@ public class MapBuilder : MonoBehaviour
     public Tilemap navigationTiles;
     public Tile groundTile;
     public Tile navTile;
+    public Scenery water;
     public List<Scenery> obstacleTiles;
+    public Piece predator;
+    public Piece apex;
+    public Piece flower;
+
 
     //Variables from Alex's maze generator
 
@@ -132,6 +137,9 @@ public class MapBuilder : MonoBehaviour
                 }
             }
         }
+
+        //starting from the first mode, recursively fill in maze paths
+        fillInTraversableTilesRecursive(startingMazeNode);
     }
 
     // Update is called once per frame
@@ -227,8 +235,54 @@ public class MapBuilder : MonoBehaviour
 
         return neighbors;
     }
+    void fillInTraversableTilesRecursive(MazeNode node)
+    {
+        Vector3Int nodeCoordV3 = new Vector3Int(node.coord.x * cellDistance, node.coord.y * cellDistance, 0);
+
+        //Draw the tile at the node...
+        navigationTiles.SetTile(nodeCoordV3, markNodeTiles ? navTile : groundTile);
+
+        //lets drop a piece of scenery instead of a tile
+       //Instantiate(water, nodeCoordV3, Quaternion.identity);
+
+        foreach (var connectedNode in node.connections)
+        {
+            Vector3Int connectedNodeCoordV3 = new Vector3Int(connectedNode.coord.x * cellDistance, connectedNode.coord.y * cellDistance, 0);
+
+            bool incX = connectedNode.coord.x % 2 == 0;
+
+            //Draw the tiles from this node, up to each connected node, alternating x/y
+            Vector3Int intermediate = nodeCoordV3;
+            while (intermediate != connectedNodeCoordV3)
+            {
+                incX |= intermediate.y == connectedNodeCoordV3.y;
+
+                if (incX && intermediate.x != connectedNodeCoordV3.x)
+                {
+                    intermediate.x = (int)Mathf.MoveTowards(intermediate.x, connectedNodeCoordV3.x, 1);
+                    incX = false;
+                }
+                else //if (intermediate.y != connectV3.x)
+                {
+                    intermediate.y = (int)Mathf.MoveTowards(intermediate.y, connectedNodeCoordV3.y, 1);
+                    incX = true;
+                }
+
+                if (intermediate != connectedNodeCoordV3)
+                {
+                    // navigationTiles.SetTile(intermediate, navTile);
+                    Instantiate(obstacleTiles[Random.Range(0, obstacleTiles.Count)], intermediate, Quaternion.identity);
+                }
+            }
+
+            //repeat again for the connected node
+            fillInTraversableTilesRecursive(connectedNode);
+        }
+
+    }
 
 }
+
 
 
 
