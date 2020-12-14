@@ -68,6 +68,8 @@ public class MapBuilder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        grid = GameObject.Find("Grid").GetComponent<Grid>();
+
         // maze dimentions encompass our ground tiles which are drawn in a hexagon
         mazeDimensions = new Vector2Int(map_radius * 2, map_radius * 2);
 
@@ -140,6 +142,21 @@ public class MapBuilder : MonoBehaviour
 
         //starting from the first mode, recursively fill in maze paths
         fillInTraversableTilesRecursive(startingMazeNode);
+        //fillNodeTiles();
+    }
+
+    void fillNodeTiles()
+    {
+        Vector3Int[] groundCoords = HexCoordinates.GetHexesAtDistance(map_origin, map_radius);
+        foreach (Vector3Int coord in groundCoords) {
+            addScenaryAtLocation(coord);
+        }
+    }
+
+    void addScenaryAtLocation(Vector3Int coord)
+    {
+        Vector3 coord2 = grid.CellToWorld(HexCoordinates.CubeToOffset(coord));
+        Instantiate(obstacleTiles[Random.Range(0, obstacleTiles.Count)], coord2, Quaternion.identity);
     }
 
     // Update is called once per frame
