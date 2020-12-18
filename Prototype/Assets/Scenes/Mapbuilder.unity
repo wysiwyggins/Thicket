@@ -826,7 +826,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24ebbba236d2433d8c391f2e8ab577e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  navigationTilemap: {fileID: 0}
   navTile: {fileID: 0}
   SceneryName: Wolf Den
   Description: A rut worn into the forest floor.
@@ -1949,12 +1948,12 @@ PrefabInstance:
     - target: {fileID: 4550875875820027830, guid: 541d05a6bd816438b92bc2f952e6d04c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.4
+      value: -2.393
       objectReference: {fileID: 0}
     - target: {fileID: 4550875875820027830, guid: 541d05a6bd816438b92bc2f952e6d04c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.83
+      value: -0.858
       objectReference: {fileID: 0}
     - target: {fileID: 4550875875820027830, guid: 541d05a6bd816438b92bc2f952e6d04c,
         type: 3}
@@ -2157,7 +2156,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 9
+  m_SortingOrder: 15
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -2182,7 +2181,7 @@ Tilemap:
   m_TileColorArray: []
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 0.8595388, b: 0.6839622, a: 0.48235294}
+  m_Color: {r: 0.73799133, g: 1, b: 0.68235296, a: 0.48235294}
   m_Origin: {x: 0, y: 0, z: 0}
   m_Size: {x: 0, y: 0, z: 1}
   m_TileAnchor: {x: 0, y: 0, z: 0}

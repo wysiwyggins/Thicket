@@ -10,8 +10,8 @@ public class MapBuilder : MonoBehaviour
     public int map_radius = 7;
     public int trees_amount;
     public int flowers_amount;
-    public int predator_amount;
-    public int apex_amount;
+    public int predator_amount;  //how many wolves
+    public int apex_amount;  // how many bears
     public int chickens_amount;
     public int water_amount;
     Vector3Int map_origin;
@@ -54,15 +54,6 @@ public class MapBuilder : MonoBehaviour
             coord = loc;
         }
     }
-
-
-    // Mapbuilder would
-    // have a mapsize variable and maybe a map shape variable
-    // lays down floor tiles based on size var
-    // randomly creates a maze of scenery and obstacle tiles
-    // I'd like to use this- http://gamelogic.co.za/grids/features/examples-that-ship-with-grids/prims-maze-generation-algorithm-on-a-hexagonal-grid/
-    // see also- https://weblog.jamisbuck.org/2011/1/10/maze-generation-prim-s-algorithm
-    // randomly place water and animals and plants based on public variables for each
 
 
     // Start is called before the first frame update
