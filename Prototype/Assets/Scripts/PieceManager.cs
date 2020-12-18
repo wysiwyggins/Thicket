@@ -113,16 +113,21 @@ public class PieceManager : MonoBehaviour
 			MessageManager.AddMessage("Moment: " + hour );
 			
 			CheckHour();
-			if (CheckWin())
-            {
-				MessageManager.AddMessage("No predators left!");
-			} else
-            {
-				MessageManager.AddMessage("Nobody won");
-			}
+			
 		}
 
-
+		if (CheckWin())
+		{
+			MessageManager.AddMessage("No predators left!");
+		}
+		else
+		{
+			MessageManager.AddMessage("Nobody won");
+		}
+		//if (CheckLose())
+		//{
+		//	MessageManager.AddMessage("All prey have been eliminated!");
+  //      }
 		currentPiece = AllPieces[nextIndex];
 		StartPieceTurn();
 		
@@ -160,6 +165,34 @@ public class PieceManager : MonoBehaviour
         }
         return false; // this is just checking win, so we probably need a separate checklose() function
     }
+
+	private bool CheckLose() //this isn't working yet. no message when prey are eliminated
+    {
+		List<Piece> hunters = new List<Piece>();
+		foreach (Piece aPiece in AllPieces)
+		{
+
+			if (aPiece.Prey != null) //this isn't whether a piece is prey or not, it's whether a piece HAS prey or not
+			{
+				hunters.Add(aPiece);
+			}
+		}
+		if (hunters.Count > 0)
+		{
+			foreach (Piece aPiece in AllPieces) //for every piece on the board, if there's something still hunting it, don't stop play
+			{
+				foreach (Piece aHunter in hunters)
+				{
+					if (aHunter.Prey == aPiece)
+						return false;
+				}
+			}
+		} else
+        {
+			return false; //there's no hunters
+        }
+		return true; //if no hunters have any prey
+	}
 
 
     private void CheckHour()
