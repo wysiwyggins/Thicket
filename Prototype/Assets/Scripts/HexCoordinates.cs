@@ -7,8 +7,9 @@ public class HexCoordinates : MonoBehaviour
 {
 
     static public List<Vector3Int> directions = new List<Vector3Int> { new Vector3Int(1, 0, -1), new Vector3Int(1, -1, 0), new Vector3Int(0, -1, 1), new Vector3Int(-1, 0, 1), new Vector3Int(-1, 1, 0), new Vector3Int(0, 1, -1) };
+    static public List<Vector3Int> nodeDirections = new List<Vector3Int> { new Vector3Int(-1, +2, -1), new Vector3Int(+1, +1, -2), new Vector3Int(+2, -1, -1), new Vector3Int(+1, -2, +1), new Vector3Int(-1, -1, +2), new Vector3Int(-2, +1, +1) };
 
-    
+
     // Start is called before the first frame update
     void Start()
     {

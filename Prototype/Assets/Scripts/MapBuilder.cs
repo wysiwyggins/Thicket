@@ -132,16 +132,191 @@ public class MapBuilder : MonoBehaviour
         }
 
         //starting from the first mode, recursively fill in maze paths
-        fillInTraversableTilesRecursive(startingMazeNode);
-        //fillNodeTiles();
+        //fillInTraversableTilesRecursive(startingMazeNode);
+        drawMaze();
     }
 
-    void fillNodeTiles()
+    void drawMaze()
     {
         Vector3Int[] groundCoords = HexCoordinates.GetHexesAtDistance(map_origin, map_radius);
-        foreach (Vector3Int coord in groundCoords) {
-            addScenaryAtLocation(coord);
+        bool[,] mazeMap = buildMaze();
+        for(int x = 0-map_radius; x <= map_radius; x++)
+        {
+            for (int y = 0 - map_radius; y <= map_radius; y++)
+            {
+                for (int z = 0 - map_radius; z <= map_radius; z++)
+                {
+                    if ((x + y + z == 0) && (getMapBool(x,y,mazeMap)))
+                    {
+                        addScenaryAtLocation(new Vector3Int(x, y, z));
+                    }
+                }
+            }
         }
+    }
+
+    Vector3Int randomNodeTile()
+    {
+        Vector3Int tile;
+        do
+        {
+            tile = new Vector3Int(Random.Range(0 - map_radius, map_radius + 1),
+            Random.Range(0 - map_radius, map_radius + 1),
+            Random.Range(0 - map_radius, map_radius + 1));
+        } while (!isNodeTile(tile) || (tile.x + tile.y + tile.z) != 0);
+
+        return tile;
+    }
+
+    // We add map_radius when doing modulo operations as a cheap way to make sure we don't get a negative result.
+    bool isNodeTile(Vector3Int coord)
+    {
+        if (!isInsideMap(coord))
+        {
+            return false;
+        }
+
+        return (((coord.z + map_radius) % 2 == 0) && ((coord.x + map_radius) % 3 == (coord.z + map_radius) % 3)) ||
+        (((coord.z + map_radius) % 2 == 1) && ((coord.x + map_radius) % 3 == (coord.z + map_radius) % 3));
+    }
+
+    bool isInsideMap(Vector3Int coord)
+    {
+        return !(HexCoordinates.CubeDistance(new Vector3Int(0, 0, 0), coord) > map_radius);
+    }
+
+    bool[,] buildMaze()
+    {
+        int totalNodes = 0;
+        int completedNodes = 0;
+        bool[,] mazeMap = new bool[(map_radius*2)+1 , (map_radius*2)+1];
+        Vector3Int[] groundCoords = HexCoordinates.GetHexesAtDistance(map_origin, map_radius);
+        foreach (Vector3Int coord in groundCoords)
+        {
+            if (isNodeTile(coord))
+            {
+                totalNodes++;
+            }
+            setMapBool(coord.x, coord.y, true, mazeMap);
+        }
+        List<Vector3Int> frontier = new List<Vector3Int>();
+        openNode(randomNodeTile(), frontier, mazeMap);
+        completedNodes++;
+        while (completedNodes < totalNodes)
+        {
+            Vector3Int nextNode = frontier[Random.Range(0, frontier.Count)];
+            frontier.Remove(nextNode);
+            makePathToNode(nextNode, frontier, mazeMap);
+            completedNodes++;
+        }
+        carveOutCutThroughs(mazeMap);
+        addClearings(mazeMap);
+        return mazeMap;
+    }
+
+    void addClearings(bool [,] mazeMap)
+    {
+        int[] clearingChances = new int[] { 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 };
+        int numberOfClearings = clearingChances[Random.Range(0, 14)];
+        Debug.Log("Number of clearings is " + numberOfClearings);
+        for (int count = 0; count < numberOfClearings; count ++)
+        {
+            int radius = Random.Range(1, 3);
+            if (Random.Range(0,6) == 0)
+            {
+                radius = 3;
+            }
+
+            Vector3Int clearingCenter = randomNodeTile();
+            Vector3Int[] clearingCoords = HexCoordinates.GetHexesAtDistance(clearingCenter, radius);
+            Debug.Log("Making size " + radius + " clearing (" + clearingCoords.Length + " hexes) at " +
+                clearingCenter.x + ", " + clearingCenter.y + ", " + clearingCenter.z);
+            foreach(Vector3Int coord in clearingCoords)
+            {
+                if (isInsideMap(coord))
+                {
+                    setMapBool(coord.x, coord.y, false, mazeMap);
+                }
+            }
+
+        }
+    }
+
+    void carveOutCutThroughs(bool[,] mazeMap)
+    {
+        int percentChance = Random.Range(10, 36);
+        Debug.Log("Cutthrough chance is " + percentChance + "%");
+        Vector3Int[] groundCoords = HexCoordinates.GetHexesAtDistance(map_origin, map_radius);
+        foreach (Vector3Int coord in groundCoords)
+        {
+            if (getMapBool(coord.x, coord.y, mazeMap) && (Random.Range(1,101) <= percentChance))
+            {
+                setMapBool(coord.x, coord.y, false, mazeMap);
+            }
+        }
+    }
+
+    void makePathToNode(Vector3Int coord, List<Vector3Int> frontier, bool[,] mazeMap)
+    {
+        Vector3Int pathNode;
+        do
+        {
+          pathNode = coord + HexCoordinates.directions[Random.Range(0, 5)];
+        } while (!hasOpenNodeBorder(pathNode, mazeMap));
+
+        setMapBool(pathNode.x, pathNode.y, false, mazeMap);
+        openNode(coord, frontier, mazeMap);
+    }
+
+    bool hasOpenNodeBorder(Vector3Int coord, bool[,] mazeMap)
+    {
+        if (!isInsideMap(coord))
+        {
+            return false;
+        }
+        foreach (Vector3Int direction in HexCoordinates.directions)
+        {
+            if (isOpenNode(coord + direction, mazeMap))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool isOpenNode(Vector3Int coord, bool[,] mazeMap)
+    {
+        if (!isNodeTile(coord))
+        {
+            return false;
+        }
+        return (!getMapBool(coord.x, coord.y, mazeMap));
+    }
+
+    void openNode(Vector3Int coord, List<Vector3Int> frontier, bool[,] mazeMap)
+    {
+        setMapBool(coord.x, coord.y, false, mazeMap);
+        foreach(Vector3Int nodeDirection in HexCoordinates.nodeDirections)
+        {
+            Vector3Int potentialNode = coord + nodeDirection;
+            if (isNodeTile(potentialNode) && getMapBool(potentialNode.x, potentialNode.y, mazeMap))
+            {
+                if (!frontier.Contains(potentialNode))
+                {
+                    frontier.Add(potentialNode);
+                }
+            }
+        }
+    }
+
+    bool getMapBool(int x, int y, bool[,] mazeMap)
+    {
+        return mazeMap[x + map_radius, y + map_radius];
+    }
+
+    void setMapBool(int x, int y, bool value, bool[,] mazeMap)
+    {
+        mazeMap[x + map_radius, y + map_radius] = value;
     }
 
     void addScenaryAtLocation(Vector3Int coord)
