@@ -61,78 +61,12 @@ public class MapBuilder : MonoBehaviour
     {
         grid = GameObject.Find("Grid").GetComponent<Grid>();
 
-        // maze dimentions encompass our ground tiles which are drawn in a hexagon
-        mazeDimensions = new Vector2Int(map_radius * 2, map_radius * 2);
-
-        //All the nodes, and their connection that made up the maze, 
-        //Is dictionary so can look up by grid coordinate.
-        Dictionary<Vector2Int, MazeNode> mazeNodes = new Dictionary<Vector2Int, MazeNode>();
-
-
         //wipe out the old world to make room for the new world.
         map_origin = new Vector3Int(0, 0, 0);
 
         //create the map, this should probably be a coroutine?
         HexMap();
 
-        //--- Pick a random starting cell on the maze, and add it to the maze
-        Vector2Int firstMazeCoord = new Vector2Int(Random.Range(0, mazeDimensions.x), Random.Range(0, mazeDimensions.y));
-        var startingMazeNode = new MazeNode(firstMazeCoord);
-        mazeNodes.Add(firstMazeCoord, startingMazeNode);
-
-        //-- Get the frontier (cells not yet in the maze, but adjcent to existing maze cells) //changing this from vec2's to vec3's 
-        List<Vector2Int> frontier = new List<Vector2Int>();
-        frontier.AddRange(getNeighbors(firstMazeCoord));
-        //started to try to use the existing cube coord GetNeighbors, but would have still needed to convert to Vec2Ints
-        //frontier.AddRange(HexCoordinates.GetNeighborsAtPos(HexCoordinates.OffsetToCube(new Vector3Int(firstMazeCoord.y, firstMazeCoord.y, 0);
-
-        //-- Keep track of every cell we've considered in the process
-        List<Vector2Int> visited = new List<Vector2Int>();
-        visited.Add(firstMazeCoord);
-
-        int sanity = 9999; //prevent an infinite loop, probably not necessary anymore
-
-        while (frontier.Count > 0 && sanity > 0)
-        {
-            sanity--;
-
-            //Pick a random frontier cell, and mark visitied
-            Vector2Int randomFrontierCoord = frontier[Random.Range(0, frontier.Count)];
-            visited.Add(randomFrontierCoord);
-
-            //Find existing maze node that leads to this frontier cell...
-            List<Vector2Int> neighbors = getNeighbors(randomFrontierCoord);
-            int randOffset = Random.Range(0, neighbors.Count);
-            for (int i = 0; i < neighbors.Count; i++)
-            {
-                Vector2Int neighb = neighbors[(i + randOffset) % neighbors.Count];
-                if (mazeNodes.ContainsKey(neighb)) //Found it!
-                {
-                    //Remove the cell from frontier...
-                    frontier.Remove(randomFrontierCoord);
-
-                    //Add it to the maze, connected the previous maze node
-                    MazeNode newNode = new MazeNode(randomFrontierCoord);
-                    mazeNodes[randomFrontierCoord] = newNode;
-                    mazeNodes[neighb].connections.Add(newNode);
-
-                    //Add the new maze node's adjacents cells to the frontier
-                    foreach (var neighborCoord in neighbors)
-                    {
-                        if (!mazeNodes.ContainsKey(neighborCoord) && !frontier.Contains(neighborCoord) && !visited.Contains(neighborCoord))
-                        {
-                            frontier.Add(neighborCoord);
-                        }
-                    }
-
-                    //only connect in 1 place
-                    break;
-                }
-            }
-        }
-
-        //starting from the first mode, recursively fill in maze paths
-        //fillInTraversableTilesRecursive(startingMazeNode);
         drawMaze();
     }
 
@@ -354,116 +288,6 @@ public class MapBuilder : MonoBehaviour
         }
 
     }
-
-
-    //alex's Vector2Int neighbor function
-    List<Vector2Int> getNeighbors(Vector2Int v)
-    {
-        int x = v.x;
-        int y = v.y;
-        List<Vector2Int> neighbors = new List<Vector2Int>();
-
-        bool atXmin = x == 0;
-        bool atXmax = x == mazeDimensions.x - 1;
-
-        bool atYmin = y == 0;
-        bool atYmax = y == mazeDimensions.y - 1;
-
-        if (!atYmin)
-        {
-            neighbors.Add(new Vector2Int(x, y - 1));
-        }
-
-        if (!atYmax)
-        {
-            neighbors.Add(new Vector2Int(x, y + 1));
-        }
-
-        if (!atXmin)
-        {
-            neighbors.Add(new Vector2Int(x - 1, y));
-
-            if (y % 2 == 0)
-            {
-                if (!atYmin)
-                {
-                    neighbors.Add(new Vector2Int(x - 1, y - 1));
-                }
-
-                if (!atYmax)
-                {
-                    neighbors.Add(new Vector2Int(x - 1, y + 1));
-                }
-            }
-        }
-
-        if (!atXmax)
-        {
-            neighbors.Add(new Vector2Int(x + 1, y));
-
-
-            if (y % 2 == 1)
-            {
-                if (!atYmin)
-                {
-                    neighbors.Add(new Vector2Int(x + 1, y - 1));
-                }
-
-                if (!atYmax)
-                {
-                    neighbors.Add(new Vector2Int(x + 1, y + 1));
-                }
-            }
-        }
-
-        return neighbors;
-    }
-    void fillInTraversableTilesRecursive(MazeNode node)
-    {
-        Vector3Int nodeCoordV3 = new Vector3Int(node.coord.x * cellDistance, node.coord.y * cellDistance, 0);
-
-        //Draw the tile at the node...
-        navigationTiles.SetTile(nodeCoordV3, markNodeTiles ? navTile : groundTile);
-
-        //lets drop a piece of scenery instead of a tile
-       //Instantiate(water, nodeCoordV3, Quaternion.identity);
-
-        foreach (var connectedNode in node.connections)
-        {
-            Vector3Int connectedNodeCoordV3 = new Vector3Int(connectedNode.coord.x * cellDistance, connectedNode.coord.y * cellDistance, 0);
-
-            bool incX = connectedNode.coord.x % 2 == 0;
-
-            //Draw the tiles from this node, up to each connected node, alternating x/y
-            Vector3Int intermediate = nodeCoordV3;
-            while (intermediate != connectedNodeCoordV3)
-            {
-                incX |= intermediate.y == connectedNodeCoordV3.y;
-
-                if (incX && intermediate.x != connectedNodeCoordV3.x)
-                {
-                    intermediate.x = (int)Mathf.MoveTowards(intermediate.x, connectedNodeCoordV3.x, 1);
-                    incX = false;
-                }
-                else //if (intermediate.y != connectV3.x)
-                {
-                    intermediate.y = (int)Mathf.MoveTowards(intermediate.y, connectedNodeCoordV3.y, 1);
-                    incX = true;
-                }
-
-                if (intermediate != connectedNodeCoordV3)
-                {
-                    // navigationTiles.SetTile(intermediate, navTile);
-                    Instantiate(obstacleTiles[Random.Range(0, obstacleTiles.Count)], intermediate, Quaternion.identity);
-                }
-            }
-
-            //repeat again for the connected node
-            fillInTraversableTilesRecursive(connectedNode);
-        }
-
-    }
-
 }
 
 
