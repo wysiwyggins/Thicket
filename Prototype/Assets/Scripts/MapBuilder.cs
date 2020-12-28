@@ -10,6 +10,7 @@ public class MapBuilder : MonoBehaviour
     public int map_radius = 7;
     public int trees_amount;
     public int flowers_amount;
+    public int players_amount; //how many players
     public int predator_amount;  //how many wolves
     public int apex_amount;  // how many bears
     public int chickens_amount;
@@ -258,6 +259,49 @@ public class MapBuilder : MonoBehaviour
         Vector3 coord2 = grid.CellToWorld(HexCoordinates.CubeToOffset(coord));
         Instantiate(obstacleTiles[Random.Range(0, obstacleTiles.Count)], coord2, Quaternion.identity);
     }
+
+    // work stub
+
+    void addPlayers(int players)
+    {
+        for (int count = 0; count < players; count++)
+        {
+            // how to add a player to a random unoccupied hex
+        }
+    }
+
+    void addPredators(int predators)
+    {
+        for (int count = 0; count < predators; count++)
+        {
+            // how to add a predator to a random unoccupied hex
+        }
+    }
+
+    void addApex(int apexes)
+    {
+        for (int count = 0; count < apexes; count++)
+        {
+            // how to add a bear to a random unoccupied hex
+        }
+    }
+
+    void addChicken(int chickens)
+    {
+        for (int count = 0; count < chickens; count++)
+        {
+            // how to add a chicken to a random unoccupied hex
+        }
+    }
+
+    void addFlowers(int flowers)
+    {
+        for (int count = 0; count < flowers; count++)
+        {
+            // how to add a flower to a random unoccupied hex
+        }
+    }
+
 
     // Update is called once per frame
     void Update()
