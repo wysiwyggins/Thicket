@@ -24,7 +24,10 @@ public class Piece : MonoBehaviour
 
 	public Piece Mate;
 	public Piece Prey;
-   
+	// instead of giving a piece a specific prey for now,
+	// lets make a predator flag that we can use to make them hunt the closest thing that is weaker than them
+	// because a specific piece would have already needed to be on the board
+
 	public List<PieceBehaviour> pieceBehaviors = new List<PieceBehaviour>();
 	PieceBehaviour curBehaviour;
 

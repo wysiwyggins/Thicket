@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Attract.unity
     guid: 1ee8cd21024704d1299fdd82839b7693
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Play.unity
     guid: b77c1574a684e41f4b555b382b0f9a67
+  - enabled: 1
+    path: Assets/Scenes/Mapbuilder.unity
+    guid: a1f85af0c4aca450f972b2378d1b3782
   m_configObjects: {}

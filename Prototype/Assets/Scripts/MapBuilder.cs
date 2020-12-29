@@ -16,7 +16,7 @@ public class MapBuilder : MonoBehaviour
     public int chickens_amount;
     public int water_amount;
     Vector3Int map_origin;
-
+    public List<Vector3Int> openTiles;
     Grid grid;
 
     //tiles, and obstacles (obstacles are scenery, a class that contains bools for opacity and movement blocking)
@@ -26,8 +26,8 @@ public class MapBuilder : MonoBehaviour
     public Tile groundTile;
     public Tile navTile;
     public Scenery water;
+    public Scenery den;
     public List<Scenery> obstacleTiles;
-    public List<Vector3Int> openTiles;
     public Piece predator;
     public Piece apex;
     public Piece chicken;
@@ -57,8 +57,11 @@ public class MapBuilder : MonoBehaviour
         HexMap();
 
         drawMaze();
-        addPlayers(players_amount);
         addChicken(chickens_amount);
+        addPredators(predator_amount);
+        addApex(apex_amount);
+        addPlayers(players_amount);
+        
     }
 
     void Start()
@@ -284,7 +287,10 @@ public class MapBuilder : MonoBehaviour
     {
         for (int count = 0; count < predators; count++)
         {
-            // how to add a predator to a random unoccupied hex
+            Vector3 coord = grid.CellToWorld(HexCoordinates.CubeToOffset(randomOpenTile()));
+
+            Instantiate(predator, coord, Quaternion.identity);
+            Debug.Log("Added Predator");
         }
     }
 
@@ -292,7 +298,10 @@ public class MapBuilder : MonoBehaviour
     {
         for (int count = 0; count < apexes; count++)
         {
-            // how to add a bear to a random unoccupied hex
+            Vector3 coord = grid.CellToWorld(HexCoordinates.CubeToOffset(randomOpenTile()));
+
+            Instantiate(apex, coord, Quaternion.identity);
+            Debug.Log("Added Apex");
         }
     }
 

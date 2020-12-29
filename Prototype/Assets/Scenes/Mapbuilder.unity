@@ -5950,8 +5950,8 @@ MonoBehaviour:
   trees_amount: 0
   flowers_amount: 0
   players_amount: 1
-  predator_amount: 0
-  apex_amount: 0
+  predator_amount: 1
+  apex_amount: 1
   chickens_amount: 3
   water_amount: 0
   floorTiles: {fileID: 152103619}
