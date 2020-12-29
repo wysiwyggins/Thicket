@@ -27,9 +27,12 @@ public class MapBuilder : MonoBehaviour
     public Tile navTile;
     public Scenery water;
     public List<Scenery> obstacleTiles;
+    public List<Vector3Int> openTiles;
     public Piece predator;
     public Piece apex;
+    public Piece chicken;
     public Piece flower;
+    public Piece player;
 
 
     //Variables from Alex's maze generator
@@ -42,7 +45,8 @@ public class MapBuilder : MonoBehaviour
     public bool markNodeTiles = false;
 
     // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         grid = GameObject.Find("Grid").GetComponent<Grid>();
 
@@ -53,10 +57,18 @@ public class MapBuilder : MonoBehaviour
         HexMap();
 
         drawMaze();
+        addPlayers(players_amount);
+        addChicken(chickens_amount);
+    }
+
+    void Start()
+    {
+      
     }
 
     void drawMaze()
     {
+        openTiles = new List<Vector3Int>();
         Vector3Int[] groundCoords = HexCoordinates.GetHexesAtDistance(map_origin, map_radius);
         bool[,] mazeMap = buildMaze();
         for(int x = 0-map_radius; x <= map_radius; x++)
@@ -65,9 +77,14 @@ public class MapBuilder : MonoBehaviour
             {
                 for (int z = 0 - map_radius; z <= map_radius; z++)
                 {
+                    Vector3Int coord = new Vector3Int(x, y, z);
                     if ((x + y + z == 0) && (getMapBool(x,y,mazeMap)))
                     {
-                        addScenaryAtLocation(new Vector3Int(x, y, z));
+                        addScenaryAtLocation(coord);
+                    }
+                    if ((x + y + z == 0) && (!getMapBool(x, y, mazeMap)) && (isInsideMap(coord)))
+                    {
+                        openTiles.Add(coord);
                     }
                 }
             }
@@ -245,12 +262,21 @@ public class MapBuilder : MonoBehaviour
     }
 
     // work stub
+    Vector3Int randomOpenTile()
+    {
+        Vector3Int randomTile = openTiles[Random.Range(0, openTiles.Count)];
+        openTiles.Remove(randomTile);
+        return randomTile;
+    }
 
     void addPlayers(int players)
     {
+
         for (int count = 0; count < players; count++)
         {
-            // how to add a player to a random unoccupied hex
+            Vector3 coord = grid.CellToWorld(HexCoordinates.CubeToOffset(randomOpenTile()));
+
+            Instantiate(player, coord, Quaternion.identity);
         }
     }
 
@@ -274,7 +300,10 @@ public class MapBuilder : MonoBehaviour
     {
         for (int count = 0; count < chickens; count++)
         {
-            // how to add a chicken to a random unoccupied hex
+            Vector3 coord = grid.CellToWorld(HexCoordinates.CubeToOffset(randomOpenTile()));
+
+            Instantiate(chicken, coord, Quaternion.identity);
+            Debug.Log("Added Chicken");
         }
     }
 

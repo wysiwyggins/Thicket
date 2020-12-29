@@ -79,13 +79,6 @@ public class PieceManager : MonoBehaviour
 		state = State.Dawn;
 		currentPiece = AllPieces[0];
 		StartPieceTurn();
-		string pieceNames = "pieces in order:\n";
-
-		foreach(Piece aPiece in AllPieces)
-		{
-			pieceNames += aPiece.gameObject.name + "\n";
-		}
-		//Debug.Log(pieceNames);
 	}
 
 

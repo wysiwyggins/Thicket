@@ -59,7 +59,7 @@ public class Vision : MonoBehaviour
         foreach (Vector3Int coord in viewHexes)
         {
             fogTilemap.SetTile(HexCoordinates.CubeToOffset(coord), null);
-           
+            // find a good way to figure out if a Piece is in view, and if it is, increase its layer order to 16 so its head isn't clipped off by fog above it.
         }
 
 

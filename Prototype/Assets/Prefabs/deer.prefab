@@ -68,11 +68,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navmap: {fileID: 0}
   highlight: {fileID: 11400000, guid: e4df08d5c87c147938706696bad03c90, type: 2}
+  redhighlight: {fileID: 11400000, guid: b47bccaf5e30244b18f64402dbd3f955, type: 2}
   range: 2
   OnEnterTile:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1003043989}
+        m_TargetAssemblyTypeName: 
         m_MethodName: Spoor
         m_Mode: 1
         m_Arguments:
@@ -95,6 +97,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4903995ed12fe44c084030134e1c9d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  viewRange: 0
+  transitionSpeed: 0
+  fogTile: {fileID: 11400000, guid: b61627db5fde54991b2ff2551c528753, type: 2}
+  highlight: {fileID: 11400000, guid: e4df08d5c87c147938706696bad03c90, type: 2}
+  fogSizeOverTime:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!212 &4550875875820027824
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -110,6 +122,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -133,7 +146,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: 1f5bbdf0e81fa4366880f139c3288533, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
