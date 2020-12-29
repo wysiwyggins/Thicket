@@ -41,22 +41,6 @@ public class MapBuilder : MonoBehaviour
     public int cellDistance = 3;
     public bool markNodeTiles = false;
 
-    // we don't need the node and path tiles in our version
-    //public TileBase _pathTile;
-    //public TileBase _nodeTile;
-
-    //alex's mazenode class
-    class MazeNode
-    {
-        public Vector2Int coord;
-        public List<MazeNode> connections = new List<MazeNode>();
-        public MazeNode(Vector2Int loc)
-        {
-            coord = loc;
-        }
-    }
-
-
     // Start is called before the first frame update
     void Start()
     {
