@@ -111,11 +111,11 @@ public class PieceManager : MonoBehaviour
 
 		if (CheckWin())
 		{
-			MessageManager.AddMessage("No predators left!");
+			//MessageManager.AddMessage("No predators left!");
 		}
 		else
 		{
-			MessageManager.AddMessage("Nobody won");
+			//MessageManager.AddMessage("Nobody won");
 		}
 		//if (CheckLose())
 		//{

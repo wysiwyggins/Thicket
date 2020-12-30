@@ -32,11 +32,12 @@ public class Piece : MonoBehaviour
 
 	public void BeginTurn()
 	{
+		
 		if (OnBeginMove != null) OnBeginMove();
 		curBehaviour = pieceBehaviors[0];
 		SetBehaviour();
-		
-		
+		MessageManager.AddMessage(PieceName + "'s Turn");
+
 	}
 
 	void SetBehaviour()
@@ -73,18 +74,7 @@ public class Piece : MonoBehaviour
 
 		SpriteRenderer renderer = GetComponent<SpriteRenderer>();
 		renderer.color = PieceColor;
-		if (isPredator)
-		{
-			foreach (Piece aPiece in PieceManager.AllPieces)
-            {
-				if (aPiece.isPlayer)
-                {
-					preyList.Add(aPiece);
-					int preyNumber = preyList.Count;
-					Prey = preyList[preyNumber - 1];
-                }
-            }
-		}
+		
 	}
 
 	private void OnEnable()

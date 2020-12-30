@@ -5847,11 +5847,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   map_radius: 6
   trees_amount: 0
-  flowers_amount: 0
+  flowers_amount: 2
   players_amount: 1
   predator_amount: 1
   apex_amount: 1
-  chickens_amount: 3
+  chickens_amount: 1
   water_amount: 0
   openTiles: []
   floorTiles: {fileID: 152103619}
