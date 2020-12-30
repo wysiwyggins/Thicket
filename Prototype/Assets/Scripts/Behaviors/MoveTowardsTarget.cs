@@ -16,7 +16,6 @@ public class MoveTowardsTarget : PieceBehaviour
 	Tilemap navmap;
 	Sleep sleep;
 
-
 	//piece attributes
 	Vector3Int pieceCoords
 	{ get { return grid.WorldToCell(transform.position); } }
@@ -67,15 +66,36 @@ public class MoveTowardsTarget : PieceBehaviour
 
 	}
 
-	private void Update()
+    private void Update()
 	{
+		if (piece.isPredator)
+		{
+			foreach (Piece aPiece in PieceManager.AllPieces)
+			{
+				if (aPiece.isPlayer)
+				{
+					piece.preyList.Add(aPiece);
+					int preyNumber = piece.preyList.Count;
+					piece.Prey = piece.preyList[preyNumber - 1];
+				}
+			}
+		}
 		if (state != State.FindingPath) return;
 
 		if (sleep != null && sleep.ShouldGoHome())
 		{
-			homePosition = sleep.Home.transform.position;
-			homePosition.z = 0.0f;
-			FindPath(homePosition);
+			if(sleep.Home != null)
+            {
+				homePosition = sleep.Home.transform.position;
+				homePosition.z = 0.0f;
+				FindPath(homePosition);
+			} else
+            {
+				//List<Scenery> dens = new List<Scenery>;
+				GameObject[] dens = GameObject.FindGameObjectsWithTag("den");
+				sleep.Home = dens[0].GetComponent<Scenery>();
+			}
+			
 		}
 		else if (piece.Prey)
 		{

@@ -14,7 +14,6 @@ public class Sleep : PieceBehaviour
 
 
 	public bool isNocturnal;
-	public Tilemap Terrain;
 	public Scenery Home;
 	public Sprite SleepSprite;
 	public Sprite AwakeSprite;

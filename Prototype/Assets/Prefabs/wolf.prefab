@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1373137601813283672}
   - component: {fileID: 613999014}
   m_Layer: 0
-  m_Name: wolf
+  m_Name: Wolf
   m_TagString: npc
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,6 +52,8 @@ MonoBehaviour:
   Strength: 8
   PieceColor: {r: 0.38781595, g: 0.7830189, b: 0.7164584, a: 1}
   Mate: {fileID: 0}
+  isPredator: 1
+  preyList: []
   Prey: {fileID: 1673489313515321916, guid: 541d05a6bd816438b92bc2f952e6d04c, type: 3}
   pieceBehaviors:
   - {fileID: 5545266364577110107}

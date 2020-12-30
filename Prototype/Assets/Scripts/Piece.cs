@@ -23,10 +23,9 @@ public class Piece : MonoBehaviour
     public bool isPlayer {get { return GetComponent<PlayerMovement>() != null; }}
 
 	public Piece Mate;
+	public bool isPredator;
+	public List<Piece> preyList;
 	public Piece Prey;
-	// instead of giving a piece a specific prey for now,
-	// lets make a predator flag that we can use to make them hunt the closest thing that is weaker than them
-	// because a specific piece would have already needed to be on the board
 
 	public List<PieceBehaviour> pieceBehaviors = new List<PieceBehaviour>();
 	PieceBehaviour curBehaviour;
@@ -36,6 +35,8 @@ public class Piece : MonoBehaviour
 		if (OnBeginMove != null) OnBeginMove();
 		curBehaviour = pieceBehaviors[0];
 		SetBehaviour();
+		
+		
 	}
 
 	void SetBehaviour()
@@ -72,6 +73,18 @@ public class Piece : MonoBehaviour
 
 		SpriteRenderer renderer = GetComponent<SpriteRenderer>();
 		renderer.color = PieceColor;
+		if (isPredator)
+		{
+			foreach (Piece aPiece in PieceManager.AllPieces)
+            {
+				if (aPiece.isPlayer)
+                {
+					preyList.Add(aPiece);
+					int preyNumber = preyList.Count;
+					Prey = preyList[preyNumber - 1];
+                }
+            }
+		}
 	}
 
 	private void OnEnable()

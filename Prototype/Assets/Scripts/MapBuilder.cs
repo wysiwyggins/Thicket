@@ -285,10 +285,11 @@ public class MapBuilder : MonoBehaviour
 
     void addPredators(int predators)
     {
+        Vector3 denCoord = grid.CellToWorld(HexCoordinates.CubeToOffset(randomOpenTile()));
+        Instantiate(den, denCoord, Quaternion.identity);
         for (int count = 0; count < predators; count++)
         {
             Vector3 coord = grid.CellToWorld(HexCoordinates.CubeToOffset(randomOpenTile()));
-
             Instantiate(predator, coord, Quaternion.identity);
             Debug.Log("Added Predator");
         }

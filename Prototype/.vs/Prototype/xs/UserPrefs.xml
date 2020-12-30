@@ -1,11 +1,14 @@
 ﻿<Properties StartupConfiguration="{B1235EE4-71EE-C815-28F8-C3378E5ADB84}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Piece.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Behaviors/Sleep.cs">
     <Files>
       <File FileName="Assets/Scripts/Spoor.cs" Line="1" Column="1" IsPinned="True" />
-      <File FileName="Assets/Scripts/PieceManager.cs" Line="77" Column="14" />
-      <File FileName="Assets/Scripts/MapBuilder.cs" Line="30" Column="40" />
-      <File FileName="Assets/Scripts/Behaviors/MoveTowardsTarget.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Piece.cs" Line="18" Column="1" />
+      <File FileName="Assets/Scripts/PieceManager.cs" Line="43" Column="9" />
+      <File FileName="Assets/Scripts/MapBuilder.cs" Line="292" Column="93" />
+      <File FileName="Assets/Scripts/Behaviors/MoveTowardsTarget.cs" Line="87" Column="1" />
+      <File FileName="Assets/Scripts/Piece.cs" Line="90" Column="1" />
+      <File FileName="Assets/Scripts/Behaviors/PlayerMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/HexCoordinates.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Behaviors/Sleep.cs" Line="17" Column="17" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,13 +17,11 @@
             <Node name="Assets" expanded="True">
               <Node name="Examples" expanded="True">
                 <Node name="PrimHexMaze" expanded="True" />
-                <Node name="SimpleTilePathfinding" expanded="True">
-                  <Node name="Script" expanded="True" />
-                </Node>
               </Node>
               <Node name="Scripts" expanded="True">
-                <Node name="Behaviors" expanded="True" />
-                <Node name="Piece.cs" selected="True" />
+                <Node name="Behaviors" expanded="True">
+                  <Node name="Sleep.cs" selected="True" />
+                </Node>
               </Node>
             </Node>
           </Node>
@@ -30,7 +31,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="45f91cc9-25cf-440c-8043-c7f6aa212049" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="e0cd2d78-756f-40ac-8148-509e4e063b5f" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
