@@ -207,7 +207,7 @@ public class HexCoordinates : MonoBehaviour
                 {   
                     foreach(Scenery scenery in sceneries)
                     {
-                        if (scenery.Opaque)
+                        if ((scenery.Opaque) && (hexcoord != target))
                         {
                             lineblocked = true;
                         }
