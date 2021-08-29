@@ -759,6 +759,7 @@
     <Reference Include="UnityEngine.Advertisements.Editor">
       <HintPath>Library/ScriptAssemblies/UnityEngine.Advertisements.Editor.dll</HintPath>
     </Reference>
+    <None Include=".gitignore" />
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>

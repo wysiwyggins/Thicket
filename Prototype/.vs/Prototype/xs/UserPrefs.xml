@@ -2,26 +2,26 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Piece.cs">
     <Files>
       <File FileName="Assets/Scripts/Spoor.cs" Line="1" Column="1" IsPinned="True" />
-      <File FileName="Assets/Scripts/PieceManager.cs" Line="114" Column="6" />
-      <File FileName="Assets/Scripts/MapBuilder.cs" Line="292" Column="93" />
-      <File FileName="Assets/Scripts/Behaviors/MoveTowardsTarget.cs" Line="96" Column="50" />
-      <File FileName="Assets/Scripts/Piece.cs" Line="39" Column="52" />
-      <File FileName="Assets/Scripts/Behaviors/PlayerMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/HexCoordinates.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Behaviors/Sleep.cs" Line="16" Column="26" />
-      <File FileName="Assets/Scripts/MainMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PieceBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MessageManager.cs" />
+      <File FileName="Assets/Scripts/PieceManager.cs" />
+      <File FileName="Assets/Scripts/MapBuilder.cs" />
+      <File FileName="Assets/Scripts/Behaviors/MoveTowardsTarget.cs" />
+      <File FileName="Assets/Scripts/Piece.cs" Line="9" Column="37" />
+      <File FileName="Assets/Scripts/Behaviors/PlayerMovement.cs" />
+      <File FileName="Assets/Scripts/HexCoordinates.cs" />
+      <File FileName="Assets/Scripts/Behaviors/Sleep.cs" />
+      <File FileName="Assets/Scripts/MainMenu.cs" />
+      <File FileName="Assets/Scripts/PieceBehaviour.cs" />
+      <File FileName="Assets/Scripts/Scenery.cs" />
+      <File FileName="Assets/Scripts/Behaviors/ConsumePiece.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Prototype" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="Examples" expanded="True">
-                <Node name="PrimHexMaze" expanded="True" />
-              </Node>
+              <Node name="Examples" expanded="True" />
               <Node name="Scripts" expanded="True">
-                <Node name="Behaviors" expanded="True" />
                 <Node name="Piece.cs" selected="True" />
               </Node>
             </Node>
@@ -32,7 +32,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="e0cd2d78-756f-40ac-8148-509e4e063b5f" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="66c1a319-0ffe-4a5e-a110-a6a019f08403" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
