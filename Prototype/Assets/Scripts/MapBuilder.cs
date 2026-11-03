@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -14,6 +14,8 @@ public class MapBuilder : MonoBehaviour
     public int predator_amount;  //how many wolves
     public int apex_amount;  // how many bears
     public int chickens_amount;
+    public int rabbits_amount = 2;
+    public int turtles_amount = 1;
     public int water_amount;
     Vector3Int map_origin;
     public List<Vector3Int> openTiles;
@@ -31,6 +33,8 @@ public class MapBuilder : MonoBehaviour
     public Piece predator;
     public Piece apex;
     public Piece chicken;
+    public Piece rabbit;
+    public Piece turtle;
     public Piece flower;
     public Piece player;
 
@@ -58,6 +62,8 @@ public class MapBuilder : MonoBehaviour
 
         drawMaze();
         addChicken(chickens_amount);
+        addPieces(rabbit, rabbits_amount);
+        addPieces(turtle, turtles_amount);
         addPredators(predator_amount);
         addApex(apex_amount);
         addPlayers(players_amount);
@@ -314,6 +320,17 @@ public class MapBuilder : MonoBehaviour
 
             Instantiate(chicken, coord, Quaternion.identity);
             Debug.Log("Added Chicken");
+        }
+    }
+
+    // Place `amount` copies of a piece prefab on random open hexes.
+    void addPieces(Piece prefab, int amount)
+    {
+        if (prefab == null) return;
+        for (int count = 0; count < amount; count++)
+        {
+            Vector3 coord = grid.CellToWorld(HexCoordinates.CubeToOffset(randomOpenTile()));
+            Instantiate(prefab, coord, Quaternion.identity);
         }
     }
 

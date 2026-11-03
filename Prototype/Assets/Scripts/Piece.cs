@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -37,20 +37,42 @@ public class Piece : MonoBehaviour
 
 	public bool Pushable;
 
+	// Set when the piece has been eaten and is about to be destroyed (Destroy is delayed for the reveal).
+	public bool IsBeingRemoved { get; set; }
+
+	// Show this piece through the fog for a moment (see FogTint.Reveal).
+	public void Reveal(float seconds)
+	{
+		if (fogTint != null) fogTint.Reveal(seconds);
+	}
+
 	const float pushSpeed = 4f;
 
 	public Vector3Int Cell { get { return PieceManager.Instance.grid.WorldToCell(transform.position); } }
 
 	// Can `mover` step onto `cell` without breaking the no-sharing rule?
+	// Only an animal that can eat a pushable piece may step onto it.
 	public static bool CanEnter(Piece mover, Vector3Int cell)
 	{
 		foreach (Piece other in PieceManager.GetPiecesAtPos(cell))
 		{
 			if (other == mover) continue;
 			if (mover.Pushable) return false;
-			if (other.Pushable && mover.Strength <= other.Strength) return false;
+			if (other.Pushable && !mover.CanEat(other)) return false;
 		}
 		return true;
+	}
+
+	// Can this piece eat `other`? It needs a ConsumePiece behaviour in its turn and more Strength.
+	// (Strength is also how hard a piece is to eat: the turtle's 9 is out of the wolf's reach but not the bear's.)
+	public bool CanEat(Piece other)
+	{
+		if (other == null || other == this || other.IsBeingRemoved || Strength <= other.Strength) return false;
+		foreach (PieceBehaviour behaviour in pieceBehaviors)
+		{
+			if (behaviour is ConsumePiece) return true;
+		}
+		return false;
 	}
 
 	// The first pushable piece on `cell` other than `mover`, or null.

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -184,6 +184,22 @@ public class HexCoordinates : MonoBehaviour
             Results.Add(CubeRound(CubeLerp(origin, extent, (float)(1.0 / (float)N * (float)i))));
         }
         return Results.ToArray();
+    }
+
+    // Can something at `origin` see `target` (cube coords) within `range` hexes?
+    // Same rule as GetFieldOfView: opaque scenery (brambles) in between blocks the view.
+    public static bool HasLineOfSight(Vector3Int origin, Vector3Int target, int range)
+    {
+        if (CubeDistance(origin, target) > range) return false;
+        foreach (Vector3Int hexcoord in CubeLineDraw(origin, target))
+        {
+            if (hexcoord == target) continue;
+            foreach (Scenery scenery in SceneryManager.GetSceneriesAtPos(CubeToOffset(hexcoord)))
+            {
+                if (scenery.Opaque) return false;
+            }
+        }
+        return true;
     }
 
     public static Vector3Int[] GetFieldOfView(Vector3Int origin, int range)

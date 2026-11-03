@@ -6512,6 +6512,8 @@ MonoBehaviour:
   predator_amount: 1
   apex_amount: 1
   chickens_amount: 1
+  rabbits_amount: 2
+  turtles_amount: 1
   water_amount: 0
   openTiles: []
   floorTiles: {fileID: 152103619}
@@ -6529,6 +6531,8 @@ MonoBehaviour:
     type: 3}
   apex: {fileID: 3660528557949446543, guid: a1dd7069733fc442e869644005483c77, type: 3}
   chicken: {fileID: 7924227483357231894, guid: 7ccf4707f41274be9802dab3971cfc01, type: 3}
+  rabbit: {fileID: 7924227483357231894, guid: c3f69697e8a6e455397b117469a5337f, type: 3}
+  turtle: {fileID: 7924227483357231894, guid: d6c7a38648ed543f79756a2227eda1b8, type: 3}
   flower: {fileID: 0}
   player: {fileID: 1673489313515321916, guid: 541d05a6bd816438b92bc2f952e6d04c, type: 3}
   mazeDimensions: {x: 16, y: 16}

@@ -48,6 +48,21 @@ public class Scenery : MonoBehaviour
         
     }
 
+    // Take this scenery out of play (e.g. brambles eaten by the turtle). The pathfinder only reads the
+    // navigation tilemap at startup, so an obstacle's hex must also be reopened there.
+    public void Remove()
+    {
+        if (Obstacle)
+        {
+            SimplePathFinding2D pf = grid.GetComponent<SimplePathFinding2D>();
+            SimplePF2D.NavNode node = pf != null ? pf.GetNode(grid.CellToWorld(pieceCoords)) : null;
+            if (node != null)
+                node.SetBlocked(false);
+        }
+        SceneryManager.AllScenery.Remove(this); // right away, not at end of frame
+        Destroy(gameObject);
+    }
+
     private void OnDestroy()
     {
         // on scene unload the Grid/tilemap may already be destroyed

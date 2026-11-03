@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -10,18 +10,40 @@ public class Spoor : MonoBehaviour
 	public int drydown;
 	public Color color;
 	public Piece source;
+
+	// Order in which spoor was laid (higher = fresher). Drydown can't tell apart spoor left
+	// during the same move, so trail-following uses this to know which way the trail runs.
+	public int order;
+	static int nextOrder;
+	bool fading; // dried up or washed away; waiting for its delayed Destroy
 	SpriteRenderer spriteRenderer;
 	Grid grid;
 
 
+	void Awake()
+	{
+		order = nextOrder++;
+	}
+
 	private void OnEnable()
 	{
 		PieceManager.OnRoundComplete += CheckSpoor;
+		SpoorManager.AllSpoor.Add(this); // so animals can smell it (this was missing, so trails never worked)
 	}
 
 	private void OnDisable()
 	{
 		PieceManager.OnRoundComplete -= CheckSpoor;
+		SpoorManager.AllSpoor.Remove(this);
+	}
+
+	// Stop being smellable now; the sprite lingers for a second before it's destroyed.
+	void Fade()
+	{
+		if (fading) return;
+		fading = true;
+		SpoorManager.AllSpoor.Remove(this);
+		Destroy(this.gameObject, 1);
 	}
 
 
@@ -65,15 +87,16 @@ public class Spoor : MonoBehaviour
 			{
 				if(scenery.Cleansing)
                 {
-					MessageManager.AddMessage("The "+ scenery.SceneryName + " removes the scent of the " + source.PieceName);
-					Destroy(this.gameObject, 1);
+					if (!fading && source != null)
+						MessageManager.AddMessage("The "+ scenery.SceneryName + " removes the scent of the " + source.PieceName);
+					Fade();
 				}
 			}
 
 		}
 		if (drydown < 0)
         {
-            Destroy(this.gameObject, 1);
+            Fade();
         }
 
     }

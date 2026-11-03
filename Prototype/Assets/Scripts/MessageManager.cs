@@ -25,6 +25,14 @@ public class MessageManager : MonoBehaviour
 
 
     }
+    // The message list is static, so it would otherwise carry over when the scene is reloaded.
+    public static void ClearMessages()
+    {
+        allMessages.Clear();
+        if (TextOutput != null)
+            TextOutput.text = "";
+    }
+
     // Awake (not Start) so the text exists before PieceManager.Start posts the first turn message
     void Awake()
     {

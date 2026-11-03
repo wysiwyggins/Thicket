@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6d11110bf5e445b95482458f4a4932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 2
+  range: 3
   OnEnterTile:
     m_PersistentCalls:
       m_Calls:

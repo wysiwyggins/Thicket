@@ -1,9 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PieceManager : MonoBehaviour
 {
@@ -17,8 +18,9 @@ public class PieceManager : MonoBehaviour
 	Piece currentPiece;
 	public static Piece CurrentPiece { get { return Instance != null ? Instance.currentPiece : null; } }
 
-	// "title" TMP text on the Canvas showing whose turn it is
-	TMP_Text titleText;
+	// TMP text on the Canvas showing whose turn it is, and the game-over message.
+	// Assign in the Inspector, or it's found by name ("Title").
+	public TMP_Text titleText;
 
 	public Grid grid;
 
@@ -79,12 +81,68 @@ public class PieceManager : MonoBehaviour
 			Destroy(this);
 	}
 
+	// --- Game over ---
+	// Win: the deer is safe once no predators are left in play.
+	// Lose: the deer is eaten.
+	// Either way the board keeps running and R restarts.
+
+	bool gameOver;
+
+	// Called when a piece is taken out of play (currently: eaten, see ConsumePiece).
+	public static void OnPieceRemoved(Piece removed, Piece eatenBy = null)
+	{
+		if (Instance == null || Instance.gameOver || removed == null) return;
+
+		if (removed.isPlayer)
+		{
+			string cause = eatenBy != null ? " was caught by the " + eatenBy.PieceName : " was caught";
+			Instance.EndGame("The " + removed.PieceName + cause + ".", "The " + removed.PieceName + cause);
+			return;
+		}
+
+		if (!removed.isPredator) return;
+		Piece player = null;
+		foreach (Piece aPiece in AllPieces)
+		{
+			if (aPiece == null || aPiece == removed || aPiece.IsBeingRemoved) continue;
+			if (aPiece.isPredator) return; // still hunted
+			if (aPiece.isPlayer) player = aPiece;
+		}
+		if (player != null)
+			Instance.EndGame("The " + player.PieceName + " is safe.", "The " + player.PieceName + " is safe");
+	}
+
+	void EndGame(string message, string title)
+	{
+		gameOver = true;
+		MessageManager.AddMessage(message);
+		MessageManager.AddMessage("Press R to restart game.");
+		if (titleText != null)
+			titleText.text = title + "<size=60%>\nPress R to restart</size>";
+	}
+
+	private void Update()
+	{
+		// legacy Input works because Active Input Handling is set to Both
+		if (gameOver && Input.GetKeyDown(KeyCode.R))
+			RestartGame();
+	}
+
+	void RestartGame()
+	{
+		MessageManager.ClearMessages();
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+	}
+
 	private void Start()
 	{
 		state = State.Dawn;
-		GameObject titleObject = GameObject.Find("title");
-		if (titleObject != null)
-			titleText = titleObject.GetComponent<TMP_Text>();
+		if (titleText == null)
+		{
+			GameObject titleObject = GameObject.Find("Title");
+			if (titleObject != null)
+				titleText = titleObject.GetComponent<TMP_Text>();
+		}
 		currentPiece = AllPieces[0];
 		StartPieceTurn();
 	}
@@ -93,7 +151,7 @@ public class PieceManager : MonoBehaviour
 	void StartPieceTurn()
 	{
 		currentPiece.OnCompleteMove += CurrentPiece_OnCompleteMove;
-		if (titleText != null)
+		if (titleText != null && !gameOver) // keep the game-over title
 			titleText.text = currentPiece.PieceName + "'s Turn";
 		//MessageManager.AddMessage("Win: " + CheckWin()); 
 		currentPiece.BeginTurn();

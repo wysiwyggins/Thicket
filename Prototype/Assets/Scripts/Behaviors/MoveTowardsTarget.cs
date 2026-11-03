@@ -125,38 +125,179 @@ public class MoveTowardsTarget : PieceBehaviour
 		}
 	}
 
-	// Hex of the freshest scent left by our prey next to us, if it's fresher than the scent we're standing on.
-	// Returns false if we're not on the prey's trail, or we're at the freshest point of it.
-	bool TryGetFresherScent(Vector3Int selfCoords, out Vector3Int fresherCoords)
-	{
-		fresherCoords = selfCoords;
-		int bestDrydown = -1;
-		foreach (Spoor spoor in SpoorManager.GetSpoorAtPos(selfCoords))
-		{
-			if (spoor.source == piece.Prey)
-				bestDrydown = Mathf.Max(bestDrydown, spoor.drydown);
-		}
-		if (bestDrydown < 0) return false; // no trail here
+	// --- Hunting: see the prey, else follow its scent, else wander ---
 
-		bool found = false;
-		foreach (Vector3Int coord in HexCoordinates.GetNeighborsAtPos(selfCoords))
+	public int smellRange = 2; // how many hexes away a hunter can pick up its prey's trail
+
+	// Is the prey within sight? Uses the same day/night range and bramble blocking as the deer's own view.
+	bool CanSeePrey()
+	{
+		Vector3Int self = HexCoordinates.OffsetToCube(grid.WorldToCell(transform.position));
+		Vector3Int prey = HexCoordinates.OffsetToCube(grid.WorldToCell(piece.Prey.transform.position));
+		return HexCoordinates.HasLineOfSight(self, prey, Vision.SightRange());
+	}
+
+	// Freshest of the prey's spoor on `cell`, or null.
+	Spoor PreySpoorAt(Vector3Int cell)
+	{
+		Spoor freshest = null;
+		foreach (Spoor spoor in SpoorManager.GetSpoorAtPos(cell))
 		{
-			foreach (Spoor neighborSpoor in SpoorManager.GetSpoorAtPos(coord))
+			if (spoor != null && spoor.source == piece.Prey && (freshest == null || spoor.order > freshest.order))
+				freshest = spoor;
+		}
+		return freshest;
+	}
+
+	// Pick up the prey's trail within smellRange, then run along it towards fresher scent as far as
+	// this piece can move this turn. Returns false if there's no trail nearby or we're already at its end.
+	bool TryFollowTrail(out Vector3Int target)
+	{
+		Vector3Int self = grid.WorldToCell(transform.position);
+		target = self;
+
+		// strongest scent we can smell from here
+		Spoor current = null;
+		foreach (Vector3Int cube in HexCoordinates.GetHexesAtDistance(HexCoordinates.OffsetToCube(self), smellRange))
+		{
+			Vector3Int cell = HexCoordinates.CubeToOffset(cube);
+			Spoor spoor = PreySpoorAt(cell);
+			if (spoor != null && (current == null || spoor.order > current.order))
 			{
-				if (neighborSpoor.source == piece.Prey && neighborSpoor.drydown > bestDrydown)
+				current = spoor;
+				target = cell;
+			}
+		}
+		if (current == null) return false;
+
+		// follow the trail onwards from there, one fresher neighbour at a time
+		for (int step = 0; step < range; step++)
+		{
+			Spoor next = null;
+			Vector3Int nextCell = target;
+			foreach (Vector3Int neighbor in HexCoordinates.GetNeighborsAtPos(target))
+			{
+				Spoor spoor = PreySpoorAt(neighbor);
+				if (spoor != null && spoor.order > current.order && (next == null || spoor.order > next.order))
 				{
-					bestDrydown = neighborSpoor.drydown;
-					fresherCoords = coord;
-					found = true;
+					next = spoor;
+					nextCell = neighbor;
 				}
+			}
+			if (next == null) break;
+			current = next;
+			target = nextCell;
+		}
+		return target != self;
+	}
+
+	// --- Fleeing: animals that see something able to eat them run away from it ---
+
+	bool fleeing; // so "flees" is only announced when an animal starts running
+
+	// Animals that could eat this one and are within its sight (same range/bramble rules as hunting).
+	List<Piece> VisibleThreats()
+	{
+		var threats = new List<Piece>();
+		Vector3Int self = HexCoordinates.OffsetToCube(grid.WorldToCell(transform.position));
+		int sight = Vision.SightRange();
+		foreach (Piece other in PieceManager.AllPieces)
+		{
+			if (other == null || other == piece || other.IsBeingRemoved || !other.CanEat(piece)) continue;
+			Vector3Int otherCube = HexCoordinates.OffsetToCube(grid.WorldToCell(other.transform.position));
+			if (HexCoordinates.HasLineOfSight(self, otherCube, sight))
+				threats.Add(other);
+		}
+		return threats;
+	}
+
+	// The open hex within one move that gets furthest from the nearest threat (ties: furthest from all of them).
+	// Returns false if nowhere in reach is safer than staying put.
+	bool TryFindEscape(List<Piece> threats, out Vector3Int escape)
+	{
+		var threatCubes = new List<Vector3Int>();
+		foreach (Piece threat in threats)
+			threatCubes.Add(HexCoordinates.OffsetToCube(grid.WorldToCell(threat.transform.position)));
+
+		int nearest(Vector3Int cube)
+		{
+			int min = int.MaxValue;
+			foreach (Vector3Int t in threatCubes) min = Mathf.Min(min, HexCoordinates.CubeDistance(cube, t));
+			return min;
+		}
+		int total(Vector3Int cube)
+		{
+			int sum = 0;
+			foreach (Vector3Int t in threatCubes) sum += HexCoordinates.CubeDistance(cube, t);
+			return sum;
+		}
+
+		Vector3Int selfCell = grid.WorldToCell(transform.position);
+		Vector3Int selfCube = HexCoordinates.OffsetToCube(selfCell);
+		escape = selfCell;
+		int bestNearest = nearest(selfCube);
+		int bestTotal = total(selfCube);
+		bool found = false;
+
+		int moveHexes = Mathf.Max(1, range - 1); // range counts the starting hex
+		foreach (Vector3Int cube in HexCoordinates.GetHexesAtDistance(selfCube, moveHexes))
+		{
+			if (cube == selfCube) continue;
+			Vector3Int cell = HexCoordinates.CubeToOffset(cube);
+			NavNode node = pf.GetNode(grid.CellToWorld(cell));
+			if (node == null || node.IsBlocked()) continue;               // brambles, map edge, chickens we can't share with
+			if (PieceManager.GetPiecesAtPos(cell).Length > 0) continue;   // don't run into anyone
+
+			int n = nearest(cube), t = total(cube);
+			if (n > bestNearest || (n == bestNearest && t > bestTotal))
+			{
+				bestNearest = n;
+				bestTotal = t;
+				escape = cell;
+				found = true;
 			}
 		}
 		return found;
 	}
 
+	void Wander()
+	{
+		int randomX = Random.Range(-5, 5);
+		int randomY = Random.Range(-5, 8);
+		randomWorldTarget = grid.CellToWorld(new Vector3Int(randomX, randomY, 0));
+		NavNode node = pf.GetNode(randomWorldTarget);
+		if (node != null && !node.IsBlocked()) // otherwise pick another spot next frame
+			FindPath(randomWorldTarget);
+	}
+
     private void Update()
 	{
 		if (state != State.FindingPath) return;
+
+		// staying alive comes first
+		List<Piece> threats = VisibleThreats();
+		if (threats.Count > 0)
+		{
+			bool announce = !fleeing;
+			fleeing = true;
+			if (TryFindEscape(threats, out Vector3Int escapeCell))
+			{
+				if (announce)
+					MessageManager.AddMessage("The " + piece.PieceName + " flees from the " + threats[0].PieceName + ".");
+				Vector3 escapePosition = grid.CellToWorld(escapeCell);
+				escapePosition.z = 0.0f;
+				FindPath(escapePosition);
+			}
+			else
+			{
+				// cornered: nowhere safer in reach, so hold still rather than wander towards danger
+				if (announce)
+					MessageManager.AddMessage("The " + piece.PieceName + " freezes.");
+				EndMove();
+			}
+			return;
+		}
+		fleeing = false;
 
 		if (sleep != null && sleep.ShouldGoHome())
 		{
@@ -176,22 +317,23 @@ public class MoveTowardsTarget : PieceBehaviour
 		else if (piece.Prey)
 		{
 			
-			Vector3Int selfCoords = grid.WorldToCell(transform.position);
-
-			if (TryGetFresherScent(selfCoords, out Vector3Int scentCoords))
+			if (CanSeePrey())
 			{
-				// follow the trail one hex towards fresher scent (FindPath wants a world position, not a cell)
-				Vector3 scentPosition = grid.CellToWorld(scentCoords);
-				scentPosition.z = 0.0f;
-				FindPath(scentPosition);
-			}
-			else
-			{
-				// no trail here, or we're already on its freshest point: head straight for the prey
-				//eventually this will only happen if in line-of-sight
+				// charge straight at it
 				preyPosition = piece.Prey.transform.position;
 				preyPosition.z = 0.0f;
 				FindPath(preyPosition);
+			}
+			else if (TryFollowTrail(out Vector3Int trailCell))
+			{
+				// FindPath wants a world position, not a cell
+				Vector3 trailPosition = grid.CellToWorld(trailCell);
+				trailPosition.z = 0.0f;
+				FindPath(trailPosition);
+			}
+			else
+			{
+				Wander(); // lost the prey: no sight, no scent
 			}
 
 
@@ -199,17 +341,7 @@ public class MoveTowardsTarget : PieceBehaviour
 		}
 		else
 		{
-			//Debug.Log("The " + piece.PieceName + " is not sleepy, has no prey");
-			int randomX = Random.Range(-5, 5);
-			int randomY = Random.Range(-5, 8);
-
-			//Debug.Log(piece.PieceName + " thinks its going to: "+ randomX +","+ randomY);
-			randomWorldTarget = grid.CellToWorld(new Vector3Int(randomX, randomY, 0));
-			NavNode node = pf.GetNode(randomWorldTarget);
-			if (node != null && !node.IsBlocked()) // otherwise pick another spot next frame
-			{
-				FindPath(randomWorldTarget);
-			}	
+			Wander();
 		}
 	}
 

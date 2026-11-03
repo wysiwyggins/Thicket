@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 using UnityEngine;
@@ -38,6 +38,12 @@ public class Vision : MonoBehaviour
 
 
 
+    // How far animals can see at the current hour: 1 hex at the darkest, 7 at the brightest.
+    public static int SightRange()
+    {
+        return (int)(Mathf.PingPong(PieceManager.Instance.hour, 6) + 1);
+    }
+
     public void UpdateFog()
     {
         Vector3Int PiecePosition = fogTilemap.WorldToCell(transform.position);
@@ -52,7 +58,7 @@ public class Vision : MonoBehaviour
         fogTilemap.SetTile(PiecePosition, null);
 
         //this would remove fog tiles from field of view
-        visibility = Mathf.PingPong(PieceManager.Instance.hour, 6) + 1;
+        visibility = SightRange();
         //Debug.Log("Attempting field of view with a center of " + center + " and a range of " + visibility);
 
         Vector3Int[] viewHexes = HexCoordinates.GetFieldOfView(center, (int) visibility);

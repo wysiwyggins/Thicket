@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //using UnityEngine.UI;
@@ -11,6 +11,7 @@ public class ConsumePiece : PieceBehaviour
 	Tilemap navmap;
 	//private Text TextOutput;
 	public int Metabolism;
+	const float PreyRemoveDelay = 1f; // seconds the eaten piece stays on the board
 	int digestion;
 
 	public enum State
@@ -35,7 +36,7 @@ public class ConsumePiece : PieceBehaviour
 		for (int i = 0; i < neighbors.Length; i++)
 		{
 
-			if (neighbors[i].Strength < piece.Strength)
+			if (piece.CanEat(neighbors[i]))
 			{
 				Debug.Log("hunting " + neighbors[i].PieceName);
 				Consume(neighbors[i]);
@@ -65,10 +66,16 @@ public class ConsumePiece : PieceBehaviour
 	void Consume(Piece prey)
     {
 		Debug.Log("CHOMP: " + prey.PieceName);
-		Destroy(prey.gameObject, 1);
+		prey.IsBeingRemoved = true;
+		// the kill is always seen, even out in the fog: both animals show until the prey is gone,
+		// then the predator fades back into the fog
+		prey.Reveal(PreyRemoveDelay);
+		piece.Reveal(PreyRemoveDelay + 1.5f);
+		Destroy(prey.gameObject, PreyRemoveDelay);
 		//TextOutput.text += "The " + piece.PieceName + " catches the " + prey.PieceName + ".\n";
 		MessageManager.AddMessage("The " + piece.PieceName + " catches the " + prey.PieceName );
 		state = State.Full;
+		PieceManager.OnPieceRemoved(prey, piece);
 	}
 
 	public bool IsFull()

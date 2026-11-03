@@ -19,6 +19,7 @@ public class FogTint : MonoBehaviour
     Color baseColor;
     bool exempt; // the player is never fogged
     float fogAmount; // 0 = in view, 1 = fog-coloured silhouette, 2 = invisible
+    float revealUntil; // Time.time until which the piece is shown regardless of fog
 
     void Awake()
     {
@@ -38,6 +39,15 @@ public class FogTint : MonoBehaviour
     public void SetBaseColor(Color color)
     {
         baseColor = color;
+        if (spriteRenderer != null) Apply();
+    }
+
+    // Show this sprite at full colour right away, even in fog, for `seconds`; it then fades back
+    // to its normal fog state. Used so the player sees animals when one eats another.
+    public void Reveal(float seconds)
+    {
+        revealUntil = Mathf.Max(revealUntil, Time.time + seconds);
+        fogAmount = 0f;
         if (spriteRenderer != null) Apply();
     }
 
@@ -70,7 +80,7 @@ public class FogTint : MonoBehaviour
 
     float TargetAmount()
     {
-        if (exempt || fogTilemap == null) return 0f;
+        if (exempt || fogTilemap == null || Time.time < revealUntil) return 0f;
         Vector3Int cell = fogTilemap.WorldToCell(transform.position);
         if (!fogTilemap.HasTile(cell)) return 0f;
         foreach (Vector3Int neighbor in HexCoordinates.GetNeighborsAtPos(cell))
