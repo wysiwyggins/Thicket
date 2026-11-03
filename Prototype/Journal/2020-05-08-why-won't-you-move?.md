@@ -15,7 +15,7 @@ I've been stuck all week trying to figure out why my AI pieces aren't moving whe
 
 Here's the current version of my piece.cs script which contains both the player and ai moving logic. the console statement I set up claims the path length is zero even though it's drawn a multi step path to the target. 
 
-![console.log](/images/thicket-path-console.png)
+![console.log](./images/thicket-path-console.png)
 
 {% highlight c# %}
 using System.Collections;

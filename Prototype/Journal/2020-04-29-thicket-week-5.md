@@ -12,7 +12,7 @@ tags:
 author: Wiley Wiggins
 ---
 
-![path movement works correctly now](/images/goodpath.gif)
+![path movement works correctly now](./images/goodpath.gif)
 
 The stuttering movement in my move coroutine was caused by the coroutine being fired every frame. Used the "following" bool to limit this. Nick showed me how to use SmoothDamp to add curves to movement, discussed using delegates and events. Added a piece controller script to use as a sort of state machine. 
 

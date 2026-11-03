@@ -9,7 +9,7 @@ tags:
 author: Wiley Wiggins
 ---
 
-![pathfinding](/images/thicket_paths.gif)
+![pathfinding](./images/thicket_paths.gif)
 
 Happily, I finally found an implementation of A* that uses the build in Unity tilemaps, so I don't duplicate a lot of code/effort. Unity's 2d tilemaps are relatively new (a couple of years old) so it's hard to find any example code that uses them for anything other than painting backgrounds. 
 
