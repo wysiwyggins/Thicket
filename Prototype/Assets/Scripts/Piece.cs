@@ -30,6 +30,69 @@ public class Piece : MonoBehaviour
 	public List<PieceBehaviour> pieceBehaviors = new List<PieceBehaviour>();
 	PieceBehaviour curBehaviour;
 
+	// --- Occupancy & pushing ---
+	// A pushable piece (e.g. the chicken) never shares a hex: it won't move onto other animals, and
+	// other animals can't move onto it unless they're stronger (a predator catching it).
+	// The player's piece pushes it one hex along its direction of travel instead.
+
+	public bool Pushable;
+
+	const float pushSpeed = 4f;
+
+	public Vector3Int Cell { get { return PieceManager.Instance.grid.WorldToCell(transform.position); } }
+
+	// Can `mover` step onto `cell` without breaking the no-sharing rule?
+	public static bool CanEnter(Piece mover, Vector3Int cell)
+	{
+		foreach (Piece other in PieceManager.GetPiecesAtPos(cell))
+		{
+			if (other == mover) continue;
+			if (mover.Pushable) return false;
+			if (other.Pushable && mover.Strength <= other.Strength) return false;
+		}
+		return true;
+	}
+
+	// The first pushable piece on `cell` other than `mover`, or null.
+	public static Piece PushableAt(Vector3Int cell, Piece mover)
+	{
+		foreach (Piece other in PieceManager.GetPiecesAtPos(cell))
+		{
+			if (other != mover && other.Pushable) return other;
+		}
+		return null;
+	}
+
+	// Push this piece one hex further along the line from -> its current cell.
+	// Returns false (and doesn't move) if the hex beyond is off the map, an obstacle, or occupied.
+	public bool TryPush(Vector3Int from)
+	{
+		Vector3Int at = Cell;
+		Vector3Int direction = HexCoordinates.OffsetToCube(at) - HexCoordinates.OffsetToCube(from);
+		Vector3Int destination = HexCoordinates.CubeToOffset(HexCoordinates.OffsetToCube(at) + direction);
+
+		Grid grid = PieceManager.Instance.grid;
+		Vector3 destinationWorld = grid.CellToWorld(destination);
+		SimplePF2D.NavNode node = grid.GetComponent<SimplePathFinding2D>().GetNode(destinationWorld);
+		if (node == null || node.IsBlocked()) return false;
+		if (PieceManager.GetPiecesAtPos(destination).Length > 0) return false;
+
+		StartCoroutine(SlideTo(destinationWorld));
+		MessageManager.AddMessage("The " + PieceName + " is pushed aside.");
+		return true;
+	}
+
+	IEnumerator SlideTo(Vector3 target)
+	{
+		target.z = transform.position.z;
+		while (Vector3.Distance(transform.position, target) > 0.01f)
+		{
+			transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * pushSpeed);
+			yield return null;
+		}
+		transform.position = target;
+	}
+
 	public void BeginTurn()
 	{
 		
@@ -68,13 +131,19 @@ public class Piece : MonoBehaviour
 	}
 
 
+    void Awake()
+    {
+		// fog of war tinting is shared with brambles; see FogTint.cs
+		fogTint = GetComponent<FogTint>();
+		if (fogTint == null) fogTint = gameObject.AddComponent<FogTint>();
+	}
+
+	FogTint fogTint;
+
     // Start is called before the first frame update
     void Start()
     {
-
-		SpriteRenderer renderer = GetComponent<SpriteRenderer>();
-		renderer.color = PieceColor;
-		
+		fogTint.SetBaseColor(PieceColor);
 	}
 
 	private void OnEnable()

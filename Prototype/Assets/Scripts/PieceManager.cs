@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 //using UnityEngine.UI;
 using UnityEngine.Tilemaps;
+using TMPro;
 
 public class PieceManager : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class PieceManager : MonoBehaviour
 	public static event PieceAction OnRoundComplete;
 
 	Piece currentPiece;
+	public static Piece CurrentPiece { get { return Instance != null ? Instance.currentPiece : null; } }
+
+	// "title" TMP text on the Canvas showing whose turn it is
+	TMP_Text titleText;
 
 	public Grid grid;
 
@@ -77,6 +82,9 @@ public class PieceManager : MonoBehaviour
 	private void Start()
 	{
 		state = State.Dawn;
+		GameObject titleObject = GameObject.Find("title");
+		if (titleObject != null)
+			titleText = titleObject.GetComponent<TMP_Text>();
 		currentPiece = AllPieces[0];
 		StartPieceTurn();
 	}
@@ -85,6 +93,8 @@ public class PieceManager : MonoBehaviour
 	void StartPieceTurn()
 	{
 		currentPiece.OnCompleteMove += CurrentPiece_OnCompleteMove;
+		if (titleText != null)
+			titleText.text = currentPiece.PieceName + "'s Turn";
 		//MessageManager.AddMessage("Win: " + CheckWin()); 
 		currentPiece.BeginTurn();
 		

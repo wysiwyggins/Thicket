@@ -42,6 +42,9 @@ public class PlayerMovement : PieceBehaviour
 	}
 	State state;
 
+	// true while the player is choosing where to move (used to show/hide the cursor)
+	public bool IsAwaitingInput { get { return state == State.WaitForInput; } }
+
 	public override void Begin()
 	{
 		path.Reset();
@@ -176,12 +179,24 @@ public class PlayerMovement : PieceBehaviour
 		List<Vector3Int> cellPositions = path.GetPathPointList(); // a list of grid positions in the path
 		if (cellPositions.Count > range)
 		{
-			cellPositions.RemoveRange(range, cellPositions.Count); //shave off the moves past piece.range for ai pieces
+			cellPositions.RemoveRange(range, cellPositions.Count - range); //shave off the moves past piece.range for ai pieces
 		}
 		for (int i = 0; i < cellPositions.Count; i++) //Loop through them (lists have a "count", not a "length")
 		{
 			Debug.Log("Get path point");
 			Vector3 targetPos = path.GetPathPointWorld(i);
+
+			// walking into a pushable piece (chicken) shoves it one hex onward; if it can't move, stop here
+			Vector3Int nextCell = grid.WorldToCell(targetPos);
+			if (i != 0 && nextCell != pieceCoords)
+			{
+				Piece pushable = Piece.PushableAt(nextCell, piece);
+				if (pushable != null && !pushable.TryPush(pieceCoords))
+				{
+					MessageManager.AddMessage("The " + pushable.PieceName + " won't budge.");
+					break;
+				}
+			}
 
 			Vector3 vel = Vector3.zero;
 			while (Vector3.Distance(transform.position, targetPos) > 0.01f)
@@ -189,7 +204,7 @@ public class PlayerMovement : PieceBehaviour
 				transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref vel, 0.2f, moveSpeed);
 				UpdateFog();
 				//  transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * moveSpeed);
-				yield return new WaitForEndOfFrame();
+				yield return null; // next frame
 				
 			}
 			if(i != 0)

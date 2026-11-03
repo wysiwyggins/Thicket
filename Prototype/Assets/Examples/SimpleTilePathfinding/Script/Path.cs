@@ -93,6 +93,11 @@ namespace SimplePF2D{
             return pathpoints.Count != 0 && !aStarSearch.hasFailedFlag;
         }
 
+        // True if the A* search finished without finding a route (e.g. the target is walled off).
+        public bool HasFailed() {
+            return aStarSearch.hasFailedFlag;
+        }
+
         // Gets the next point in the path point list based on the passed in index.
         // This point is returned by reference as a world position (nextPoint). Returns true if there is a valid next point.
         // If it reaches the end or the path has failed it returns false.

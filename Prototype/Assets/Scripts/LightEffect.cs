@@ -1,21 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
+﻿using UnityEngine;
+using UnityEngine.Rendering;
+
+// Fades a URP post-processing Volume in and out over the day/night cycle.
+[RequireComponent(typeof(Volume))]
 public class LightEffect : MonoBehaviour
 {
-	PostProcessVolume volume;
+	Volume volume;
 	public AnimationCurve weightOverTime;
-	// Start is called before the first frame update
+
 	void Start()
-    {
-		volume = GetComponent<PostProcessVolume>();
-    }
+	{
+		volume = GetComponent<Volume>();
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
+	void Update()
+	{
 		volume.weight = Mathf.MoveTowards(volume.weight, weightOverTime.Evaluate(PieceManager.Instance.sunPerc), Time.deltaTime * 0.2f);
-
-    }
+	}
 }

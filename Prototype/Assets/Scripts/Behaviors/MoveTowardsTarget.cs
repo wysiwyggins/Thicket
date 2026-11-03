@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -52,9 +52,53 @@ public class MoveTowardsTarget : PieceBehaviour
 		path.Reset();
 		state = State.FindingPath;
 		startedMove = false;
+		ChoosePrey();
+		BlockForbiddenCells();
 	}
 
 	bool startedMove = false;
+
+	// --- Routing around pieces we can't share a hex with (e.g. chickens) ---
+	// Turns are taken one piece at a time, so during this piece's move we mark those hexes as
+	// blocked in the pathfinder, and restore them when the move ends.
+
+	readonly List<NavNode> tempBlocked = new List<NavNode>();
+
+	void BlockForbiddenCells()
+	{
+		UnblockForbiddenCells();
+		foreach (Piece other in PieceManager.AllPieces)
+		{
+			if (other == null || other == piece) continue;
+			Vector3Int cell = other.Cell;
+			if (Piece.CanEnter(piece, cell)) continue;
+			NavNode node = pf.GetNode(grid.CellToWorld(cell));
+			if (node != null && !node.IsBlocked()) // leave real obstacles alone
+			{
+				node.SetBlocked(true);
+				tempBlocked.Add(node);
+			}
+		}
+	}
+
+	void UnblockForbiddenCells()
+	{
+		foreach (NavNode node in tempBlocked)
+			node.SetBlocked(false);
+		tempBlocked.Clear();
+	}
+
+	void EndMove()
+	{
+		state = State.Inactive;
+		UnblockForbiddenCells();
+		SendCompleteMessage();
+	}
+
+	void OnDestroy()
+	{
+		UnblockForbiddenCells(); // e.g. eaten mid-turn
+	}
 
 	// Start is called before the first frame update
 	void Awake()
@@ -66,20 +110,52 @@ public class MoveTowardsTarget : PieceBehaviour
 
 	}
 
-    private void Update()
+	// Predators hunt the player. Done once per turn (it used to run every frame and grow preyList forever).
+	void ChoosePrey()
 	{
-		if (piece.isPredator)
+		if (!piece.isPredator) return;
+		foreach (Piece aPiece in PieceManager.AllPieces)
 		{
-			foreach (Piece aPiece in PieceManager.AllPieces)
+			if (aPiece != null && aPiece.isPlayer)
 			{
-				if (aPiece.isPlayer)
-				{
+				if (!piece.preyList.Contains(aPiece))
 					piece.preyList.Add(aPiece);
-					int preyNumber = piece.preyList.Count;
-					piece.Prey = piece.preyList[preyNumber - 1];
+				piece.Prey = aPiece;
+			}
+		}
+	}
+
+	// Hex of the freshest scent left by our prey next to us, if it's fresher than the scent we're standing on.
+	// Returns false if we're not on the prey's trail, or we're at the freshest point of it.
+	bool TryGetFresherScent(Vector3Int selfCoords, out Vector3Int fresherCoords)
+	{
+		fresherCoords = selfCoords;
+		int bestDrydown = -1;
+		foreach (Spoor spoor in SpoorManager.GetSpoorAtPos(selfCoords))
+		{
+			if (spoor.source == piece.Prey)
+				bestDrydown = Mathf.Max(bestDrydown, spoor.drydown);
+		}
+		if (bestDrydown < 0) return false; // no trail here
+
+		bool found = false;
+		foreach (Vector3Int coord in HexCoordinates.GetNeighborsAtPos(selfCoords))
+		{
+			foreach (Spoor neighborSpoor in SpoorManager.GetSpoorAtPos(coord))
+			{
+				if (neighborSpoor.source == piece.Prey && neighborSpoor.drydown > bestDrydown)
+				{
+					bestDrydown = neighborSpoor.drydown;
+					fresherCoords = coord;
+					found = true;
 				}
 			}
 		}
+		return found;
+	}
+
+    private void Update()
+	{
 		if (state != State.FindingPath) return;
 
 		if (sleep != null && sleep.ShouldGoHome())
@@ -100,44 +176,18 @@ public class MoveTowardsTarget : PieceBehaviour
 		else if (piece.Prey)
 		{
 			
-			Vector3 location = transform.position;
 			Vector3Int selfCoords = grid.WorldToCell(transform.position);
 
-			Spoor[] spoors = SpoorManager.GetSpoorAtPos(selfCoords);
-
-			if (spoors.Length > 0) //if there's a spoor here
-            {
-				
-				foreach (Spoor spoor in spoors) //for every spoor at the spot of this piece
-				{
-					Debug.Log("there's a spoor here:" + spoor.source);
-					if (spoor.source == piece.Prey) //if that spoor is the one we're hunting
-					{
-						//get the neighboring positions
-						Vector3Int[] neighborCoords = HexCoordinates.GetNeighborsAtPos(selfCoords);
-						foreach (Vector3Int coord in neighborCoords) //for each of the neighboring positions
-						{
-							Spoor[] neighborSpoors = SpoorManager.GetSpoorAtPos(coord); //get all the spoors at that position
-							foreach (Spoor neighborSpoor in neighborSpoors) //for each of those spoors
-							{
-								if (neighborSpoor.source == piece.Prey) //if it's the one we're hunting
-								{
-									if (neighborSpoor.drydown > spoor.drydown) //if it's fresher
-									{
-										FindPath(coord); //follow it
-									}
-
-								}
-
-							}
-
-						}
-					}
-				}
-
-			} else
-            {
-				Debug.Log("I don't smell anything");
+			if (TryGetFresherScent(selfCoords, out Vector3Int scentCoords))
+			{
+				// follow the trail one hex towards fresher scent (FindPath wants a world position, not a cell)
+				Vector3 scentPosition = grid.CellToWorld(scentCoords);
+				scentPosition.z = 0.0f;
+				FindPath(scentPosition);
+			}
+			else
+			{
+				// no trail here, or we're already on its freshest point: head straight for the prey
 				//eventually this will only happen if in line-of-sight
 				preyPosition = piece.Prey.transform.position;
 				preyPosition.z = 0.0f;
@@ -156,13 +206,8 @@ public class MoveTowardsTarget : PieceBehaviour
 			//Debug.Log(piece.PieceName + " thinks its going to: "+ randomX +","+ randomY);
 			randomWorldTarget = grid.CellToWorld(new Vector3Int(randomX, randomY, 0));
 			NavNode node = pf.GetNode(randomWorldTarget);
-			if (node.IsBlocked())
+			if (node != null && !node.IsBlocked()) // otherwise pick another spot next frame
 			{
-				randomX = Random.Range(-5, 5);
-				randomY = Random.Range(-5, 8);
-				randomWorldTarget = grid.CellToWorld(new Vector3Int(randomX, randomY, 0));
-			} else
-            {
 				FindPath(randomWorldTarget);
 			}	
 		}
@@ -171,16 +216,23 @@ public class MoveTowardsTarget : PieceBehaviour
 
 	void FindPath(Vector3 target)
 	{
+		// Update can call this several times in one frame (e.g. per spoor); only act while still looking for a path
+		if (state != State.FindingPath) return;
+
 		Vector3 location = transform.position;
-		
+
 
 		if (!startedMove && PathIsValid() == false)
 		{
 			startedMove = true;
 
-			Vector3Int coordinate = grid.WorldToCell(target); 
+			Vector3Int coordinate = grid.WorldToCell(target);
 			//Debug.Log(piece.PieceName + " actual destination: " + coordinate);
-			path.CreatePath(location, target); // generate a path
+			if (!path.CreatePath(location, target)) // generate a path
+			{
+				EndMove(); // target is blocked (e.g. a chicken is standing on it): skip this move
+				return;
+			}
 
 			//Debug.Log("path length " + path.GetPathPointList().Count + "/" + range);
 			if (path.GetPathPointList().Count > range)
@@ -189,6 +241,12 @@ public class MoveTowardsTarget : PieceBehaviour
 				//Debug.Log("resetting path!");
 			}
 
+		}
+
+		if (path.HasFailed()) // no route exists (e.g. walled in by chickens and brambles): skip this move
+		{
+			EndMove();
+			return;
 		}
 
 		if (path.IsGenerated()) //once there's a path, transition to moving
@@ -216,13 +274,18 @@ public class MoveTowardsTarget : PieceBehaviour
 			//Debug.Log("Get path point");
 			Vector3 targetPos = path.GetPathPointWorld(i);
 
+			// pushable pieces (chickens) don't share hexes: stop short rather than step into a forbidden one
+			Vector3Int nextCell = grid.WorldToCell(targetPos);
+			if (i != 0 && nextCell != pieceCoords && !Piece.CanEnter(piece, nextCell))
+				break;
+
 			Vector3 vel = Vector3.zero;
 			while (Vector3.Distance(transform.position, targetPos) > 0.01f)
 			{
 				transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref vel, 0.2f, moveSpeed);
 
 				//  transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * moveSpeed);
-				yield return new WaitForEndOfFrame();
+				yield return null; // next frame
 			}
 
 			if(i != 0)
@@ -234,8 +297,7 @@ public class MoveTowardsTarget : PieceBehaviour
 
 		}
 
-		SendCompleteMessage();
-
 		path = new SimplePF2D.Path(pf);
+		EndMove();
 	}
 }

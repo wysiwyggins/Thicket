@@ -18,11 +18,35 @@ public class Cursor : MonoBehaviour
         grid = GameObject.Find("Grid").GetComponent<Grid>();
         //TextOutput = GameObject.Find("Text").GetComponent<Text>();
         fogTilemap = GameObject.Find("Fog").GetComponent<Tilemap>();
+        renderers = GetComponentsInChildren<Renderer>();
+    }
+
+    Renderer[] renderers;
+    bool cursorVisible = true;
+
+    // The cursor is only usable while the player's piece is waiting for a move.
+    static bool PlayerIsChoosingMove()
+    {
+        Piece current = PieceManager.CurrentPiece;
+        if (current == null) return false;
+        PlayerMovement movement = current.GetComponent<PlayerMovement>();
+        return movement != null && movement.IsAwaitingInput;
+    }
+
+    void SetCursorVisible(bool visible)
+    {
+        if (visible == cursorVisible) return;
+        cursorVisible = visible;
+        foreach (Renderer r in renderers)
+            r.enabled = visible;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // hidden outside the player's move, but still tracks the mouse and reports hex info on click
+        SetCursorVisible(PlayerIsChoosingMove());
+
         Vector3 position = transform.position;
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPos.z = 0.0f;

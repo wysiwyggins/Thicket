@@ -55,14 +55,14 @@ public class Peter : MonoBehaviour
                 // Get the next point in the path as a world position. Returns true when this is successful.
                 if (path.GetNextPoint(ref nextPoint))
                 {
-                    rb.velocity = nextPoint - transform.position;
-                    rb.velocity = rb.velocity.normalized;
-                    rb.velocity *= speed;
+                    rb.linearVelocity = nextPoint - transform.position;
+                    rb.linearVelocity = rb.linearVelocity.normalized;
+                    rb.linearVelocity *= speed;
                     isStationary = false;
                 }
                 else // When GetNextPoint is fale it means we have reached the end of the path.
                 {
-                    rb.velocity = Vector3.zero;
+                    rb.linearVelocity = Vector3.zero;
                     isStationary = true;
                 }
             }
@@ -71,14 +71,14 @@ public class Peter : MonoBehaviour
                 Vector3 delta = nextPoint - transform.position;
                 if (delta.magnitude <= 0.2f)
                 {
-                    rb.velocity = Vector3.zero;
+                    rb.linearVelocity = Vector3.zero;
                     isStationary = true;
                 }
             }
         }
         else
         {
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
             isStationary = true;
         }
 

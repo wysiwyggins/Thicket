@@ -56,15 +56,15 @@ public class Ant : MonoBehaviour
 
                 if (endPath)
                 {
-                    rb.velocity = nextPoint - transform.position;
-                    rb.velocity = rb.velocity.normalized;
-                    rb.velocity *= speed;
+                    rb.linearVelocity = nextPoint - transform.position;
+                    rb.linearVelocity = rb.linearVelocity.normalized;
+                    rb.linearVelocity *= speed;
                     isStationaryFlag = false;
                 }
                 else // The path failed or we reached the end.
                 {
                     isGoingForward = !isGoingForward;
-                    rb.velocity = Vector3.zero;
+                    rb.linearVelocity = Vector3.zero;
                 }
             }
             else
@@ -72,7 +72,7 @@ public class Ant : MonoBehaviour
                 Vector3 delta = nextPoint - transform.position;
                 if (delta.magnitude <= 0.25f)
                 {
-                    rb.velocity = Vector3.zero;
+                    rb.linearVelocity = Vector3.zero;
                     isStationaryFlag = true;
                 }
             }

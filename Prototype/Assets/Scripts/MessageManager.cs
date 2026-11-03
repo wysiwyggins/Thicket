@@ -1,6 +1,6 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
+using TMPro;
 using UnityEngine;
 
 public class MessageManager : MonoBehaviour
@@ -8,7 +8,7 @@ public class MessageManager : MonoBehaviour
     public static MessageManager Instance;
 
     public static List<string> allMessages = new List<string>();
-    static Text TextOutput;
+    static TMP_Text TextOutput;
 
     public static void AddMessage(string messageText)
 	{
@@ -20,14 +20,18 @@ public class MessageManager : MonoBehaviour
             {
                 output += allMessages[i] + "\n";
             }
-        TextOutput.text = output;
+        if (TextOutput != null)
+            TextOutput.text = output;
 
 
     }
-    // Start is called before the first frame update
-    void Start()
+    // Awake (not Start) so the text exists before PieceManager.Start posts the first turn message
+    void Awake()
     {
-        TextOutput = GameObject.Find("Text").GetComponent<Text>();
+        Instance = this;
+        GameObject textObject = GameObject.Find("Text");
+        if (textObject != null)
+            TextOutput = textObject.GetComponent<TMP_Text>();
     }
 
     // Update is called once per frame

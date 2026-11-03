@@ -10,7 +10,7 @@ public class Spoor : MonoBehaviour
 	public int drydown;
 	public Color color;
 	public Piece source;
-	SpriteRenderer renderer;
+	SpriteRenderer spriteRenderer;
 	Grid grid;
 
 
@@ -32,7 +32,7 @@ public class Spoor : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-		renderer = GetComponent<SpriteRenderer>();
+		spriteRenderer = GetComponent<SpriteRenderer>();
 		SetColor();
 		grid = GameObject.Find("Grid").GetComponent<Grid>();
 	}
@@ -48,7 +48,7 @@ public class Spoor : MonoBehaviour
 	{
 		Color c = color;
 		c.a = drydown / (float) drydown_max;
-		renderer.color = c;
+		spriteRenderer.color = c;
 	}
 
     void CheckSpoor()

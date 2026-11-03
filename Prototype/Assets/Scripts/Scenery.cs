@@ -27,6 +27,10 @@ public class Scenery : MonoBehaviour
         grid = GameObject.Find("Grid").GetComponent<Grid>();
         navigationTilemap = GameObject.Find("NavigationTilemap").GetComponent<Tilemap>();
 
+        // opaque scenery (brambles) stands above the fog, so it fades out of view like pieces do
+        if (Opaque && GetComponent<SpriteRenderer>() != null && GetComponent<FogTint>() == null)
+            gameObject.AddComponent<FogTint>();
+
     }
 
     // Update is called once per frame
@@ -46,7 +50,8 @@ public class Scenery : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (Obstacle)
+        // on scene unload the Grid/tilemap may already be destroyed
+        if (Obstacle && grid != null && navigationTilemap != null)
         {
            navigationTilemap.SetTile(pieceCoords, null);
         }
