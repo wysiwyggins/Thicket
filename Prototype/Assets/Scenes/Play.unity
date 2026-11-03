@@ -478,7 +478,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 0}
+  sharedProfile: {fileID: 11400000, guid: a80acb0e4789d4e0f8351b63de654d5a, type: 2}
 --- !u!1 &152103615
 GameObject:
   m_ObjectHideFlags: 0
@@ -6114,7 +6114,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -6405,7 +6405,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 0}
+  sharedProfile: {fileID: 11400000, guid: 4fc027198796646dfa645bd0a21f0bf9, type: 2}
 --- !u!1 &1384519190
 GameObject:
   m_ObjectHideFlags: 0
