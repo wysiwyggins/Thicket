@@ -1034,8 +1034,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 752202441}
   m_HandleRect: {fileID: 752202440}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.1454973
+  m_Value: 0.00000008031847
+  m_Size: 0.14549729
   m_NumberOfSteps: 11
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6439,6 +6439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da1c19801a6f24371b373aa9f73eb758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  titleText: {fileID: 1181458203}
   grid: {fileID: 1969299498}
   hour: 0
 --- !u!4 &1384519192
@@ -6848,9 +6849,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 570308151}
+  - {fileID: 1384519192}
   - {fileID: 1969299499}
   - {fileID: 303785707}
-  - {fileID: 1384519192}
   - {fileID: 136015958}
   - {fileID: 1230864856}
   - {fileID: 580885829}

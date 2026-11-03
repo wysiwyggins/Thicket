@@ -11,6 +11,10 @@ author: Wiley Wiggins
 
 Because Thicket was the first ambitious Unity project I ever attempted as an undergraduate, it has a large number of fairly candid journal entries where I am struggling with basic Unity usage while getting help from an instructor. I decided to update is to URP/Unity 6 and add the journal entries in case the project is useful to the Materializing Design Course I'm currently in.
 
+Now that I have some distance from the project, I can see how difficult it was to do any meaningful design work because I was so preoccupied with trying to figure out how to produce anything even remotely testable. Now it seems pretty clear that the game isn't fun because it's a race between a piece that moves 2 spaces and a piece that moves 1. Just because the faster piece sleeps a few turns doesn't meaningfully balance that out. There should be some goal during the day while the wolf sleeps that builds like a plan. The small field of view is suffocating. The speed of the day/night cycle feels awful. THe board itself is too small! There should be room to get away, clearings that are totally exposed during the day.
+
+Something could probably be salvaged from this prototype but it would be a lot of work and a lot of thinking. For now I'm happy to have made it run again at all and leave it as a window into my early attempts at learning to use Unity. Dungeon Mode Kit superscedes this project in my mind as far as what I wanted to accomplish (there's already a chicken, deer, jackal and a bear in it that could easily mimic and improve on the piece behaviors here.)
+
 **Upgrade**
 
 - Moved the project from 2020.2 to Unity 6. Switched to URP with the 2D renderer and rebuilt the day/night post-processing as URP volumes (PostFX-Day and PostFX-Night).
